@@ -1,0 +1,12 @@
+# Golden Years Photography - 金色年華攝影工作室
+# https://www.goldenyearsphoto.com/
+
+# Allow all search engine crawlers
+User-agent: *
+Allow: /
+
+# Specify preferred host to avoid duplicate content issues
+Host: https://www.goldenyearsphoto.com
+
+# Sitemap location for efficient crawling
+Sitemap: https://www.goldenyearsphoto.com/sitemap.xml

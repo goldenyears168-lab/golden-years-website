@@ -1,0 +1,15 @@
+# Golden Years Studio — 好時有影專業攝影工作室
+# https://goldennextai.com/
+
+# Allow all search engine crawlers
+User-agent: *
+Allow: /
+
+# Crawl-delay to be polite to the server
+Crawl-delay: 1
+
+# Specify preferred host to avoid duplicate content issues
+Host: https://goldennextai.com
+
+# Sitemap location for efficient crawling
+Sitemap: https://goldennextai.com/sitemap.xml

@@ -1,0 +1,144 @@
+import { courses as img, home as homeImg } from "@/config/images";
+
+export const courseData = {
+  intro: {
+    quote: `「我一直相信，教育不只是傳遞技術，而是傳遞一種『看見人』的能力。
+
+
+2025年四月，海外第一站來到墨爾本。我們將攝影棚器材打包搬到澳洲墨爾本大學，與三個社團合作。我發現，若無法傳承，這些經驗就會流失。於是我開始了一日攝影師企劃，透過教育與宣傳，希望未來能用同樣的方式，邀請社團傳承。
+
+
+這個企劃的最終目標，是找到願意一起到海外快閃的好夥伴——把好時有影的祝福儀式，帶到世界各個角落。」`,
+    author: '好時攝影師 Jack',
+    title: '我的夢想是把好時有影的祝福儀式、職涯啟程，帶到世界各個角落。',
+  },
+  challengePhotographer: {
+    id: 'challenge-one-day',
+    title: '挑戰一日攝影師',
+    subtitle: '不只是按下快門，而是用鏡頭封存故事與祝福',
+    info: {
+      people: '4–6 人',
+      time: '約 150 分鐘',
+      price: '每人 999 元',
+      deliverable: '每人 1 張精修 JPG',
+    },
+    experience: [
+      '角色扮演與拍攝小任務，寫下悄悄話祝福',
+      '基本攝影與擺姿技巧',
+      '觀察彼此，找到最好看的瞬間',
+      '建立更多理解與默契',
+    ],
+    audience: [
+      '想和好朋友留下專屬回憶',
+      '企業迎新活動',
+      '團隊 Team Building',
+    ],
+    philosophy: {
+      title: '悄悄話祝福',
+      text: '這不是重點。重點是「悄悄話祝福」：你將為你的朋友親手拍下照片，並偷偷寫下專屬於他們的「祝福驚喜」。你會發現，按下快門，不只是紀錄，更是一種把故事和回憶都封存起來的魔法，是好有意義的事。',
+    },
+    gallery: [
+      { url: img.gallery[0], alt: '好時有影一日攝影師課程學員作品 1' },
+      { url: img.gallery[1], alt: '好時有影一日攝影師課程學員作品 2' },
+      { url: img.gallery[2], alt: '好時有影一日攝影師課程學員作品 3' },
+      { url: img.gallery[3], alt: '好時有影一日攝影師課程學員作品 4' },
+    ],
+    testimonials: [
+      {
+        quote: '「原以為，30 分鐘速戰速決...卻沒想到，我們竟然在攝影棚玩了快3個小時哈哈哈😆 其實我是一個很怕尷尬的人，但因為相機的後面是情緒價值給滿的你們，被拍也變得很自然。」',
+        author: '政大科智所學員回饋',
+      },
+      {
+        quote: '「讓我這個攝影小麻瓜也有出頭天的機會...小小目標就是拍下好朋友們在我眼裡最真實的模樣...而且在寄出的精修照片信件裡，我偷偷藏了專屬於他們的文字祝福驚喜。」',
+        author: '南山業務回饋',
+      },
+      {
+        quote: '「能夠親手用相機為朋友們拍下他們身在這個人生階段下的模樣，是好有意義的事！！...每個瞬間都稍縱即逝，想用影像保存下這些珍貴的片刻。」',
+        author: '台大學生的回饋',
+      },
+    ],
+    igLink: 'https://www.instagram.com/goldenyears_studio/',
+  },
+  allCourses: [
+    {
+      id: 'challenge-one-day',
+      title: '挑戰一日攝影師',
+      subtitle: 'Challenge One-Day Photographer',
+      description: '不只是按下快門，而是用鏡頭封存故事與祝福。角色扮演與拍攝小任務，寫下悄悄話祝福。',
+      image: homeImg.coursePreview[0],
+      featured: true,
+    },
+    {
+      id: 'color-season',
+      title: '四季測色課',
+      subtitle: 'Color Season Analysis',
+      description: '透過專業的四季色彩分析，找到最能襯托你氣質的色調，從日常穿搭到重要場合，讓色彩成為你的最佳助手。',
+      image: homeImg.coursePreview[1],
+      featured: false,
+    },
+    {
+      id: 'photography-course',
+      title: '攝影專業班',
+      subtitle: 'Photography Pro Course',
+      description: '從基礎構圖到進階光影控制，系統化學習專業攝影技術。不只學會按快門，更建立專業攝影師的判斷力與美學視野。',
+      image: homeImg.coursePreview[2],
+      featured: false,
+    },
+    {
+      id: 'makeup-course',
+      title: '彩妝專業班',
+      subtitle: 'Makeup Pro Course',
+      description: '懂鏡頭的妝髮技術，從日常妝到專業棚拍妝全面掌握。肌膚分析、眉型設計、眼妝層次與色彩搭配實作。',
+      image: img.scenarios[2],
+      featured: false,
+    },
+    {
+      id: 'image-management',
+      title: '形象管理班',
+      subtitle: 'Image Management',
+      description: '個人品牌塑造、社交媒體形象規劃、職涯形象策略。從色彩分析、風格定位到社交媒體呈現，建立完整的個人形象管理系統。',
+      image: img.scenarios[3],
+      featured: false,
+    },
+    {
+      id: 'book-club',
+      title: '讀書會',
+      subtitle: 'Book Club',
+      description: '影像與文學的交會，透過閱讀與對話，探索人生與創作的意義。一月一書，在文字與畫面中找到共鳴。',
+      image: img.scenarios[4],
+      featured: false,
+    },
+  ],
+  comingSoon: [
+    {
+      id: 'color-season',
+      title: '四季測色課',
+      subtitle: 'Color Season Analysis',
+      description: '透過專業的四季色彩分析，找到最能襯托你氣質的色調，從日常穿搭到重要場合，讓色彩成為你的最佳助手。',
+    },
+    {
+      id: 'photography-course',
+      title: '攝影課程',
+      subtitle: 'Photography Course',
+      description: '從基礎構圖到進階光影控制，系統化學習專業攝影技術。',
+    },
+    {
+      id: 'makeup-course',
+      title: '彩妝課程',
+      subtitle: 'Makeup Course',
+      description: '懂鏡頭的妝髮技術，從日常妝到專業棚拍妝全面掌握。',
+    },
+    {
+      id: 'image-management',
+      title: '形象管理',
+      subtitle: 'Image Management',
+      description: '個人品牌塑造、社交媒體形象規劃、職涯形象策略。',
+    },
+    {
+      id: 'book-club',
+      title: '讀書會',
+      subtitle: 'Book Club',
+      description: '影像與文學的交會，透過閱讀與對話，探索人生與創作的意義。',
+    },
+  ],
+};
