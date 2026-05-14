@@ -9,7 +9,7 @@ Allow: /
 Crawl-delay: 1
 
 # Specify preferred host to avoid duplicate content issues
-Host: https://goldennextai.com
+Host: https://www.goldenyearsphoto.com
 
 # Sitemap location for efficient crawling
-Sitemap: https://goldennextai.com/sitemap.xml
+Sitemap: https://www.goldenyearsphoto.com/sitemap.xml
