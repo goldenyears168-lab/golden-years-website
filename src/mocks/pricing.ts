@@ -126,7 +126,7 @@ export const makeupPricing = [
     title: "女生 基礎日常妝",
     duration: "30min",
     price: "NT$ 800",
-    image: img.makeup[0],
+    image: "https://res.cloudinary.com/dsykkdyxz/image/upload/q_auto/f_auto/v1779245400/%E8%AD%89%E4%BB%B6%E7%85%A7%E7%AF%84%E4%BE%8B_u1obvg.jpg",
     slug: "makeup-basic-female",
   },
   {

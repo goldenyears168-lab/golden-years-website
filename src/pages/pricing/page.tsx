@@ -104,7 +104,7 @@ function AnimatedCategory({ category }: { category: typeof pricingCategories[0] 
               </p>
               <div className="mt-2">
                 <span className="text-brand-navy font-semibold text-sm md:text-base">
-                  {item.price}
+                  {item.price === "專案報價" ? item.price : `${item.price}/張`}
                 </span>
               </div>
             </div>

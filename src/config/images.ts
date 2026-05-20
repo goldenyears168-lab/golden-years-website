@@ -46,10 +46,7 @@ export const about = {
     "05-about-page-hero-banner-need-2",
     "goldenyears-studio-about-page-hero-banner-001.jpg",
   ),
-  banner: url(
-    "12月創新獎！",
-    "1778457996343_235981_0.jpg",
-  ),
+  banner: "https://static.readdy.ai/image/a59c001a1bbea72997731a60711927db/692ed695728c78c95f37b9ffa5eeafbf.jpeg",
   founder: url(
     "06-about-founder-portrait-need-1",
     "goldenyears-founder-story-portrait-taipei-001.jpg",

@@ -55,7 +55,7 @@ export default function PortfolioSection() {
             每一次快門，都是人生故事的一頁
           </h2>
           <p className="text-brand-textLight text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-            涵蓋職涯形象、畢業紀念、甜蜜時光、全家福等 12+ 攝影類別，點擊作品探索完整作品集
+            點擊作品探索完整作品集
           </p>
         </div>
 
