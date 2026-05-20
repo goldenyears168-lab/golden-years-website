@@ -1,5 +1,5 @@
 # Golden Years Studio — 好時有影專業攝影工作室
-# https://goldennextai.com/
+# https://www.goldenyearsphoto.com/
 
 # Allow all search engine crawlers
 User-agent: *

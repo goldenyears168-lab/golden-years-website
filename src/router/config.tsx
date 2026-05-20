@@ -7,7 +7,6 @@ const About = lazy(() => import("@/pages/about/page"));
 const Pricing = lazy(() => import("@/pages/pricing/page"));
 const PhotographyServices = lazy(() => import("@/pages/photography/page"));
 const MakeupServices = lazy(() => import("@/pages/hair-makeup/page"));
-const Courses = lazy(() => import("@/pages/courses/page"));
 const Blog = lazy(() => import("@/pages/blog/page"));
 const Booking = lazy(() => import("@/pages/booking/page"));
 const PhotoCrop = lazy(() => import("@/pages/photo-crop/page"));
@@ -71,14 +70,6 @@ const routes: RouteObject[] = [
     element: (
       <Suspense fallback={<PageFallback />}>
         <PhotoCrop />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/courses",
-    element: (
-      <Suspense fallback={<PageFallback />}>
-        <Courses />
       </Suspense>
     ),
   },

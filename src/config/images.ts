@@ -38,12 +38,6 @@ export const home = {
     "04-taipei-homepage-makeup-hero-need-1",
     "taipei-studio-hair-makeup-section-hero-001.jpg",
   ),
-  /* 首頁課程活動預覽用 */
-  coursePreview: [
-    `${BASE}/photo-inbox/32-blog-journal-hero-need-1/goldenyears-studio-blog-journal-hero-taipei-001.jpg`,
-    `${BASE}/12月創新獎！/1778458029484_IMG20260418170237.jpg`,
-    `${BASE}/12-pricing-photo-workshop-need-1/goldenyears-photography-workshop-pricing-taipei-002.jpg`,
-  ],
 };
 
 /* ── 2. 關於頁面 ── */
@@ -100,36 +94,7 @@ export const booking = {
   ),
 };
 
-/* ── 6. 課程 ── */
-export const courses = {
-  hero: url(
-    "29-courses-workshops-hero-need-1",
-    "goldenyears-photography-course-workshop-hero-taipei-001.jpg",
-  ),
-  scenarios: Array.from({ length: 20 }, (_, i) => {
-    const pool = [
-      `${BASE}/12月創新獎！/1778458029484_IMG20260418170237.jpg`,
-      `${BASE}/12-pricing-photo-workshop-need-1/goldenyears-photography-workshop-pricing-taipei-002.jpg`,
-      `${BASE}/photo-inbox/32-blog-journal-hero-need-1/goldenyears-studio-blog-journal-hero-taipei-001.jpg`,
-      `${BASE}/12月創新獎！/1778457997078_235985.jpg`,
-      `${BASE}/12月創新獎！/1778458024997_IMG20251023195158.jpg`,
-    ];
-    return pool[i % pool.length];
-  }),
-  gallery: [
-    `${BASE}/12月創新獎！/1778457997078_235985.jpg`,
-    `${BASE}/12月創新獎！/1778458024997_IMG20251023195158.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-003.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-004.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-005.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-006.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-007.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-008.jpg`,
-    `${BASE}/30-courses-carousel-featured-need-9/goldenyears-one-day-photographer-course-gallery-taipei-009.jpg`,
-  ],
-};
-
-/* ── 7. 妝髮 ── */
+/* ── 6. 妝髮 ── */
 export const hairMakeup = {
   hero: url(
     "28-hair-makeup-service-plans-need-5",
@@ -148,7 +113,7 @@ export const hairMakeup = {
   ],
 };
 
-/* ── 8. 裁切工具 ── */
+/* ── 7. 裁切工具 ── */
 export const photoCrop = {
   hero: url(
     "35-id-photo-crop-hero-need-1",
@@ -156,7 +121,7 @@ export const photoCrop = {
   ),
 };
 
-/* ── 9. 攝影服務頁面 ── */
+/* ── 8. 攝影服務頁面 ── */
 export const photography = {
   hero: url(
     "13-photography-service-hero-quote-need-2",
@@ -169,7 +134,7 @@ export const photography = {
   ),
 };
 
-/* ── 10. 價目表 ── */
+/* ── 9. 價目表 ── */
 export const pricing = {
   hero: url(
     "08-pricing-page-hero-need-1",
@@ -205,7 +170,7 @@ export const pricing = {
   ),
 };
 
-/* ── 11. 攝影作品（12 個分類 × 15 張）── */
+/* ── 10. 攝影作品（12 個分類 × 15 張）── */
 export const portfolio = {
   resume: [
     `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-012.jpg`,
