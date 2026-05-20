@@ -155,6 +155,7 @@ export default function Footer() {
               {[
                 { to: "/photography", label: "攝影服務" },
                 { to: "/hair-makeup", label: "妝髮服務" },
+                { to: "/courses", label: "課程活動" },
                 { to: "/price-list", label: "價目表" },
                 { to: "/booking", label: "線上預約" },
                 { to: "/crop-tool", label: "自助裁切大頭照" },

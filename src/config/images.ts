@@ -74,7 +74,6 @@ export const blog = {
     `${BASE}/photo-inbox/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-003.jpg`,
     `${BASE}/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-016.jpg`,
     `${BASE}/studio-interior-bts/goldenyears-taipei-studio-interior-space-001.jpg`,
-    `${BASE}/photo-inbox/studio-interior-bts/goldenyears-taipei-studio-interior-space-001.jpg`,
     `${BASE}/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-001.jpg`,
     `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-001.jpg`,
     `${BASE}/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-001.jpg`,
@@ -181,10 +180,6 @@ export const portfolio = {
     `${BASE}/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-021.jpg`,
     `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-010.jpg`,
     `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-011.jpg`,
-    `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-012.jpg`,
-    `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-013.jpg`,
-    `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-014.jpg`,
-    `${BASE}/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-015.jpg`,
   ],
   linkedin: [
     `${BASE}/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-020.jpg`,

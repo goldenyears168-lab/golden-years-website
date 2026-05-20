@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
+import { PageSkeleton } from "@/components/base/Skeleton";
 
 // ── lazy-loaded page components ──
 const Home = lazy(() => import("@/pages/home/page"));
@@ -8,27 +9,16 @@ const Pricing = lazy(() => import("@/pages/pricing/page"));
 const PhotographyServices = lazy(() => import("@/pages/photography/page"));
 const MakeupServices = lazy(() => import("@/pages/hair-makeup/page"));
 const Blog = lazy(() => import("@/pages/blog/page"));
-const Booking = lazy(() => import("@/pages/booking/page"));
+const Courses = lazy(() => import("@/pages/courses/page"));
 const PhotoCrop = lazy(() => import("@/pages/photo-crop/page"));
+const Booking = lazy(() => import("@/pages/booking/page"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
-
-function PageFallback() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-cream">
-      <div className="flex items-center gap-2 text-brand-textLight">
-        <div className="w-2 h-2 rounded-full bg-brand-navy animate-bounce" style={{ animationDelay: "0ms" }} />
-        <div className="w-2 h-2 rounded-full bg-brand-navy animate-bounce" style={{ animationDelay: "150ms" }} />
-        <div className="w-2 h-2 rounded-full bg-brand-navy animate-bounce" style={{ animationDelay: "300ms" }} />
-      </div>
-    </div>
-  );
-}
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <Home />
       </Suspense>
     ),
@@ -36,7 +26,7 @@ const routes: RouteObject[] = [
   {
     path: "/about",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <About />
       </Suspense>
     ),
@@ -44,7 +34,7 @@ const routes: RouteObject[] = [
   {
     path: "/price-list",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <Pricing />
       </Suspense>
     ),
@@ -52,7 +42,7 @@ const routes: RouteObject[] = [
   {
     path: "/photography",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <PhotographyServices />
       </Suspense>
     ),
@@ -60,15 +50,23 @@ const routes: RouteObject[] = [
   {
     path: "/hair-makeup",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <MakeupServices />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/courses",
+    element: (
+      <Suspense fallback={<PageSkeleton />}>
+        <Courses />
       </Suspense>
     ),
   },
   {
     path: "/crop-tool",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <PhotoCrop />
       </Suspense>
     ),
@@ -76,7 +74,7 @@ const routes: RouteObject[] = [
   {
     path: "/blog",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <Blog />
       </Suspense>
     ),
@@ -84,7 +82,7 @@ const routes: RouteObject[] = [
   {
     path: "/booking",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <Booking />
       </Suspense>
     ),
@@ -92,7 +90,7 @@ const routes: RouteObject[] = [
   {
     path: "*",
     element: (
-      <Suspense fallback={<PageFallback />}>
+      <Suspense fallback={<PageSkeleton />}>
         <NotFound />
       </Suspense>
     ),

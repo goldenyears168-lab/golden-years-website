@@ -8,8 +8,8 @@ import TeamSection from "./components/TeamSection";
 import ValuesSection from "./components/ValuesSection";
 import Milestones from "./components/Milestones";
 import ParallaxHero from "@/components/base/ParallaxHero";
+import LazyImage from "@/components/base/LazyImage";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { handleImgError } from "@/mocks/constants";
 import { about as aboutImg } from "@/config/images";
 
 export default function About() {
@@ -59,15 +59,16 @@ export default function About() {
             className={`container-brand sr-fade-up ${bannerVisible ? "sr-visible" : ""}`}
           >
             <div className="relative rounded-lg overflow-hidden group">
-              <img
+              <LazyImage
                 src={aboutImg.banner}
                 alt="好時有影台北公館攝影工作室團隊空間"
                 className="w-full h-[300px] md:h-[480px] lg:h-[520px] object-cover object-center"
-                loading="lazy"
-                decoding="async"
-                onError={handleImgError}
                 width={1200}
                 height={520}
+                loading="lazy"
+                decoding="async"
+                sizes="100vw"
+                autoSrcSet
               />
               {/* 精緻圖說覆層 */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pt-20 md:pt-28 pb-6 md:pb-8 px-6 md:px-10">

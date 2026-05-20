@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 import { resolve } from "node:path";
 import AutoImport from "unplugin-auto-import/vite";
 
@@ -60,6 +61,49 @@ export default defineConfig({
         },
       ],
       dts: true,
+    }),
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: false,
+      manifest: false,
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,woff2}"],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "images",
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 24 * 60 * 60,
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/2026readdy\.goldennextai\.com\//,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "cdn-images",
+              expiration: {
+                maxEntries: 300,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/storage\.readdy-site\.link\//,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "storage-images",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
   base,

@@ -7,7 +7,7 @@ const navItems = [
   { path: "/price-list", label: "價目表" },
   { path: "/photography", label: "攝影服務" },
   { path: "/hair-makeup", label: "妝髮服務" },
-  { path: "https://events.goldentimeguide.com/", label: "課程活動", external: true },
+  { path: "/courses", label: "課程活動" },
   { path: "/blog", label: "好時誌" },
   { path: "/booking", label: "線上預約" },
 ];
@@ -88,27 +88,15 @@ export default function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-7">
-              {navItems.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.path}
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${navLinkBase} ${textColorClass} ${textShadowClass}`}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
+              {navItems.map((item) => (
+                <Link
                     key={item.path}
                     to={item.path}
                     className={`${navLinkBase} ${isActive(item.path) ? "text-brand-gold" : textColorClass} ${textShadowClass}`}
-                  >
+                >
                     {item.label}
-                  </Link>
-                )
-              )}
+                </Link>
+            ))}
             </nav>
 
             {/* Mobile Menu Button */}
@@ -156,21 +144,7 @@ export default function Header() {
           {/* Drawer Body */}
           <div className="flex-1 overflow-y-auto px-5 py-3">
             <nav className="space-y-0">
-              {navItems.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.path}
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileOpen(false)}
-                    className={`block py-3 text-[15px] font-medium tracking-wide border-b border-white/5 ${
-                      isActive(item.path) ? "text-brand-gold" : "text-white/90"
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
+              {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
@@ -181,8 +155,7 @@ export default function Header() {
                   >
                     {item.label}
                   </Link>
-                )
-              )}
+              ))}
             </nav>
           </div>
 

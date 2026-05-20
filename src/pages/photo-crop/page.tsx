@@ -169,8 +169,6 @@ export default function PhotoCrop() {
                   src="https://s1031432.github.io/yctest/inch2_head2.html"
                   title="自助裁切大頭照工具"
                   className="w-full h-[700px] md:h-[800px] border-0 block"
-                  style={{ overflow: "hidden" }}
-                  scrolling="no"
                   loading="lazy"
                 />
               </div>

@@ -5,9 +5,9 @@ import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
 import { makeupPageData } from "@/mocks/makeup-services";
 import ParallaxHero from "@/components/base/ParallaxHero";
+import LazyImage from "@/components/base/LazyImage";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FAQItem from "./components/FAQItem";
-import { handleImgError } from "@/mocks/constants";
 import { hairMakeup as makeupImg } from "@/config/images";
 import FAQSchema from "@/components/base/FAQSchema";
 
@@ -85,15 +85,15 @@ function QuoteSection() {
             className={`sr-slide-left ${imgVisible ? "sr-visible" : ""}`}
           >
             <div className="relative rounded-lg overflow-hidden">
-              <img
+              <LazyImage
                 src={makeupImg.teacher}
                 alt="好時有影首席造型師羽彤老師專業妝髮"
                 className="w-full h-[380px] md:h-[480px] object-cover object-center"
                 loading="lazy"
                 decoding="async"
-                onError={handleImgError}
                 width={800}
                 height={480}
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pt-16 pb-5 px-5">
                 <div className="flex items-center gap-2">
@@ -431,15 +431,15 @@ function PlanBlock({ plan, index }: PlanBlockProps) {
         {/* 圖片 */}
         <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
           <div className="relative rounded-lg overflow-hidden">
-            <img
+            <LazyImage
               src={plan.image}
               alt={`好時有影台北${plan.title}`}
               className="w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[560px] object-cover object-center"
               loading="lazy"
               decoding="async"
-              onError={handleImgError}
               width={800}
               height={560}
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute top-4 left-4">
               <span

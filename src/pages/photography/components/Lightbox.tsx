@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { getFormatUrl } from "@/utils/image";
 
 interface LightboxImage {
   url: string;
@@ -37,6 +38,8 @@ export default function Lightbox({
       document.body.style.overflow = "";
     };
   }, []);
+
+  const currentImage = images[index];
 
   return (
     <div
@@ -77,11 +80,15 @@ export default function Lightbox({
         className="max-w-[90vw] max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={images[index].url}
-          alt={images[index].alt}
-          className="max-w-[90vw] max-h-[85vh] object-contain rounded-md"
-        />
+        <picture>
+          <source srcSet={getFormatUrl(currentImage.url, "avif")} type="image/avif" />
+          <source srcSet={getFormatUrl(currentImage.url, "webp")} type="image/webp" />
+          <img
+            src={currentImage.url}
+            alt={currentImage.alt}
+            className="max-w-[90vw] max-h-[85vh] object-contain rounded-md"
+          />
+        </picture>
       </div>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-xs">
         {index + 1} / {images.length}

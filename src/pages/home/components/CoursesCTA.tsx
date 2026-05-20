@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function CoursesCTA() {
@@ -19,15 +20,13 @@ export default function CoursesCTA() {
           <p className="text-brand-textLight text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10">
             從一日攝影師挑戰到專業攝影班、彩妝課程與形象管理，我們用教育傳遞「看見人」的能力。歡迎企業團隊、社團活動與個人進修一起來玩。
           </p>
-          <a
-            href="https://events.goldentimeguide.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/courses"
             className="btn-primary inline-flex items-center gap-2"
           >
-            前往課程活動官網
+            瀏覽課程活動
             <i className="ri-arrow-right-line" />
-          </a>
+          </Link>
           <p className="text-xs text-brand-textMuted mt-4">
             企業包班、社團合作歡迎
             <a

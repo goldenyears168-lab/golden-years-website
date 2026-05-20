@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation, BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./router";
 import CanonicalMeta from "@/components/base/CanonicalMeta";
+import { ErrorBoundary } from "@/components/base/ErrorBoundary";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -15,9 +15,11 @@ function ScrollToTop() {
 function App() {
   return (
     <BrowserRouter basename={__BASE_PATH__}>
-      <CanonicalMeta />
-      <ScrollToTop />
-      <AppRoutes />
+      <ErrorBoundary>
+        <CanonicalMeta />
+        <ScrollToTop />
+        <AppRoutes />
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }

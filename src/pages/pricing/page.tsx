@@ -3,22 +3,23 @@ import Header from "@/components/feature/Header";
 import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
+import LazyImage from "@/components/base/LazyImage";
 import {
   pricingCategories,
   makeupPricing,
   workshopPricing,
-  photoServiceNotes,
 } from "@/mocks/pricing";
 import ParallaxHero from "@/components/base/ParallaxHero";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { handleImgError } from "@/mocks/constants";
 import { pricing as pricingImg } from "@/config/images";
 import FAQSchema from "@/components/base/FAQSchema";
 import FAQItem from "@/pages/hair-makeup/components/FAQItem";
 import PriceTableSchema from "@/components/base/PriceTableSchema";
 import { pricingFAQ } from "@/mocks/pricing-faq";
 
-// 價格比較表結構化資料
+/* ------------------------------------------------------------------ */
+/*  價格比較表結構化資料                                                */
+/* ------------------------------------------------------------------ */
 const priceTableItems = [
   ...pricingCategories.flatMap((cat) =>
     cat.items
@@ -83,16 +84,17 @@ function AnimatedCategory({ category }: { category: typeof pricingCategories[0] 
             className={`group bg-white rounded-lg border border-brand-creamDark overflow-hidden hover:border-brand-gold/30 hover:-translate-y-1 hover:shadow-sm transition-all duration-300 flex flex-row sr-fade-up sr-fast ${gridVisible ? "sr-visible" : ""}`}
             style={{ transitionDelay: gridVisible ? `${index * 60}ms` : "0ms" }}
           >
-            <div className="w-28 flex-shrink-0 overflow-hidden aspect-[3/4]">
-              <img
+            <div className="w-28 flex-shrink-0 aspect-[3/4]">
+              <LazyImage
                 src={item.image}
                 alt={`好時有影台北${item.title}`}
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-                onError={handleImgError}
                 width={112}
                 height={150}
+                autoSrcSet
+                sizes="(max-width: 640px) 20vw, 112px"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex-1 flex flex-col justify-center p-4 min-w-0">
@@ -241,15 +243,16 @@ export default function Pricing() {
                   style={{ transitionDelay: makeupVisible ? `${index * 60}ms` : "0ms" }}
                 >
                   <div className="relative overflow-hidden aspect-[3/4]">
-                    <img
+                    <LazyImage
                       src={item.image}
                       alt={`好時有影台北${item.title}`}
                       className="w-full h-full object-cover object-center"
-                      loading="lazy"
-                      decoding="async"
-                      onError={handleImgError}
                       width={400}
                       height={533}
+                      autoSrcSet
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div className="p-3 md:p-4">
@@ -290,16 +293,17 @@ export default function Pricing() {
                   key={item.id}
                   className={`bg-white rounded-lg overflow-hidden border border-brand-creamDark hover:-translate-y-1 hover:shadow-sm transition-all duration-300 flex flex-row sr-fade-up ${workshopVisible ? "sr-visible" : ""}`}
                 >
-                  <div className="w-32 md:w-40 flex-shrink-0 overflow-hidden">
-                    <img
+                  <div className="w-32 md:w-40 flex-shrink-0">
+                    <LazyImage
                       src={item.image}
                       alt={`好時有影台北${item.title}`}
                       className="w-full h-full object-cover object-center"
-                      loading="lazy"
-                      decoding="async"
-                      onError={handleImgError}
                       width={160}
                       height={160}
+                      autoSrcSet
+                      sizes="(max-width: 768px) 128px, 160px"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-center p-4 md:p-5">

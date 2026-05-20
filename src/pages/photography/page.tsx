@@ -1,17 +1,17 @@
 import { useSearchParams, Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Header from "@/components/feature/Header";
 import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
 import ParallaxHero from "@/components/base/ParallaxHero";
+import LazyImage from "@/components/base/LazyImage";
 import { photographyPageData, photographyServices } from "@/mocks/photography-services";
 import { portfolioCategories } from "@/mocks/portfolio-categories";
 import { featuredPortfolio } from "@/mocks/portfolio";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FAQItem from "@/pages/hair-makeup/components/FAQItem";
 import { photographyFAQ } from "@/mocks/photography-faq";
-import { handleImgError } from "@/mocks/constants";
 import { photography as photographyImg } from "@/config/images";
 import FAQSchema from "@/components/base/FAQSchema";
 
@@ -22,6 +22,8 @@ export default function PhotographyServices() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
   const [showMoreFilters, setShowMoreFilters] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll reveals
   const [heroRef, heroVisible] = useScrollReveal<HTMLElement>();
@@ -34,7 +36,24 @@ export default function PhotographyServices() {
   useEffect(() => {
     const cat = searchParams.get("category") || "all";
     setActiveCategory(cat);
+    setVisibleCount(12); // reset batch on category change
   }, [searchParams]);
+
+  // Auto-load more images when sentinel enters viewport
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((prev) => prev + 12);
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [activeCategory]);
 
   const handleCategoryChange = useCallback(
     (slug: string) => {
@@ -46,16 +65,21 @@ export default function PhotographyServices() {
 
   const displayedImages =
     activeCategory === "all"
-      ? featuredPortfolio.slice(0, 20)
+      ? featuredPortfolio.slice(0, visibleCount)
       : portfolioCategories
           .filter((cat) => cat.slug === activeCategory)
           .flatMap((cat) =>
-            cat.images.slice(0, 20).map((img) => ({
+            cat.images.slice(0, visibleCount).map((img) => ({
               ...img,
               categorySlug: cat.slug,
               categoryTitle: cat.title,
             }))
           );
+
+  const hasMoreImages =
+    activeCategory === "all"
+      ? visibleCount < featuredPortfolio.length
+      : (portfolioCategories.find((c) => c.slug === activeCategory)?.images.length ?? 0) > visibleCount;
 
   const activeServiceInfo = activeCategory !== "all"
     ? photographyServices.find((s) => s.id === activeCategory)
@@ -121,15 +145,17 @@ export default function PhotographyServices() {
               <div className="lg:col-span-4">
                 <div className="flex flex-col items-center">
                   <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
-                    <img
+                    <LazyImage
                       src="https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-001.jpg"
                       alt="好時有影 Annie 總監首席攝影師"
                       className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                      onError={handleImgError}
                       width={340}
                       height={453}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 1024px) 50vw, 340px"
+                      autoSrcSet
+                      containerClassName="rounded-lg"
                     />
                     <div className="absolute inset-0 rounded-lg ring-2 ring-brand-gold/20" />
                   </div>
@@ -310,7 +336,7 @@ export default function PhotographyServices() {
               </span>
             </div>
 
-            {/* Masonry Gallery */}
+            {/* Masonry Gallery — batch loaded */}
             <div
               ref={galleryRef}
               className={`sr-fade-up ${galleryVisible ? "sr-visible" : ""}`}
@@ -322,20 +348,20 @@ export default function PhotographyServices() {
                     className="break-inside-avoid rounded-lg overflow-hidden group"
                   >
                     <div className="relative">
-                      <img
+                      <LazyImage
                         src={img.url}
                         alt={`好時有影台北${img.alt}`}
-                        srcSet={img.url.replace(/width=\d+/, "width=400") + " 400w, " + img.url}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-auto min-h-[200px] object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            photographyImg.featured[0];
-                        }}
                         width={400}
                         height={300}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        autoSrcSet
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.src = photographyImg.featured[0];
+                        }}
                       />
                       {activeCategory === "all" && (
                         <div className="absolute bottom-2 left-2 px-2 py-1 bg-white/90 rounded text-xs text-brand-navy font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -346,6 +372,21 @@ export default function PhotographyServices() {
                   </div>
                 ))}
               </div>
+
+              {/* Sentinel for auto-loading + Load More button */}
+              {hasMoreImages && (
+                <div className="mt-8 md:mt-10 text-center">
+                  <button
+                    onClick={() => setVisibleCount((prev) => prev + 12)}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-brand-navy/15 bg-white text-brand-navy text-sm font-medium hover:bg-brand-creamDark transition-colors duration-300 cursor-pointer"
+                  >
+                    <i className="ri-arrow-down-line" />
+                    載入更多作品
+                  </button>
+                  {/* IntersectionObserver sentinel */}
+                  <div ref={sentinelRef} className="h-4" aria-hidden="true" />
+                </div>
+              )}
             </div>
           </div>
         </section>

@@ -1,6 +1,6 @@
 import { founderStory } from "@/mocks/about";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { handleImgError } from "@/mocks/constants";
+import LazyImage from "@/components/base/LazyImage";
 
 export default function FounderStory() {
   const [textRef, textVisible] = useScrollReveal<HTMLDivElement>();
@@ -39,15 +39,16 @@ export default function FounderStory() {
             className={`lg:sticky lg:top-24 sr-slide-right ${imgVisible ? "sr-visible" : ""}`}
           >
             <div className="relative rounded-lg overflow-hidden max-w-[60%] mx-auto aspect-[3/4]">
-              <img
+              <LazyImage
                 src={founderStory.founder.image}
                 alt={founderStory.founder.alt}
                 className="w-full h-full object-cover object-top"
-                loading="lazy"
-                decoding="async"
-                onError={handleImgError}
                 width={600}
                 height={800}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 1024px) 60vw, 30vw"
+                autoSrcSet
               />
             </div>
             <div className="mt-6 max-w-[60%] mx-auto text-center">

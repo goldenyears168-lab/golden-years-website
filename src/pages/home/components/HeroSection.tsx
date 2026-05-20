@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useParallax } from "@/hooks/useParallax";
 import { handleImgError } from "@/mocks/constants";
+import { getFormatUrl } from "@/utils/image";
 
 const HERO_COUNT = heroData.images.length;
 
@@ -11,6 +12,7 @@ export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideImgLoaded, setSlideImgLoaded] = useState(true);
   const [ref, visible] = useScrollReveal<HTMLElement>();
+  const [isIntersecting, setIsIntersecting] = useState(true);
   const parallaxRef = useParallax(0.25);
 
   const nextSlide = useCallback(() => {
@@ -24,10 +26,23 @@ export default function HeroSection() {
     setCurrentIndex(index);
   }, [currentIndex]);
 
+  /* 離屏暫停 auto-slide，回畫面再續播 */
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsIntersecting(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  useEffect(() => {
+    if (!isIntersecting) return;
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
-  }, [nextSlide]);
+  }, [nextSlide, isIntersecting]);
 
   /* 僅預載「下一張」，避免與 LCP 首幀搶頻寬 */
   useEffect(() => {
@@ -53,21 +68,25 @@ export default function HeroSection() {
         aria-hidden="true"
       >
         <div className="absolute inset-0">
-          <img
-            src={heroSrc}
-            alt={heroAlt}
-            className={`w-full h-full object-cover transition-opacity duration-1000 ${
-              slideImgLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            fetchPriority={currentIndex === 0 ? "high" : "auto"}
-            loading="eager"
-            decoding="async"
-            sizes="100vw"
-            width={1920}
-            height={1280}
-            onLoad={() => setSlideImgLoaded(true)}
-            onError={handleImgError}
-          />
+          <picture>
+            <source srcSet={getFormatUrl(heroSrc, "avif")} type="image/avif" />
+            <source srcSet={getFormatUrl(heroSrc, "webp")} type="image/webp" />
+            <img
+              src={heroSrc}
+              alt={heroAlt}
+              className={`w-full h-full object-cover transition-opacity duration-1000 ${
+                slideImgLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              fetchPriority={currentIndex === 0 ? "high" : "auto"}
+              loading="eager"
+              decoding="async"
+              sizes="100vw"
+              width={1920}
+              height={1280}
+              onLoad={() => setSlideImgLoaded(true)}
+              onError={handleImgError}
+            />
+          </picture>
         </div>
       </div>
 

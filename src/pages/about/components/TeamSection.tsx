@@ -1,6 +1,6 @@
 import { teamData } from "@/mocks/about";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { handleImgError } from "@/mocks/constants";
+import LazyImage from "@/components/base/LazyImage";
 
 export default function TeamSection() {
   const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
@@ -57,15 +57,17 @@ function TeamCategory({ category }: { category: typeof teamData.categories[0] })
             style={{ transitionDelay: isVisible ? `${index * 80}ms` : "0ms" }}
           >
             <div className="relative rounded-full overflow-hidden mb-3 bg-brand-creamDark aspect-square mx-auto w-full max-w-[220px]">
-              <img
+              <LazyImage
                 src={member.image}
                 alt={member.alt}
                 className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-                onError={handleImgError}
                 width={220}
                 height={220}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
+                autoSrcSet
+                containerClassName="rounded-full"
               />
               <div className="absolute inset-0 rounded-full ring-2 ring-brand-gold/20 group-hover:ring-brand-gold/50 transition-all duration-300" />
             </div>
