@@ -23,6 +23,7 @@ export function ProgressBar({ currentStep, labels, onStepClick, visitedSteps }: 
               className={`
                 flex flex-col items-center gap-1
                 bg-transparent border-none p-0
+                group
                 ${isClickable ? 'cursor-pointer' : 'cursor-default'}
               `}
             >
@@ -33,7 +34,7 @@ export function ProgressBar({ currentStep, labels, onStepClick, visitedSteps }: 
                   text-sm md:text-base font-bold
                   transition-all duration-300
                   ${isCompleted
-                    ? 'bg-brand-gold text-brand-navy'
+                    ? 'bg-brand-gold text-brand-navy shadow-sm group-hover:shadow-md group-hover:scale-110'
                     : isCurrent
                       ? 'bg-brand-navy text-white ring-4 ring-brand-navy/20'
                       : 'bg-brand-creamDark text-brand-textMuted border-2 border-brand-creamDark'
@@ -49,7 +50,9 @@ export function ProgressBar({ currentStep, labels, onStepClick, visitedSteps }: 
               <span
                 className={`
                   text-[0.7rem] md:text-sm font-medium whitespace-nowrap
+                  transition-colors duration-300
                   ${isCompleted || isCurrent ? 'text-brand-navy' : 'text-brand-textMuted'}
+                  ${isClickable ? 'group-hover:text-brand-navy' : ''}
                 `}
               >
                 {label}

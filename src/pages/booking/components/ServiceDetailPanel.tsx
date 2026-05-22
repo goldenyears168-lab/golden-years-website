@@ -55,7 +55,7 @@ export function ServiceDetailPanel({
         <button
           type="button"
           onClick={onContinue}
-          className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-brand-navy text-white text-sm font-medium rounded-lg hover:bg-brand-navy/90 transition-colors cursor-pointer whitespace-nowrap"
+          className="inline-flex items-center gap-2 px-12 py-2.5 md:px-16 md:py-3 bg-brand-navy text-white text-sm font-medium rounded-lg hover:bg-brand-navy/90 transition-colors cursor-pointer whitespace-nowrap"
         >
           確認並繼續
           <i className="ri-arrow-right-line" />

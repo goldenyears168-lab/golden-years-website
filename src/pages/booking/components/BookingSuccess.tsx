@@ -27,8 +27,7 @@ export function BookingSuccess({ summary, onNewBooking }: Props) {
         期待與您見面！
       </p>
       <p className="text-sm text-brand-textMuted mb-4 leading-relaxed">
-        我們已收到您的預約，拍攝當天請提前 5 分鐘抵達，<br className="hidden sm:block" />
-        並記得攜帶身份證件以便核對預約資訊。
+        我們已收到您的預約，拍攝當天請提前 5 分鐘抵達。
       </p>
 
       {arrivalTime ? (
