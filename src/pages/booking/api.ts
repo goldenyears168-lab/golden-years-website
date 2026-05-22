@@ -1,78 +1,30 @@
 import type { AdditionalField, BookingResult } from './types';
 
-// Direct SimplyBook API client — bypasses broken Edge Function
-const SIMPLYBOOK_COMPANY_LOGIN = "goldenyearsportrait2";
-const SIMPLYBOOK_API_KEY = "7bcce4caaefa3ee16aac9ef225d6e28eafcb0ee31059fb8c78d72aa9ac7879db";
-const SIMPLYBOOK_API_SECRET = "51f5f93c1200350ed1ac95f055b64ff7d0c801b7bd849113993b073a9ec4de43";
-const SIMPLYBOOK_LOGIN_URL = "https://user-api.simplybook.me/login/";
-const SIMPLYBOOK_API_URL = "https://user-api.simplybook.me/";
+const SIMPLYBOOK_API = '/api/simplybook';
 
-type JsonRpcResponse = {
-  result?: unknown;
-  error?: { message?: string; code?: number | string };
-};
+type ProxyBody = Record<string, unknown>;
 
-let cachedToken: { value: string; expiresAt: number } | null = null;
+type ProxySuccess<T> = { data: T };
+type ProxyFailure = { error: string };
 
-async function getToken(): Promise<string> {
-  if (cachedToken && Date.now() < cachedToken.expiresAt) {
-    return cachedToken.value;
-  }
-
-  const res = await fetch(SIMPLYBOOK_LOGIN_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      jsonrpc: "2.0",
-      method: "getToken",
-      params: [SIMPLYBOOK_COMPANY_LOGIN, SIMPLYBOOK_API_KEY],
-      id: 1,
-    }),
+async function simplybookProxy<T>(body: ProxyBody): Promise<T> {
+  const res = await fetch(SIMPLYBOOK_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
   });
 
-  const rawText = await res.text();
+  const json = (await res.json()) as Partial<ProxySuccess<T>> & ProxyFailure;
 
-  let data: JsonRpcResponse;
-  try {
-    data = JSON.parse(rawText) as JsonRpcResponse;
-  } catch {
-    throw new Error(`SimplyBook token: invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
+  if (!res.ok || json.error) {
+    throw new Error(json.error ?? `SimplyBook API error (${res.status})`);
   }
 
-  if (data.error) {
-    throw new Error(`SimplyBook token error: ${data.error.message ?? JSON.stringify(data.error)}`);
-  }
-  const token = String(data.result);
-  cachedToken = { value: token, expiresAt: Date.now() + 50 * 60 * 1000 };
-  return token;
-}
-
-async function simplybookRpc(method: string, params: unknown[]): Promise<unknown> {
-  const token = await getToken();
-
-  const res = await fetch(SIMPLYBOOK_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Company-Login": SIMPLYBOOK_COMPANY_LOGIN,
-      "X-Token": token,
-    },
-    body: JSON.stringify({ jsonrpc: "2.0", method, params, id: 1 }),
-  });
-
-  const rawText = await res.text();
-
-  let data: JsonRpcResponse;
-  try {
-    data = JSON.parse(rawText) as JsonRpcResponse;
-  } catch {
-    throw new Error(`SimplyBook ${method}: invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
+  if (!('data' in json) || json.data === undefined) {
+    throw new Error('SimplyBook API: empty response');
   }
 
-  if (data.error) {
-    throw new Error(`SimplyBook ${method} error: ${data.error.message ?? JSON.stringify(data.error)}`);
-  }
-  return data.result;
+  return json.data;
 }
 
 export type SlotsResponse = {
@@ -108,19 +60,22 @@ export async function fetchSlots(
   dateFrom: string,
   dateTo: string,
 ): Promise<SlotsResponse> {
-  const matrix = (await simplybookRpc("getStartTimeMatrix", [
-    dateFrom,
-    dateTo,
+  const { slotsByDate } = await simplybookProxy<{ slotsByDate: Record<string, string[]> }>({
+    action: 'slots',
     serviceId,
     providerId,
-    1,
-  ])) as Record<string, string[]>;
+    dateFrom,
+    dateTo,
+  });
 
-  return { slotsByDate: matrix ?? {} };
+  return { slotsByDate: slotsByDate ?? {} };
 }
 
 export async function fetchAdditionalFields(serviceId: number): Promise<AdditionalField[]> {
-  const fields = (await simplybookRpc("getAdditionalFields", [serviceId])) as unknown[];
+  const { fields } = await simplybookProxy<{ fields: unknown[] }>({
+    action: 'fields',
+    serviceId,
+  });
   return (fields ?? []).map((f) => f as AdditionalField).sort((a, b) => Number(a.pos) - Number(b.pos));
 }
 
@@ -133,70 +88,16 @@ export type BookPayload = {
   additional: Record<string, string>;
 };
 
-type BookingRpcResult = {
-  require_confirm?: boolean;
-  bookings?: Array<{ id: string | number; hash: string; code?: string; start_date_time?: string; end_date_time?: string; is_confirmed?: string }>;
-  id?: string | number;
-  hash?: string;
-  code?: string;
-};
-
-// MD5 helper for confirmBooking
-async function md5Hash(message: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(message);
-  const hashBuffer = await crypto.subtle.digest("MD5", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-}
-
-async function confirmIfNeeded(result: BookingRpcResult) {
-  if (!result.require_confirm || !SIMPLYBOOK_API_SECRET) return result;
-
-  const bookings = result.bookings ?? [];
-  for (const b of bookings) {
-    const id = String(b.id);
-    const hash = b.hash;
-    const sign = await md5Hash(`${id}${hash}${SIMPLYBOOK_API_SECRET}`);
-    await simplybookRpc("confirmBooking", [Number(id), sign]);
-  }
-  return result;
-}
-
 export async function submitBooking(payload: BookPayload): Promise<BookingResult> {
-  let raw = (await simplybookRpc("book", [
-    payload.serviceId,
-    payload.providerId,
-    payload.date,
-    payload.time,
-    payload.client,
-    payload.additional,
-  ])) as BookingRpcResult;
-
-  raw = await confirmIfNeeded(raw);
-
-  type RawBooking = {
-    id: string | number;
-    code?: string;
-    start_date_time?: string;
-    end_date_time?: string;
-    is_confirmed?: string;
-    hash: string;
-  };
-
-  const bookings = ((raw.bookings ?? []) as RawBooking[]).map((b) => ({
-    id: String(b.id),
-    code: b.code ?? "",
-    start_date_time: b.start_date_time ?? `${payload.date} ${payload.time}`,
-    end_date_time: b.end_date_time ?? "",
-    is_confirmed: b.is_confirmed ?? "1",
-    hash: b.hash,
-  }));
-
-  return {
-    require_confirm: Boolean(raw.require_confirm),
-    bookings,
-  };
+  return simplybookProxy<BookingResult>({
+    action: 'book',
+    serviceId: payload.serviceId,
+    providerId: payload.providerId,
+    date: payload.date,
+    time: payload.time,
+    client: payload.client,
+    additional: payload.additional,
+  });
 }
 
 export function formatTime(t: string): string {
