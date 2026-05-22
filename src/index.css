@@ -50,6 +50,25 @@
   }
 }
 
+/* ── Step Wizard Animations ── */
+@keyframes step-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-step-enter {
+  animation: step-enter 0.35s ease-out forwards;
+}
+
+@keyframes fade-in-expand {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in-expand 0.2s ease-out forwards;
+}
+
 /* ============================================
    Scroll Reveal Animations
    ============================================ */

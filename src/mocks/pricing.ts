@@ -46,6 +46,14 @@ export const pricingCategories = [
         slug: "graduation-photo",
       },
       {
+        id: "personal-portrait",
+        title: "個人寫真照",
+        subtitle: "自我紀錄，個人風格",
+        price: "NT$ 999",
+        image: "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409825/body-profile-1_tz8mad.jpg",
+        slug: "personal-portrait",
+      },
+      {
         id: "doctor",
         title: "醫師白袍照",
         subtitle: "醫療專業形象",

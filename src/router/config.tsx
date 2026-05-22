@@ -12,6 +12,7 @@ const Blog = lazy(() => import("@/pages/blog/page"));
 const Courses = lazy(() => import("@/pages/courses/page"));
 const PhotoCrop = lazy(() => import("@/pages/photo-crop/page"));
 const Booking = lazy(() => import("@/pages/booking/page"));
+const BookingThankYou = lazy(() => import("@/pages/booking/thank-you/page"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const routes: RouteObject[] = [
@@ -84,6 +85,14 @@ const routes: RouteObject[] = [
     element: (
       <Suspense fallback={<PageSkeleton />}>
         <Booking />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/booking/thank-you",
+    element: (
+      <Suspense fallback={<PageSkeleton />}>
+        <BookingThankYou />
       </Suspense>
     ),
   },

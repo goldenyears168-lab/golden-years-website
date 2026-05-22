@@ -351,13 +351,12 @@ export default function PhotographyServices() {
                       <LazyImage
                         src={img.url}
                         alt={`好時有影台北${img.alt}`}
-                        className="w-full h-auto min-h-[200px] object-cover transition-transform duration-500 group-hover:scale-105"
-                        width={400}
-                        height={300}
+                        className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                         decoding="async"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         autoSrcSet
+                        containerClassName="min-h-[120px]"
                         onError={(e) => {
                           const target = e.currentTarget;
                           target.src = photographyImg.featured[0];
