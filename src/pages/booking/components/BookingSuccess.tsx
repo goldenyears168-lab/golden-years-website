@@ -1,4 +1,4 @@
-import { formatTime, getMakeupStyleLabel } from '../api';
+import { formatTime, weekdayLabel, getMakeupStyleLabel } from '../api';
 import { LINE_OFFICIAL_URL } from '../config';
 import type { BookingSummary } from '../types';
 
@@ -8,12 +8,16 @@ type Props = {
 };
 
 export function BookingSuccess({ summary, onNewBooking }: Props) {
-  const { booking, serviceLabel, storeLabel, arrivalTime } = summary;
+  const { booking, serviceLabel, storeLabel, arrivalTime, additionalAnswers } = summary;
   const start = booking.start_date_time;
   const [datePart, timePart] = start.includes(' ') ? start.split(' ') : [start, ''];
+  const timeFormatted = timePart ? formatTime(timePart) : '';
+
+  const isMakeup = serviceLabel.includes('妝髮');
+  const styleLabel = getMakeupStyleLabel(additionalAnswers);
 
   return (
-    <div className="text-center bg-white border border-brand-creamDark rounded-lg p-6 md:p-8 shadow-sm">
+    <div className="text-center bg-white border border-brand-creamDark rounded-lg p-5 md:p-8 shadow-sm">
       <div
         className="w-14 h-14 mx-auto mb-4 rounded-full bg-green-50 text-green-700
           text-2xl font-bold leading-[56px]"
@@ -26,39 +30,45 @@ export function BookingSuccess({ summary, onNewBooking }: Props) {
       <p className="text-base text-brand-charcoal font-medium mb-1">
         期待與您見面！
       </p>
-      <p className="text-sm text-brand-textMuted mb-4 leading-relaxed">
-        我們已收到您的預約，拍攝當天請提前 5 分鐘抵達。
+      <p className="text-sm text-brand-textMuted mb-5 leading-relaxed">
+        我們已收到您的預約，拍攝當天請提前抵達。
       </p>
 
-      {arrivalTime ? (
-        <div className="mb-4 p-3 rounded-lg bg-brand-cream border border-brand-gold/20">
-          <div className="flex items-start gap-2 justify-center">
-            <i className="ri-time-line text-brand-gold mt-0.5" aria-hidden />
-            <div className="text-left">
-              <p className="text-sm font-semibold text-brand-navy">
-                建議到店時間：{datePart} {arrivalTime}
-              </p>
-              <p className="text-xs text-brand-textMuted mt-0.5 leading-relaxed">
-                拍攝時間為 {timePart ? formatTime(timePart) : ''}，含妝髮服務請提前到店完成造型準備。
-              </p>
-            </div>
+      {/* 建議到店時間 — 所有服務都顯示，手機版置中、加大 padding */}
+      <div className="mb-5 p-4 rounded-xl bg-brand-cream border border-brand-gold/25">
+        <div className="flex items-start gap-3 justify-center text-left">
+          <div className="w-9 h-9 rounded-full bg-brand-gold/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i className="ri-time-line text-brand-gold text-base" aria-hidden />
+          </div>
+          <div className="min-w-0">
+            {arrivalTime ? (
+              <>
+                <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
+                  建議到店時間：{datePart} {arrivalTime}
+                </p>
+                <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
+                  拍攝時間為 {timeFormatted}
+                  {isMakeup
+                    ? `，${styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。`
+                    : '，請提前 5 分鐘抵達以便完成準備。'}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
+                  {isMakeup ? '請提前到店完成造型準備' : '請提前 5 分鐘抵達'}
+                </p>
+                <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
+                  拍攝時間為 {timeFormatted}
+                  {isMakeup
+                    ? '，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。'
+                    : '，建議提前到達以便完成準備。'}
+                </p>
+              </>
+            )}
           </div>
         </div>
-      ) : serviceLabel.includes('妝髮') ? (
-        <div className="mb-4 p-3 rounded-lg bg-brand-cream border border-brand-gold/20">
-          <div className="flex items-start gap-2 justify-center">
-            <i className="ri-time-line text-brand-gold mt-0.5" aria-hidden />
-            <div className="text-left">
-              <p className="text-sm font-semibold text-brand-navy">
-                請提前到店完成造型準備
-              </p>
-              <p className="text-xs text-brand-textMuted mt-0.5 leading-relaxed">
-                拍攝時間為 {timePart ? formatTime(timePart) : ''}，含妝髮服務建議提前到達，實際時間依所選妝髮方案而定。
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      </div>
 
       <p className="text-base text-brand-charcoal mb-2">
         預約代碼：<strong className="text-brand-navy tracking-wider">{booking.code}</strong>
@@ -66,7 +76,7 @@ export function BookingSuccess({ summary, onNewBooking }: Props) {
       <ul className="list-none p-0 m-0 mb-4 text-brand-textMuted text-sm leading-relaxed space-y-1">
         <li>{serviceLabel} · {storeLabel}</li>
         <li>
-          {datePart} {timePart ? formatTime(timePart) : ''}
+          {datePart} {timeFormatted}
         </li>
       </ul>
       <p className="text-sm text-brand-navy font-semibold mb-2">

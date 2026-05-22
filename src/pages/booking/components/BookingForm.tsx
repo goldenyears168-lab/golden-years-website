@@ -133,7 +133,7 @@ export function BookingForm({
       <fieldset className="border-none p-0 m-0 mb-4" disabled={submitting}>
         <legend className="text-base font-semibold text-brand-navy mb-2 block">聯絡資料</legend>
 
-        <label className="flex flex-col gap-1 mb-3">
+        <label className="flex flex-col gap-2 mb-5">
           <span className="text-sm font-medium text-brand-charcoal">
             姓名 <em className="text-red-600 not-italic">*</em>
           </span>
@@ -143,13 +143,13 @@ export function BookingForm({
             onChange={(e) => setName(e.target.value)}
             required
             autoComplete="name"
-            className="px-3 py-2 border border-brand-creamDark rounded-lg text-base
+            className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
           />
         </label>
 
-        <label className="flex flex-col gap-1 mb-3">
+        <label className="flex flex-col gap-2 mb-5">
           <span className="text-sm font-medium text-brand-charcoal">
             電子信箱 <em className="text-red-600 not-italic">*</em>
           </span>
@@ -159,13 +159,13 @@ export function BookingForm({
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
-            className="px-3 py-2 border border-brand-creamDark rounded-lg text-base
+            className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
           />
         </label>
 
-        <label className="flex flex-col gap-1 mb-3">
+        <label className="flex flex-col gap-2 mb-5">
           <span className="text-sm font-medium text-brand-charcoal">
             電話 <em className="text-red-600 not-italic">*</em>
           </span>
@@ -176,7 +176,7 @@ export function BookingForm({
             placeholder="0912345678"
             required
             autoComplete="tel"
-            className="px-3 py-2 border border-brand-creamDark rounded-lg text-base
+            className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
           />
@@ -199,13 +199,6 @@ export function BookingForm({
         </fieldset>
       )}
 
-      {/* 自動計算建議到店時間 */}
-      <ArrivalTimeNotice
-        slot={slot}
-        serviceLabel={serviceLabel}
-        additional={additional}
-      />
-
       {/* Errors */}
       {formError || error ? (
         <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm mb-4" role="alert">
@@ -213,21 +206,40 @@ export function BookingForm({
         </div>
       ) : null}
 
+      {/* 自動計算建議到店時間 —— 放在確認按鈕之前，確保用戶按鈕前最後一眼看到 */}
+      <ArrivalTimeNotice
+        slot={slot}
+        serviceLabel={serviceLabel}
+        additional={additional}
+      />
+
       {/* Submit */}
       <button
         type="submit"
         disabled={submitting || fieldsLoading}
         className="
-          w-full px-6 py-3
+          w-full inline-flex items-center justify-center gap-2
+          px-6 py-4 md:py-5
           rounded-full bg-brand-navy text-white
-          text-base font-semibold
+          text-lg md:text-xl font-bold
           cursor-pointer
-          transition-opacity duration-200
-          hover:opacity-90
-          disabled:opacity-50 disabled:cursor-not-allowed
+          shadow-lg shadow-brand-navy/25
+          transition-all duration-200
+          hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-navy/30
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
         "
       >
-        {submitting ? '送出中…' : '確認預約'}
+        {submitting ? (
+          <>
+            <i className="ri-loader-4-line animate-spin" aria-hidden />
+            送出中…
+          </>
+        ) : (
+          <>
+            <i className="ri-calendar-check-line" aria-hidden />
+            確認預約
+          </>
+        )}
       </button>
     </form>
   );
@@ -248,7 +260,7 @@ function DynamicField({
   if (field.type === 'select') {
     const options = parseSelectValues(field.values);
     return (
-      <div className="flex flex-col gap-1 mb-3">
+      <div className="flex flex-col gap-2 mb-5">
         <span className="text-sm font-medium text-brand-charcoal">
           {title} {required ? <em className="text-red-600 not-italic">*</em> : null}
         </span>
@@ -281,7 +293,7 @@ function DynamicField({
   const isLong = title.length > 50;
 
   return (
-    <label className="flex flex-col gap-1 mb-3">
+    <label className="flex flex-col gap-2 mb-5">
       <span className="text-sm font-medium text-brand-charcoal">
         {title} {required ? <em className="text-red-600 not-italic">*</em> : null}
       </span>
@@ -291,7 +303,7 @@ function DynamicField({
           onChange={(e) => onChange(e.target.value)}
           rows={2}
           placeholder={field.default ?? undefined}
-          className="px-3 py-2 border border-brand-creamDark rounded-lg text-base
+          className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
             focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
             bg-white text-brand-charcoal resize-y"
         />
@@ -301,7 +313,7 @@ function DynamicField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={field.default ?? undefined}
-          className="px-3 py-2 border border-brand-creamDark rounded-lg text-base
+          className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
             focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
             bg-white text-brand-charcoal"
         />
@@ -317,35 +329,39 @@ function ArrivalTimeNotice({
 }: {
   slot: SelectedSlot;
   serviceLabel: string;
-  additional: Record<string, string>;
+  additional: Record<string, string> | undefined;
 }) {
+  const arrival = calculateArrivalTime(slot.time, serviceLabel, additional ?? {});
+  const styleLabel = getMakeupStyleLabel(additional ?? {});
   const isMakeup = serviceLabel.includes('妝髮');
-  if (!isMakeup) return null;
-
-  const arrival = calculateArrivalTime(slot.time, serviceLabel, additional);
-  const styleLabel = getMakeupStyleLabel(additional);
 
   return (
-    <div className="mb-4 p-3 rounded-lg bg-brand-cream border border-brand-gold/20">
-      <div className="flex items-start gap-2">
-        <i className="ri-time-line text-brand-gold mt-0.5" aria-hidden />
-        <div>
+    <div className="mb-5 p-3 md:p-4 rounded-xl bg-brand-cream border border-brand-gold/30 shadow-sm">
+      <div className="flex items-start gap-3">
+        <div className="w-9 h-9 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <i className="ri-time-line text-brand-gold text-base" aria-hidden />
+        </div>
+        <div className="min-w-0">
           {arrival ? (
             <>
-              <p className="text-sm font-semibold text-brand-navy">
+              <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
                 建議到店時間：{slot.date}（{weekdayLabel(slot.date)}）{arrival}
               </p>
-              <p className="text-xs text-brand-textMuted mt-0.5 leading-relaxed">
-                拍攝時間為 {formatTime(slot.time)}，{styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。
+              <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
+                {isMakeup
+                  ? `拍攝時間為 ${formatTime(slot.time)}，${styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。`
+                  : `拍攝時間為 ${formatTime(slot.time)}，請提前 5 分鐘抵達以便完成準備。`}
               </p>
             </>
           ) : (
             <>
-              <p className="text-sm font-semibold text-brand-navy">
-                請提前到店完成造型準備
+              <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
+                {isMakeup ? '請提前到店完成造型準備' : '請提前 5 分鐘抵達'}
               </p>
-              <p className="text-xs text-brand-textMuted mt-0.5 leading-relaxed">
-                拍攝時間為 {formatTime(slot.time)}，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。
+              <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
+                {isMakeup
+                  ? `拍攝時間為 ${formatTime(slot.time)}，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。`
+                  : `拍攝時間為 ${formatTime(slot.time)}，建議提前到達以便完成準備。`}
               </p>
             </>
           )}

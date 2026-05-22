@@ -236,9 +236,10 @@ function getMakeupMinutes(style: string): number {
 }
 
 export function detectMakeupStyle(
-  additional: Record<string, string> | { title: string; value: string }[],
+  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
 ): string | null {
   const values: string[] = [];
+  if (!additional) return null;
   if (Array.isArray(additional)) {
     values.push(...additional.map((a) => a.value));
   } else {
@@ -255,14 +256,8 @@ export function detectMakeupStyle(
 export function calculateArrivalTime(
   slotTime: string,
   variantLabel: string,
-  additional: Record<string, string> | { title: string; value: string }[],
+  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
 ): string | null {
-  if (!variantLabel.includes('妝髮')) return null;
-
-  const style = detectMakeupStyle(additional);
-  const minutes = style ? getMakeupMinutes(style) : 40;
-
-  // slotTime could be "14:00" or "14:00:00"
   const timePart = slotTime.split(' ').pop() ?? slotTime;
   const [hStr, mStr] = timePart.split(':');
   const h = parseInt(hStr, 10);
@@ -271,14 +266,24 @@ export function calculateArrivalTime(
 
   const date = new Date();
   date.setHours(h, m, 0, 0);
-  date.setMinutes(date.getMinutes() - minutes);
+
+  if (variantLabel.includes('妝髮')) {
+    const style = detectMakeupStyle(additional);
+    const minutes = style ? getMakeupMinutes(style) : 40;
+    date.setMinutes(date.getMinutes() - minutes);
+  } else {
+    // 非妝髮服務統一提前 5 分鐘抵達
+    date.setMinutes(date.getMinutes() - 5);
+  }
 
   const newH = String(date.getHours()).padStart(2, '0');
   const newM = String(date.getMinutes()).padStart(2, '0');
   return `${newH}:${newM}`;
 }
 
-export function getMakeupStyleLabel(additional: Record<string, string> | { title: string; value: string }[]): string | null {
+export function getMakeupStyleLabel(
+  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
+): string | null {
   const style = detectMakeupStyle(additional);
   if (!style) return null;
   if (style.includes('訂製')) return '訂製造型方案（提前 1 小時 40 分鐘）';

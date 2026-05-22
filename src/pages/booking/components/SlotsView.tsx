@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { formatTime, getDateRange, weekdayLabel } from '../api';
 import type { SelectedSlot } from '../types';
 
@@ -34,6 +34,40 @@ export function SlotsView({
 
   const [activeDate, setActiveDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+
+  /* scroll detection */
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 2);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll, { passive: true });
+    // check after images/layout settle
+    const timers = [setTimeout(checkScroll, 100), setTimeout(checkScroll, 500)];
+    return () => {
+      el.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', checkScroll);
+      timers.forEach(clearTimeout);
+    };
+  }, [availableDates]);
+
+  const scrollBy = (dir: 'left' | 'right') => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.55;
+    el.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     if (availableDates.length === 0) {
@@ -85,54 +119,103 @@ export function SlotsView({
 
   return (
     <div className="bg-white border border-brand-creamDark rounded-lg p-4 md:p-5 shadow-sm">
-      <p className="text-sm text-brand-textMuted mb-4">
+      <p className="text-sm text-brand-textMuted mb-3">
         選擇日期與時段，將前往下一頁填寫預約資料
       </p>
 
-      <div
-        className="flex gap-2.5 overflow-x-auto pb-2 mb-4"
-        role="tablist"
-        aria-label="可預約日期"
-      >
-        {availableDates.map((date) => {
-          const { tag, sub, week } = dateChipMeta(date, todayStr);
-          const active = activeDate === date;
-          return (
-            <button
-              key={date}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => setActiveDate(date)}
-              className={`
-                flex flex-col items-center gap-0.5
-                min-w-[72px] px-3 py-2.5
-                border-2 rounded-xl
-                cursor-pointer
-                transition-all duration-150
-                flex-shrink-0
-                ${active
-                  ? 'border-brand-navy bg-brand-cream'
-                  : 'border-brand-creamDark bg-brand-cream hover:border-brand-gold'
-                }
-              `}
-            >
-              {tag ? (
-                <span className={`text-[0.65rem] font-bold text-white px-2 py-0.5 rounded-full leading-tight ${active ? 'bg-brand-navy' : 'bg-brand-gold'}`}>
-                  {tag}
-                </span>
-              ) : null}
-              <span className="text-sm font-semibold text-brand-navy">{week}</span>
-              <span className="text-base font-bold text-brand-navy tabular-nums">{sub}</span>
-            </button>
-          );
-        })}
+      {/* Date chips — with scroll arrows & edge fade on mobile */}
+      <div className="relative mb-3">
+        {/* Left arrow */}
+        {canScrollLeft && (
+          <button
+            type="button"
+            onClick={() => scrollBy('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20
+              w-8 h-8 rounded-full bg-white/95 border border-brand-creamDark
+              flex items-center justify-center shadow-sm cursor-pointer
+              hover:bg-brand-cream transition-colors"
+            aria-label="向左滑動日期"
+          >
+            <i className="ri-arrow-left-s-line text-brand-navy text-lg" aria-hidden />
+          </button>
+        )}
+
+        {/* Right arrow */}
+        {canScrollRight && (
+          <button
+            type="button"
+            onClick={() => scrollBy('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20
+              w-8 h-8 rounded-full bg-white/95 border border-brand-creamDark
+              flex items-center justify-center shadow-sm cursor-pointer
+              hover:bg-brand-cream transition-colors"
+            aria-label="向右滑動日期"
+          >
+            <i className="ri-arrow-right-s-line text-brand-navy text-lg" aria-hidden />
+          </button>
+        )}
+
+        {/* Left edge fade */}
+        {canScrollLeft && (
+          <div className="absolute left-0 top-0 bottom-2 w-10 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
+        )}
+        {/* Right edge fade */}
+        {canScrollRight && (
+          <div className="absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+        )}
+
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto pb-2 scroll-smooth snap-x snap-mandatory"
+          role="tablist"
+          aria-label="可預約日期"
+        >
+          {availableDates.map((date) => {
+            const { tag, sub, week } = dateChipMeta(date, todayStr);
+            const active = activeDate === date;
+            return (
+              <button
+                key={date}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setActiveDate(date)}
+                className={`
+                  flex flex-col items-center gap-0.5
+                  min-w-[72px] px-3 py-2.5
+                  border-2 rounded-xl
+                  cursor-pointer
+                  transition-all duration-150
+                  flex-shrink-0 snap-start
+                  ${active
+                    ? 'border-brand-navy bg-brand-cream'
+                    : 'border-brand-creamDark bg-brand-cream hover:border-brand-gold'
+                  }
+                `}
+              >
+                {tag ? (
+                  <span className={`text-[0.65rem] font-bold text-white px-2 py-0.5 rounded-full leading-tight ${active ? 'bg-brand-navy' : 'bg-brand-gold'}`}>
+                    {tag}
+                  </span>
+                ) : null}
+                <span className="text-sm font-semibold text-brand-navy">{week}</span>
+                <span className="text-base font-bold text-brand-navy tabular-nums">{sub}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* Mobile scroll hint */}
+      <p className="text-xs text-brand-textMuted text-center mb-4 lg:hidden">
+        <i className="ri-arrow-left-right-line mr-1" aria-hidden />
+        左右滑動或點擊箭頭查看更多日期
+      </p>
 
       {activeDate ? (
         <div role="tabpanel" className="border-t border-brand-creamDark pt-4">
           <p className="text-sm font-semibold text-brand-textMuted mb-3">
-            {activeDate}（{weekdayLabel(activeDate)}）可預約時段
+            {activeDate}（{weekdayLabel(activeDate)}）可預約時段（此為攝影棚時段，妝髮服務會需要再更提前）
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
             {timesForActive.map((t) => {
