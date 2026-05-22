@@ -1,5 +1,3 @@
-import { createHash } from "node:crypto";
-
 interface Env {
   SIMPLYBOOK_COMPANY_LOGIN: string;
   SIMPLYBOOK_API_KEY: string;
@@ -32,6 +30,82 @@ type BookingRpcResult = {
 };
 
 let cachedToken: { value: string; expiresAt: number } | null = null;
+
+/** MD5 hex (Workers 預設無 node:crypto，不依賴 nodejs_compat) */
+function md5Hex(input: string): string {
+  const bytes = new TextEncoder().encode(input);
+
+  const words = new Uint32Array(((bytes.length + 8) >>> 6) + 1 << 4);
+  const view = new Uint8Array(words.buffer);
+  view.set(bytes);
+  view[bytes.length] = 0x80;
+  const bitLen = bytes.length * 8;
+  words[words.length - 2] = bitLen >>> 0;
+  words[words.length - 1] = (bitLen / 0x100000000) >>> 0;
+
+  const K = new Uint32Array(64);
+  for (let i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 0x100000000) >>> 0;
+
+  const S = [
+    7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
+    5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
+    4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
+    6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21,
+  ];
+
+  let a0 = 0x67452301;
+  let b0 = 0xefcdab89;
+  let c0 = 0x98badcfe;
+  let d0 = 0x10325476;
+
+  for (let offset = 0; offset < words.length; offset += 16) {
+    let a = a0;
+    let b = b0;
+    let c = c0;
+    let d = d0;
+
+    for (let i = 0; i < 64; i++) {
+      let f: number;
+      let g: number;
+      if (i < 16) {
+        f = (b & c) | (~b & d);
+        g = i;
+      } else if (i < 32) {
+        f = (d & b) | (~d & c);
+        g = (5 * i + 1) % 16;
+      } else if (i < 48) {
+        f = b ^ c ^ d;
+        g = (3 * i + 5) % 16;
+      } else {
+        f = c ^ (b | ~d);
+        g = (7 * i) % 16;
+      }
+
+      const tmp = d;
+      d = c;
+      c = b;
+      const sum = (a + f + K[i] + words[offset + g]) >>> 0;
+      b = (b + ((sum << S[i]) | (sum >>> (32 - S[i])))) >>> 0;
+      a = tmp;
+    }
+
+    a0 = (a0 + a) >>> 0;
+    b0 = (b0 + b) >>> 0;
+    c0 = (c0 + c) >>> 0;
+    d0 = (d0 + d) >>> 0;
+  }
+
+  const toHex = (n: number) => {
+    const out = new Uint8Array(4);
+    out[0] = n & 0xff;
+    out[1] = (n >>> 8) & 0xff;
+    out[2] = (n >>> 16) & 0xff;
+    out[3] = (n >>> 24) & 0xff;
+    return Array.from(out, (b) => b.toString(16).padStart(2, "0")).join("");
+  };
+
+  return toHex(a0) + toHex(b0) + toHex(c0) + toHex(d0);
+}
 
 function requireEnv(env: Env): Env {
   const missing = (
@@ -116,7 +190,7 @@ async function confirmIfNeeded(env: Env, result: BookingRpcResult): Promise<Book
   for (const b of result.bookings ?? []) {
     const id = String(b.id);
     const hash = b.hash;
-    const sign = createHash("md5").update(`${id}${hash}${env.SIMPLYBOOK_API_SECRET}`).digest("hex");
+    const sign = md5Hex(`${id}${hash}${env.SIMPLYBOOK_API_SECRET}`);
     await rpc(env, "confirmBooking", [Number(id), sign]);
   }
   return result;
