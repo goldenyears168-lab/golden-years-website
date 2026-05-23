@@ -42,7 +42,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_LOG: debug
         run: |
-          npx --no-install wrangler pages deploy out \
+          npx -y wrangler@3.90.0 pages deploy out \
             --project-name=goldenyearswebsite \
             --branch=main 2>&1
 
