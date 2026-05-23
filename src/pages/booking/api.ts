@@ -1,6 +1,21 @@
 import type { AdditionalField, BookingResult } from './types';
 
-const SIMPLYBOOK_API = '/api/simplybook';
+const PAGES_SIMPLYBOOK_API = 'https://goldenyearswebsite.pages.dev/api/simplybook';
+
+/** 自訂網域 POST body 含 email 時仍可能被 CF 邊緣擋下；pages.dev 同源 API 可正常回 JSON */
+function getSimplybookApiUrl(): string {
+  const configured = import.meta.env.VITE_SIMPLYBOOK_API as string | undefined;
+  if (configured?.trim()) return configured.trim().replace(/\/$/, '');
+
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'goldenyearsphoto.com' || host === 'www.goldenyearsphoto.com') {
+      return PAGES_SIMPLYBOOK_API;
+    }
+  }
+
+  return '/api/simplybook';
+}
 
 type ProxyBody = Record<string, unknown>;
 
@@ -8,13 +23,29 @@ type ProxySuccess<T> = { data: T };
 type ProxyFailure = { error: string };
 
 async function simplybookProxy<T>(body: ProxyBody): Promise<T> {
-  const res = await fetch(SIMPLYBOOK_API, {
+  const res = await fetch(getSimplybookApiUrl(), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 
-  const json = (await res.json()) as Partial<ProxySuccess<T>> & ProxyFailure;
+  const contentType = res.headers.get('content-type') ?? '';
+  const raw = await res.text();
+
+  if (!contentType.includes('application/json')) {
+    throw new Error(
+      res.ok
+        ? '預約系統回應格式異常，請稍後再試，或聯繫官方 LINE。'
+        : `預約系統暫時無法連線（${res.status}），請稍後再試，或聯繫官方 LINE。`,
+    );
+  }
+
+  let json: Partial<ProxySuccess<T>> & ProxyFailure;
+  try {
+    json = JSON.parse(raw) as Partial<ProxySuccess<T>> & ProxyFailure;
+  } catch {
+    throw new Error('預約系統回應格式異常，請稍後再試，或聯繫官方 LINE。');
+  }
 
   if (!res.ok || json.error) {
     throw new Error(json.error ?? `SimplyBook API error (${res.status})`);
