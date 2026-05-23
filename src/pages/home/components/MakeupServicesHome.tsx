@@ -28,7 +28,7 @@ export default function MakeupServicesHome() {
           {/* 圖片 */}
           <div className="rounded-lg overflow-hidden">
             <LazyImage
-              src={homeImg.makeupHero}
+              src="https://photo.goldenyearsphoto.com/team/styling-session.webp"
               alt="好時有影台北專業妝髮造型服務"
               className="w-full h-[320px] sm:h-[400px] md:h-[480px] object-cover object-center"
               loading="lazy"

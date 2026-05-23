@@ -19,6 +19,7 @@ export default function Blog() {
       <PageSEO
         title="好時誌部落格 | 好時有影 Golden Years | 攝影知識、妝髮技巧、生活美學"
         description="好時誌 — 好時有影官方部落格。分享攝影技巧、妝髮造型知識、證件照拍攝攻略、畢業寫真準備指南、形象照穿搭建議等實用內容。讓每一次拍攝都更完美。"
+        keywords="攝影技巧,妝髮教學,證件照攻略,形象照穿搭,畢業寫真準備,韓式證件照技巧,攝影知識,台北攝影教學"
       />
       <Header />
       <main>

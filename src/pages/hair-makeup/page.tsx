@@ -20,6 +20,7 @@ export default function MakeupServices() {
       <PageSEO
         title="妝髮造型服務 | 好時有影 Golden Years | 韓式妝髮、證件照妝容、台北"
         description="好時有影專業妝髮造型服務，羽彤老師帶領的造型團隊。提供基礎妝容、精緻妝髮、訂製造型方案，搭配攝影服務一站完成。適合證件照、形象照、婚紗等場合。台北公館妝髮工作室。"
+        keywords="妝髮造型,韓式妝髮,證件照妝容,台北化妝師,婚紗妝髮,新娘秘書,男生妝髮,女生妝髮,專業妝髮,台北妝髮工作室"
       />
       <FAQSchema questions={flatFAQ} pageName="hair-makeup" />
       <Header />
@@ -84,15 +85,15 @@ function QuoteSection() {
             ref={imgRef}
             className={`sr-slide-left ${imgVisible ? "sr-visible" : ""}`}
           >
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
               <LazyImage
                 src={makeupImg.teacher}
                 alt="好時有影首席造型師羽彤老師專業妝髮"
-                className="w-full h-[380px] md:h-[480px] object-cover object-center"
+                className="w-full h-full object-cover object-top"
                 loading="lazy"
                 decoding="async"
-                width={800}
-                height={480}
+                width={600}
+                height={800}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pt-16 pb-5 px-5">
@@ -430,15 +431,15 @@ function PlanBlock({ plan, index }: PlanBlockProps) {
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center ${isReversed ? "lg:flex-row-reverse" : ""}`}>
         {/* 圖片 */}
         <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
-          <div className="relative rounded-lg overflow-hidden">
+          <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
             <LazyImage
               src={plan.image}
               alt={`好時有影台北${plan.title}`}
-              className="w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[560px] object-cover object-center"
+              className="w-full h-full object-cover object-top"
               loading="lazy"
               decoding="async"
-              width={800}
-              height={560}
+              width={600}
+              height={800}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute top-4 left-4">

@@ -12,7 +12,7 @@ import { featuredPortfolio } from "@/mocks/portfolio";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FAQItem from "@/pages/hair-makeup/components/FAQItem";
 import { photographyFAQ } from "@/mocks/photography-faq";
-import { photography as photographyImg } from "@/config/images";
+import { photography as photographyImg, team } from "@/config/images";
 import FAQSchema from "@/components/base/FAQSchema";
 
 // 攝影頁 FAQ 結構化資料
@@ -100,6 +100,7 @@ export default function PhotographyServices() {
       <PageSEO
         title="攝影服務 | 好時有影 Golden Years Studio | 形象照、畢業寫真、全家福"
         description="好時有影專業攝影服務：韓式證件照、職涯形象照、畢業寫真、全家福、寵物攝影等 12 大類別。瀏覽精選作品集，了解拍攝流程與價格。Annie 總監親自掌鏡，台北公館攝影工作室。"
+        keywords="形象照,證件照,畢業寫真,全家福,寵物攝影,台北攝影師,職涯形象照,婚紗攝影,寵物寫真,情侶寫真,台北攝影工作室"
       />
       <FAQSchema questions={flatFAQ} pageName="photography" />
       <Header />
@@ -146,7 +147,7 @@ export default function PhotographyServices() {
                 <div className="flex flex-col items-center">
                   <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                     <LazyImage
-                      src="https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-001.jpg"
+                      src={team[0]}
                       alt="好時有影 Annie 總監首席攝影師"
                       className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       width={340}

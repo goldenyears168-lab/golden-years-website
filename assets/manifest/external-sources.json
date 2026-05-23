@@ -1,0 +1,38 @@
+[
+  {
+    "id": "brand-logo-header",
+    "sourceUrl": "https://storage.readdy-site.link/project_files/837246a8-cef0-4cee-9ec0-8c040e316fc2/de8fcc45-8ee7-4674-8d6b-186e029f15ce_logo.jpg",
+    "r2Key": "brand/logo-header.webp",
+    "notes": "Header / Footer / favicon"
+  },
+  {
+    "id": "about-banner-readdy",
+    "sourceUrl": "https://static.readdy.ai/image/a59c001a1bbea72997731a60711927db/692ed695728c78c95f37b9ffa5eeafbf.jpeg",
+    "r2Key": "about/banner/secondary.webp",
+    "notes": "About page secondary banner"
+  },
+  {
+    "id": "booking-personal-portrait",
+    "sourceUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409825/body-profile-1_tz8mad.jpg",
+    "r2Key": "personal-portrait/body-profile.webp",
+    "notes": "Booking + pricing personal portrait"
+  },
+  {
+    "id": "store-zhongshan",
+    "sourceUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E4%B8%AD%E5%B1%B1%E5%BA%97_fpymsf.jpg",
+    "r2Key": "booking/stores/zhongshan.webp",
+    "notes": "Booking Zhongshan store"
+  },
+  {
+    "id": "store-gongguan",
+    "sourceUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E5%85%AC%E9%A4%A8%E5%BA%97_lciveh.jpg",
+    "r2Key": "booking/stores/gongguan.webp",
+    "notes": "Booking Gongguan store"
+  },
+  {
+    "id": "pricing-makeup-id-sample",
+    "sourceUrl": "https://res.cloudinary.com/dsykkdyxz/image/upload/q_auto/f_auto/v1779245400/%E8%AD%89%E4%BB%B6%E7%85%A7%E7%AF%84%E4%BE%8B_u1obvg.jpg",
+    "r2Key": "pricing/makeup/id-photo-sample.webp",
+    "notes": "Pricing makeup ID photo sample"
+  }
+]

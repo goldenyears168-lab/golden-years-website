@@ -56,6 +56,7 @@ export default function Booking() {
       <PageSEO
         title="線上預約 | 好時有影 Golden Years Studio | 韓式證件照、形象照預約"
         description="立即預約好時有影專業攝影服務。線上選擇韓式證件照、形象照、畢業寫真等拍攝時段，查看預約須知與拍攝流程。台北公館攝影工作室，線上預約系統快速方便。"
+        keywords="線上預約攝影,預約證件照,台北攝影預約,形象照預約,畢業寫真預約,攝影預約系統,台北攝影工作室預約"
       />
       <Header />
       <main>

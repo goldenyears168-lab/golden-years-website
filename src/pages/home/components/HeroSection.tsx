@@ -98,9 +98,9 @@ export default function HeroSection() {
         <p className="text-brand-gold text-sm md:text-base tracking-[0.2em] uppercase mb-4 md:mb-6 font-medium animate-fade-in">
           Golden Years Studio
         </p>
-        <h1 className="text-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4 md:mb-6 animate-fade-in">
+        <h2 className="text-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4 md:mb-6 animate-fade-in">
           {heroData.title}
-        </h1>
+        </h2>
         <p className="text-display text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic mb-4 md:mb-6 animate-fade-in">
           {heroData.subtitle}
         </p>

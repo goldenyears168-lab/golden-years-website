@@ -1,1 +1,9 @@
 node_modules
+.env
+.env.local
+
+# 媒體管線：原始檔與壓縮產物不進 repo
+assets-source/**
+!assets-source/README.md
+!assets-source/.gitkeep
+.tmp-media-optimized/

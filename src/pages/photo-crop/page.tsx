@@ -58,6 +58,7 @@ export default function PhotoCrop() {
       <PageSEO
         title="免費大頭照裁切工具 | 好時有影 Golden Years | 身分證、護照、健保卡規格"
         description="好時有影自製免費大頭照裁切排版工具。身分證、護照、健保卡規格都能裁，自動排版 4×6 相紙尺寸。線上裁切證件照、大頭照、履歷照、簽證照，三步完成下載。"
+        keywords="大頭照裁切,證件照裁切,身分證照片規格,護照照片尺寸,線上裁切工具,2吋照片裁切,證件照排版,免費裁切工具"
       />
       <Header />
       <main>
@@ -107,7 +108,7 @@ export default function PhotoCrop() {
                     key={link.url}
                     href={link.url}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                     className={`bg-white rounded-lg p-5 border border-brand-navy/5 hover:border-brand-gold/40 transition-all group sr-fade-up sr-fast ${infoVisible ? "sr-visible" : ""}`}
                     style={{ transitionDelay: `${idx * 80}ms` }}
                   >
@@ -168,7 +169,7 @@ export default function PhotoCrop() {
                 <iframe
                   src="https://s1031432.github.io/yctest/inch2_head2.html"
                   title="自助裁切大頭照工具"
-                  className="w-full h-[700px] md:h-[800px] border-0 block"
+                  className="w-full h-[800px] md:h-[900px] lg:h-[960px] border-0 block"
                   loading="lazy"
                 />
               </div>

@@ -14,6 +14,7 @@ export default function CoursesPage() {
       <PageSEO
         title="課程活動 | 好時有影 Golden Years Studio 攝影教學與形象管理課程"
         description="好時有影課程活動列表。從一日攝影師挑戰到專業攝影班、彩妝課程與形象管理，企業團隊、社團活動與個人進修歡迎報名。"
+        keywords="攝影課程,形象管理課程,台北攝影教學,企業團體課程,一日攝影師,攝影工作坊,彩妝課程,台北攝影班"
       />
       <Header />
       <main className="min-h-screen bg-white">

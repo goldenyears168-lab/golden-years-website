@@ -22,6 +22,7 @@ export default function About() {
       <PageSEO
         title="關於好時有影 | Golden Years Studio 攝影工作室 | 台北公館"
         description="了解好時有影 Golden Years Studio 的品牌故事。Annie 總監帶領的專業攝影團隊，深耕台北公館，為頂尖學府與百大企業提供形象照、畢業寫真與人生紀錄。我們是祝福者、陪伴者、送行者。"
+        keywords="好時有影,台北攝影工作室,Annie攝影師,公館攝影,中山攝影,攝影工作室推薦,台北形象照推薦,專業攝影師"
       />
       <Header />
       <main>

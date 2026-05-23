@@ -1,0 +1,2442 @@
+[
+  {
+    "id": "about-banner-readdy",
+    "publicUrl": "https://photo.goldenyearsphoto.com/about/banner/secondary.webp",
+    "r2Key": "about/banner/secondary.webp",
+    "legacyUrl": "https://static.readdy.ai/image/a59c001a1bbea72997731a60711927db/692ed695728c78c95f37b9ffa5eeafbf.jpeg",
+    "sourceLocal": "assets-source/about/banner/secondary.jpeg",
+    "downloadUrl": "https://static.readdy.ai/image/a59c001a1bbea72997731a60711927db/692ed695728c78c95f37b9ffa5eeafbf.jpeg",
+    "notes": "About page secondary banner",
+    "status": "pending"
+  },
+  {
+    "id": "about-founder-portrait-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/about/founder/portrait.webp",
+    "r2Key": "about/founder/portrait.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/06-about-founder-portrait-need-1/goldenyears-founder-story-portrait-taipei-001.jpg",
+    "sourceLocal": "assets-source/about/founder/portrait.jpg",
+    "legacySourceLocal": "assets-source/06-about-founder-portrait-need-1/goldenyears-founder-story-portrait-taipei-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/06-about-founder-portrait-need-1/goldenyears-founder-story-portrait-taipei-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "about-hero-banner-primary-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/about/hero/banner-primary.webp",
+    "r2Key": "about/hero/banner-primary.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/05-about-page-hero-banner-need-2/goldenyears-studio-about-page-hero-banner-001.jpg",
+    "sourceLocal": "assets-source/about/hero/banner-primary.jpg",
+    "legacySourceLocal": "assets-source/05-about-page-hero-banner-need-2/goldenyears-studio-about-page-hero-banner-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/05-about-page-hero-banner-need-2/goldenyears-studio-about-page-hero-banner-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "blog-hero-main-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/blog/hero/main.webp",
+    "r2Key": "blog/hero/main.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/32-blog-journal-hero-need-1/goldenyears-studio-blog-journal-hero-taipei-001.jpg",
+    "sourceLocal": "assets-source/blog/hero/main.jpg",
+    "legacySourceLocal": "assets-source/32-blog-journal-hero-need-1/goldenyears-studio-blog-journal-hero-taipei-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/32-blog-journal-hero-need-1/goldenyears-studio-blog-journal-hero-taipei-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "booking-hero-main-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/booking/hero/main.webp",
+    "r2Key": "booking/hero/main.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/34-online-booking-hero-need-1/goldenyears-taipei-online-booking-hero-001.jpg",
+    "sourceLocal": "assets-source/booking/hero/main.jpg",
+    "legacySourceLocal": "assets-source/34-online-booking-hero-need-1/goldenyears-taipei-online-booking-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/34-online-booking-hero-need-1/goldenyears-taipei-online-booking-hero-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "store-gongguan",
+    "publicUrl": "https://photo.goldenyearsphoto.com/booking/stores/gongguan.webp",
+    "r2Key": "booking/stores/gongguan.webp",
+    "legacyUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E5%85%AC%E9%A4%A8%E5%BA%97_lciveh.jpg",
+    "sourceLocal": "assets-source/booking/stores/gongguan.jpg",
+    "downloadUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E5%85%AC%E9%A4%A8%E5%BA%97_lciveh.jpg",
+    "notes": "Booking Gongguan store",
+    "status": "pending"
+  },
+  {
+    "id": "store-zhongshan",
+    "publicUrl": "https://photo.goldenyearsphoto.com/booking/stores/zhongshan.webp",
+    "r2Key": "booking/stores/zhongshan.webp",
+    "legacyUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E4%B8%AD%E5%B1%B1%E5%BA%97_fpymsf.jpg",
+    "sourceLocal": "assets-source/booking/stores/zhongshan.jpg",
+    "downloadUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409424/%E5%A5%BD%E6%99%82%E6%9C%89%E5%BD%B1%E4%B8%AD%E5%B1%B1%E5%BA%97_fpymsf.jpg",
+    "notes": "Booking Zhongshan store",
+    "status": "pending"
+  },
+  {
+    "id": "brand-logo-header",
+    "publicUrl": "https://photo.goldenyearsphoto.com/brand/logo-header.webp",
+    "r2Key": "brand/logo-header.webp",
+    "legacyUrl": "https://storage.readdy-site.link/project_files/837246a8-cef0-4cee-9ec0-8c040e316fc2/de8fcc45-8ee7-4674-8d6b-186e029f15ce_logo.jpg",
+    "sourceLocal": "assets-source/brand/logo-header.jpg",
+    "downloadUrl": "https://storage.readdy-site.link/project_files/837246a8-cef0-4cee-9ec0-8c040e316fc2/de8fcc45-8ee7-4674-8d6b-186e029f15ce_logo.jpg",
+    "notes": "Header / Footer / favicon",
+    "status": "pending"
+  },
+  {
+    "id": "brand-og-social-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/brand/og-social.webp",
+    "r2Key": "brand/og-social.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/00-goldenyears-brand-logo-social-need-2/goldenyears-studio-taipei-brand-logo-og-image-001.jpg",
+    "sourceLocal": "assets-source/brand/og-social.jpg",
+    "legacySourceLocal": "assets-source/00-goldenyears-brand-logo-social-need-2/goldenyears-studio-taipei-brand-logo-og-image-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/00-goldenyears-brand-logo-social-need-2/goldenyears-studio-taipei-brand-logo-og-image-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "courses-workshop-hero-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/courses/workshop/hero.webp",
+    "r2Key": "courses/workshop/hero.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/12-pricing-photo-workshop-need-1/goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "sourceLocal": "assets-source/courses/workshop/hero.jpg",
+    "legacySourceLocal": "assets-source/12-pricing-photo-workshop-need-1/goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/12-pricing-photo-workshop-need-1/goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "courses-workshop-home-feature-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/courses/workshop/home-feature.webp",
+    "r2Key": "courses/workshop/home-feature.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/courses/1778421866612_goldenyears-photography-workshop-pricing-taipei-003.jpg",
+    "sourceLocal": "assets-source/courses/workshop/home-feature.jpg",
+    "legacySourceLocal": "assets-source/courses/1778421866612_goldenyears-photography-workshop-pricing-taipei-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/courses/1778421866612_goldenyears-photography-workshop-pricing-taipei-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "courses-workshop-promo-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/courses/workshop/promo.webp",
+    "r2Key": "courses/workshop/promo.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/courses/1778421865758_goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "sourceLocal": "assets-source/courses/workshop/promo.jpg",
+    "legacySourceLocal": "assets-source/courses/1778421865758_goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/courses/1778421865758_goldenyears-photography-workshop-pricing-taipei-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-hero-main-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/hero/main.webp",
+    "r2Key": "hair-makeup/hero/main.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-007.jpg",
+    "sourceLocal": "assets-source/hair-makeup/hero/main.jpg",
+    "legacySourceLocal": "assets-source/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-plans-package-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/plans/package-001.webp",
+    "r2Key": "hair-makeup/plans/package-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-001.jpg",
+    "sourceLocal": "assets-source/hair-makeup/plans/package-001.jpg",
+    "legacySourceLocal": "assets-source/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-plans-package-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/plans/package-002.webp",
+    "r2Key": "hair-makeup/plans/package-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-002.jpg",
+    "sourceLocal": "assets-source/hair-makeup/plans/package-002.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-plans-package-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/plans/package-003.webp",
+    "r2Key": "hair-makeup/plans/package-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-003.jpg",
+    "sourceLocal": "assets-source/hair-makeup/plans/package-003.jpg",
+    "legacySourceLocal": "assets-source/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-plans-package-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/plans/package-004.webp",
+    "r2Key": "hair-makeup/plans/package-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-004.jpg",
+    "sourceLocal": "assets-source/hair-makeup/plans/package-004.jpg",
+    "legacySourceLocal": "assets-source/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "hair-makeup-plans-package-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/hair-makeup/plans/package-005.webp",
+    "r2Key": "hair-makeup/plans/package-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-005.jpg",
+    "sourceLocal": "assets-source/hair-makeup/plans/package-005.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/28-hair-makeup-service-plans-need-5/taipei-studio-makeup-service-packages-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-hero-slide-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/hero/slide-001.webp",
+    "r2Key": "home/hero/slide-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/taipei-professional-headshot-studio-homepage-hero-001.jpg",
+    "sourceLocal": "assets-source/home/hero/slide-001.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/taipei-professional-headshot-studio-homepage-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/taipei-professional-headshot-studio-homepage-hero-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-hero-slide-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/hero/slide-002.webp",
+    "r2Key": "home/hero/slide-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-002.jpg",
+    "sourceLocal": "assets-source/home/hero/slide-002.jpg",
+    "legacySourceLocal": "assets-source/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-hero-slide-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/hero/slide-003.webp",
+    "r2Key": "home/hero/slide-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-003.jpg",
+    "sourceLocal": "assets-source/home/hero/slide-003.jpg",
+    "legacySourceLocal": "assets-source/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-hero-slide-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/hero/slide-004.webp",
+    "r2Key": "home/hero/slide-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-004.jpg",
+    "sourceLocal": "assets-source/home/hero/slide-004.jpg",
+    "legacySourceLocal": "assets-source/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-hero-slide-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/hero/slide-005.webp",
+    "r2Key": "home/hero/slide-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-005.jpg",
+    "sourceLocal": "assets-source/home/hero/slide-005.jpg",
+    "legacySourceLocal": "assets-source/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/01-taipei-homepage-hero-carousel-need-5/taipei-professional-headshot-studio-homepage-hero-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-makeup-section-hero-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/makeup/section-hero.webp",
+    "r2Key": "home/makeup/section-hero.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/04-taipei-homepage-makeup-hero-need-1/taipei-studio-hair-makeup-section-hero-001.jpg",
+    "sourceLocal": "assets-source/home/makeup/section-hero.jpg",
+    "legacySourceLocal": "assets-source/04-taipei-homepage-makeup-hero-need-1/taipei-studio-hair-makeup-section-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/04-taipei-homepage-makeup-hero-need-1/taipei-studio-hair-makeup-section-hero-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-001.webp",
+    "r2Key": "home/services/card-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-001.jpg",
+    "sourceLocal": "assets-source/home/services/card-001.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-002.webp",
+    "r2Key": "home/services/card-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-002.jpg",
+    "sourceLocal": "assets-source/home/services/card-002.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-003.webp",
+    "r2Key": "home/services/card-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-003.jpg",
+    "sourceLocal": "assets-source/home/services/card-003.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-004.webp",
+    "r2Key": "home/services/card-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-004.jpg",
+    "sourceLocal": "assets-source/home/services/card-004.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-005.webp",
+    "r2Key": "home/services/card-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-005.jpg",
+    "sourceLocal": "assets-source/home/services/card-005.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "home-services-card-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/home/services/card-006.webp",
+    "r2Key": "home/services/card-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-006.jpg",
+    "sourceLocal": "assets-source/home/services/card-006.jpg",
+    "legacySourceLocal": "assets-source/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/02-taipei-homepage-service-cards-need-6/goldenyears-taipei-portrait-service-cards-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "booking-personal-portrait",
+    "publicUrl": "https://photo.goldenyearsphoto.com/personal-portrait/body-profile.webp",
+    "r2Key": "personal-portrait/body-profile.webp",
+    "legacyUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409825/body-profile-1_tz8mad.jpg",
+    "sourceLocal": "assets-source/personal-portrait/body-profile.jpg",
+    "downloadUrl": "https://res.cloudinary.com/dkpkni7ve/image/upload/v1779409825/body-profile-1_tz8mad.jpg",
+    "notes": "Booking + pricing personal portrait",
+    "status": "pending"
+  },
+  {
+    "id": "personal-portrait-session-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/personal-portrait/session-007.webp",
+    "r2Key": "personal-portrait/session-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/personal-portrait-extra/taipei-personal-portrait-photoshoot-007.jpg",
+    "sourceLocal": "assets-source/personal-portrait/session-007.jpg",
+    "legacySourceLocal": "assets-source/personal-portrait-extra/taipei-personal-portrait-photoshoot-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/personal-portrait-extra/taipei-personal-portrait-photoshoot-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "personal-portrait-session-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/personal-portrait/session-012.webp",
+    "r2Key": "personal-portrait/session-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/personal-portrait-extra/taipei-personal-portrait-photoshoot-012.jpg",
+    "sourceLocal": "assets-source/personal-portrait/session-012.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/personal-portrait-extra/taipei-personal-portrait-photoshoot-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/personal-portrait-extra/taipei-personal-portrait-photoshoot-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-001.webp",
+    "r2Key": "photography/featured/highlight-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-001.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-001.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-002.webp",
+    "r2Key": "photography/featured/highlight-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-002.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-002.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-003.webp",
+    "r2Key": "photography/featured/highlight-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-003.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-003.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-004.webp",
+    "r2Key": "photography/featured/highlight-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-004.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-004.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-005.webp",
+    "r2Key": "photography/featured/highlight-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-005.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-005.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-006.webp",
+    "r2Key": "photography/featured/highlight-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-006.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-006.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-007.webp",
+    "r2Key": "photography/featured/highlight-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-007.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-007.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-008.webp",
+    "r2Key": "photography/featured/highlight-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-008.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-008.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-009.webp",
+    "r2Key": "photography/featured/highlight-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-009.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-009.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-010.webp",
+    "r2Key": "photography/featured/highlight-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-010.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-010.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-011.webp",
+    "r2Key": "photography/featured/highlight-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-011.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-011.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-012.webp",
+    "r2Key": "photography/featured/highlight-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-012.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-012.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-013.webp",
+    "r2Key": "photography/featured/highlight-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-013.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-013.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-014.webp",
+    "r2Key": "photography/featured/highlight-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-014.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-014.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-featured-highlight-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/featured/highlight-015.webp",
+    "r2Key": "photography/featured/highlight-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-015.jpg",
+    "sourceLocal": "assets-source/photography/featured/highlight-015.jpg",
+    "legacySourceLocal": "assets-source/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/14-photography-featured-portfolio-need-15/goldenyears-taipei-featured-portfolio-highlights-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "photography-hero-main-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/photography/hero/main.webp",
+    "r2Key": "photography/hero/main.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/13-photography-service-hero-quote-need-2/taipei-portrait-photography-service-hero-001.jpg",
+    "sourceLocal": "assets-source/photography/hero/main.jpg",
+    "legacySourceLocal": "assets-source/13-photography-service-hero-quote-need-2/taipei-portrait-photography-service-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/13-photography-service-hero-quote-need-2/taipei-portrait-photography-service-hero-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-campaign-election-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/campaign/election-001.webp",
+    "r2Key": "portfolio/campaign/election-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-001.jpg",
+    "sourceLocal": "assets-source/portfolio/campaign/election-001.jpg",
+    "legacySourceLocal": "assets-source/campaign-portrait-election/taipei-campaign-election-portrait-photo-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-campaign-election-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/campaign/election-003.webp",
+    "r2Key": "portfolio/campaign/election-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-003.jpg",
+    "sourceLocal": "assets-source/portfolio/campaign/election-003.jpg",
+    "legacySourceLocal": "assets-source/campaign-portrait-election/taipei-campaign-election-portrait-photo-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-campaign-election-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/campaign/election-004.webp",
+    "r2Key": "portfolio/campaign/election-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-004.jpg",
+    "sourceLocal": "assets-source/portfolio/campaign/election-004.jpg",
+    "legacySourceLocal": "assets-source/campaign-portrait-election/taipei-campaign-election-portrait-photo-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/campaign-portrait-election/taipei-campaign-election-portrait-photo-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-001.webp",
+    "r2Key": "portfolio/corporate/group-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-001.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-002.webp",
+    "r2Key": "portfolio/corporate/group-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-002.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-003.webp",
+    "r2Key": "portfolio/corporate/group-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-003.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-004.webp",
+    "r2Key": "portfolio/corporate/group-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-004.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-005.webp",
+    "r2Key": "portfolio/corporate/group-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-005.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-006.webp",
+    "r2Key": "portfolio/corporate/group-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-006.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-007.webp",
+    "r2Key": "portfolio/corporate/group-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-007.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-008.webp",
+    "r2Key": "portfolio/corporate/group-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-008.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-009.webp",
+    "r2Key": "portfolio/corporate/group-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-009.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-010.webp",
+    "r2Key": "portfolio/corporate/group-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-010.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-011.webp",
+    "r2Key": "portfolio/corporate/group-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-011.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-012.webp",
+    "r2Key": "portfolio/corporate/group-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-012.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-013.webp",
+    "r2Key": "portfolio/corporate/group-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-013.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-014.webp",
+    "r2Key": "portfolio/corporate/group-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-014.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-corporate-group-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/corporate/group-015.webp",
+    "r2Key": "portfolio/corporate/group-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/corporate/group-015.jpg",
+    "legacySourceLocal": "assets-source/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/17-portfolio-corporate-group-taipei-need-15/taipei-corporate-team-photography-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-001.webp",
+    "r2Key": "portfolio/couple/session-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-001.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-002.webp",
+    "r2Key": "portfolio/couple/session-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-002.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-003.webp",
+    "r2Key": "portfolio/couple/session-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-003.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-004.webp",
+    "r2Key": "portfolio/couple/session-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-004.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-005.webp",
+    "r2Key": "portfolio/couple/session-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-005.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-006.webp",
+    "r2Key": "portfolio/couple/session-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-006.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-007.webp",
+    "r2Key": "portfolio/couple/session-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-007.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-008.webp",
+    "r2Key": "portfolio/couple/session-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-008.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-009.webp",
+    "r2Key": "portfolio/couple/session-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-009.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-010.webp",
+    "r2Key": "portfolio/couple/session-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-010.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-011.webp",
+    "r2Key": "portfolio/couple/session-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-011.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-012.webp",
+    "r2Key": "portfolio/couple/session-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-012.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-013.webp",
+    "r2Key": "portfolio/couple/session-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-013.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-014.webp",
+    "r2Key": "portfolio/couple/session-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-014.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-couple-session-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/couple/session-015.webp",
+    "r2Key": "portfolio/couple/session-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/couple/session-015.jpg",
+    "legacySourceLocal": "assets-source/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/20-portfolio-couple-taipei-need-15/taipei-couple-photoshoot-portfolio-studio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-001.webp",
+    "r2Key": "portfolio/doctor/white-coat-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-001.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-002.webp",
+    "r2Key": "portfolio/doctor/white-coat-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-002.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-005.webp",
+    "r2Key": "portfolio/doctor/white-coat-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-005.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-006.webp",
+    "r2Key": "portfolio/doctor/white-coat-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-006.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-007.webp",
+    "r2Key": "portfolio/doctor/white-coat-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-007.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-008.webp",
+    "r2Key": "portfolio/doctor/white-coat-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-008.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-009.webp",
+    "r2Key": "portfolio/doctor/white-coat-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-009.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-010.webp",
+    "r2Key": "portfolio/doctor/white-coat-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-010.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-011.webp",
+    "r2Key": "portfolio/doctor/white-coat-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-011.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-012.webp",
+    "r2Key": "portfolio/doctor/white-coat-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-012.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-013.webp",
+    "r2Key": "portfolio/doctor/white-coat-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-013.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-015.webp",
+    "r2Key": "portfolio/doctor/white-coat-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-015.jpg",
+    "legacySourceLocal": "assets-source/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-doctor-white-coat-016-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/doctor/white-coat-016.webp",
+    "r2Key": "portfolio/doctor/white-coat-016.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-016.jpg",
+    "sourceLocal": "assets-source/portfolio/doctor/white-coat-016.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-016.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/19-portfolio-doctor-white-coat-taipei-need-15/taipei-doctor-white-coat-medical-headshot-portfolio-016.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-001.webp",
+    "r2Key": "portfolio/family/session-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-001.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-002.webp",
+    "r2Key": "portfolio/family/session-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-002.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-003.webp",
+    "r2Key": "portfolio/family/session-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-003.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-004.webp",
+    "r2Key": "portfolio/family/session-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-004.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-005.webp",
+    "r2Key": "portfolio/family/session-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-005.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-006.webp",
+    "r2Key": "portfolio/family/session-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-006.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-007.webp",
+    "r2Key": "portfolio/family/session-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-007.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-008.webp",
+    "r2Key": "portfolio/family/session-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-008.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-009.webp",
+    "r2Key": "portfolio/family/session-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-009.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-010.webp",
+    "r2Key": "portfolio/family/session-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-010.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-011.webp",
+    "r2Key": "portfolio/family/session-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-011.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-012.webp",
+    "r2Key": "portfolio/family/session-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-012.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-013.webp",
+    "r2Key": "portfolio/family/session-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-013.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-014.webp",
+    "r2Key": "portfolio/family/session-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-014.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-family-session-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/family/session-015.webp",
+    "r2Key": "portfolio/family/session-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/family/session-015.jpg",
+    "legacySourceLocal": "assets-source/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/22-portfolio-family-taipei-need-15/taipei-family-portrait-photography-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-001.webp",
+    "r2Key": "portfolio/friends/group-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-001.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-002.webp",
+    "r2Key": "portfolio/friends/group-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-002.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-003.webp",
+    "r2Key": "portfolio/friends/group-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-003.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-004.webp",
+    "r2Key": "portfolio/friends/group-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-004.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-005.webp",
+    "r2Key": "portfolio/friends/group-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-005.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-006.webp",
+    "r2Key": "portfolio/friends/group-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-006.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-007.webp",
+    "r2Key": "portfolio/friends/group-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-007.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-008.webp",
+    "r2Key": "portfolio/friends/group-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-008.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-009.webp",
+    "r2Key": "portfolio/friends/group-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-009.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-010.webp",
+    "r2Key": "portfolio/friends/group-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-010.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-011.webp",
+    "r2Key": "portfolio/friends/group-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-011.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-012.webp",
+    "r2Key": "portfolio/friends/group-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-012.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-013.webp",
+    "r2Key": "portfolio/friends/group-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-013.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-014.webp",
+    "r2Key": "portfolio/friends/group-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-014.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-friends-group-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/friends/group-015.webp",
+    "r2Key": "portfolio/friends/group-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/friends/group-015.jpg",
+    "legacySourceLocal": "assets-source/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/21-portfolio-friends-taipei-need-15/taipei-friends-group-portrait-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-001.webp",
+    "r2Key": "portfolio/graduation/studio-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-001.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-002.webp",
+    "r2Key": "portfolio/graduation/studio-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-002.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-003.webp",
+    "r2Key": "portfolio/graduation/studio-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-003.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-004.webp",
+    "r2Key": "portfolio/graduation/studio-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-004.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-005.webp",
+    "r2Key": "portfolio/graduation/studio-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-005.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-006.webp",
+    "r2Key": "portfolio/graduation/studio-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-006.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-007.webp",
+    "r2Key": "portfolio/graduation/studio-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-007.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-008.webp",
+    "r2Key": "portfolio/graduation/studio-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-008.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-009.webp",
+    "r2Key": "portfolio/graduation/studio-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-009.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-010.webp",
+    "r2Key": "portfolio/graduation/studio-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-010.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-011.webp",
+    "r2Key": "portfolio/graduation/studio-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-011.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-012.webp",
+    "r2Key": "portfolio/graduation/studio-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-012.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-013.webp",
+    "r2Key": "portfolio/graduation/studio-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-013.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-014.webp",
+    "r2Key": "portfolio/graduation/studio-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-014.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-graduation-studio-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/graduation/studio-015.webp",
+    "r2Key": "portfolio/graduation/studio-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/graduation/studio-015.jpg",
+    "legacySourceLocal": "assets-source/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/18-portfolio-graduation-taipei-need-15/taipei-graduation-portrait-portfolio-studio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-001.webp",
+    "r2Key": "portfolio/id-formal/passport-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-001.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-002.webp",
+    "r2Key": "portfolio/id-formal/passport-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-002.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-003.webp",
+    "r2Key": "portfolio/id-formal/passport-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-003.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-004.webp",
+    "r2Key": "portfolio/id-formal/passport-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-004.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-005.webp",
+    "r2Key": "portfolio/id-formal/passport-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-005.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-006.webp",
+    "r2Key": "portfolio/id-formal/passport-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-006.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-007.webp",
+    "r2Key": "portfolio/id-formal/passport-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-007.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-008.webp",
+    "r2Key": "portfolio/id-formal/passport-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-008.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-009.webp",
+    "r2Key": "portfolio/id-formal/passport-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-009.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-010.webp",
+    "r2Key": "portfolio/id-formal/passport-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-010.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-011.webp",
+    "r2Key": "portfolio/id-formal/passport-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-011.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-012.webp",
+    "r2Key": "portfolio/id-formal/passport-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-012.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-013.webp",
+    "r2Key": "portfolio/id-formal/passport-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-013.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-014.webp",
+    "r2Key": "portfolio/id-formal/passport-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-014.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-formal-passport-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-formal/passport-015.webp",
+    "r2Key": "portfolio/id-formal/passport-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/id-formal/passport-015.jpg",
+    "legacySourceLocal": "assets-source/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/25-portfolio-formal-id-passport-taipei-need-15/taipei-formal-id-passport-photo-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-001.webp",
+    "r2Key": "portfolio/id-graduation/grad-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-001.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-002.webp",
+    "r2Key": "portfolio/id-graduation/grad-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-002.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-003.webp",
+    "r2Key": "portfolio/id-graduation/grad-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-003.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-004.webp",
+    "r2Key": "portfolio/id-graduation/grad-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-004.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-005.webp",
+    "r2Key": "portfolio/id-graduation/grad-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-005.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-006.webp",
+    "r2Key": "portfolio/id-graduation/grad-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-006.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-007.webp",
+    "r2Key": "portfolio/id-graduation/grad-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-007.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-008.webp",
+    "r2Key": "portfolio/id-graduation/grad-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-008.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-009.webp",
+    "r2Key": "portfolio/id-graduation/grad-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-009.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-010.webp",
+    "r2Key": "portfolio/id-graduation/grad-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-010.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-011.webp",
+    "r2Key": "portfolio/id-graduation/grad-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-011.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-012.webp",
+    "r2Key": "portfolio/id-graduation/grad-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-012.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-013.webp",
+    "r2Key": "portfolio/id-graduation/grad-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-013.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-014.webp",
+    "r2Key": "portfolio/id-graduation/grad-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-014.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-id-graduation-grad-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/id-graduation/grad-015.webp",
+    "r2Key": "portfolio/id-graduation/grad-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/id-graduation/grad-015.jpg",
+    "legacySourceLocal": "assets-source/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/26-portfolio-graduation-id-taipei-need-15/taipei-graduation-id-photo-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-002.webp",
+    "r2Key": "portfolio/linkedin/shot-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-002.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-008.webp",
+    "r2Key": "portfolio/linkedin/shot-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-008.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-009.webp",
+    "r2Key": "portfolio/linkedin/shot-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-009.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-010.webp",
+    "r2Key": "portfolio/linkedin/shot-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-010.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-011.webp",
+    "r2Key": "portfolio/linkedin/shot-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-011.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-012.webp",
+    "r2Key": "portfolio/linkedin/shot-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-012.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-015.webp",
+    "r2Key": "portfolio/linkedin/shot-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-015.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-016-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-016.webp",
+    "r2Key": "portfolio/linkedin/shot-016.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-016.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-016.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-016.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-016.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-018-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-018.webp",
+    "r2Key": "portfolio/linkedin/shot-018.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-018.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-018.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-018.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-018.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-020-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-020.webp",
+    "r2Key": "portfolio/linkedin/shot-020.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-020.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-020.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-020.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-020.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-linkedin-shot-021-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/linkedin/shot-021.webp",
+    "r2Key": "portfolio/linkedin/shot-021.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-021.jpg",
+    "sourceLocal": "assets-source/portfolio/linkedin/shot-021.jpg",
+    "legacySourceLocal": "assets-source/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-021.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/16-portfolio-linkedin-corporate-taipei-need-15/taipei-linkedin-corporate-headshot-portfolio-021.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-001.webp",
+    "r2Key": "portfolio/maternity/session-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-001.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-002.webp",
+    "r2Key": "portfolio/maternity/session-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-002.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-003.webp",
+    "r2Key": "portfolio/maternity/session-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-003.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-004.webp",
+    "r2Key": "portfolio/maternity/session-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-004.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-005.webp",
+    "r2Key": "portfolio/maternity/session-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-005.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-006.webp",
+    "r2Key": "portfolio/maternity/session-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-006.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-007.webp",
+    "r2Key": "portfolio/maternity/session-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-007.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-008.webp",
+    "r2Key": "portfolio/maternity/session-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-008.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-009.webp",
+    "r2Key": "portfolio/maternity/session-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-009.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-010.webp",
+    "r2Key": "portfolio/maternity/session-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-010.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-011.webp",
+    "r2Key": "portfolio/maternity/session-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-011.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-012.webp",
+    "r2Key": "portfolio/maternity/session-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-012.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-013.webp",
+    "r2Key": "portfolio/maternity/session-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-013.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-014.webp",
+    "r2Key": "portfolio/maternity/session-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-014.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-maternity-session-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/maternity/session-015.webp",
+    "r2Key": "portfolio/maternity/session-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/maternity/session-015.jpg",
+    "legacySourceLocal": "assets-source/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/23-portfolio-maternity-taipei-need-15/taipei-maternity-photography-portfolio-studio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-001.webp",
+    "r2Key": "portfolio/pet/session-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-001.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-001.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-002.webp",
+    "r2Key": "portfolio/pet/session-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-002.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-002.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-003.webp",
+    "r2Key": "portfolio/pet/session-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-003.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-003.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-004.webp",
+    "r2Key": "portfolio/pet/session-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-004.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-004.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-005.webp",
+    "r2Key": "portfolio/pet/session-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-005.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-005.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-006.webp",
+    "r2Key": "portfolio/pet/session-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-006.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-006.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-007.webp",
+    "r2Key": "portfolio/pet/session-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-007.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-007.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-008.webp",
+    "r2Key": "portfolio/pet/session-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-008.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-008.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-009.webp",
+    "r2Key": "portfolio/pet/session-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-009.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-009.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-010.webp",
+    "r2Key": "portfolio/pet/session-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-010.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-010.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-011.webp",
+    "r2Key": "portfolio/pet/session-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-011.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-011.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-012.webp",
+    "r2Key": "portfolio/pet/session-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-012.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-012.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-013.webp",
+    "r2Key": "portfolio/pet/session-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-013.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-013.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-014.webp",
+    "r2Key": "portfolio/pet/session-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-014.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-014.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-pet-session-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/pet/session-015.webp",
+    "r2Key": "portfolio/pet/session-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-015.jpg",
+    "sourceLocal": "assets-source/portfolio/pet/session-015.jpg",
+    "legacySourceLocal": "assets-source/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/24-portfolio-pet-taipei-need-15/taipei-pet-portrait-photography-portfolio-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-001.webp",
+    "r2Key": "portfolio/resume/shot-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-001.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-001.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-008.webp",
+    "r2Key": "portfolio/resume/shot-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-008.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-008.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-010.webp",
+    "r2Key": "portfolio/resume/shot-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-010.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-010.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-011.webp",
+    "r2Key": "portfolio/resume/shot-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-011.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-011.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-012-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-012.webp",
+    "r2Key": "portfolio/resume/shot-012.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-012.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-012.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-012.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-012.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-013-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-013.webp",
+    "r2Key": "portfolio/resume/shot-013.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-013.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-013.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-013.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-013.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-014-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-014.webp",
+    "r2Key": "portfolio/resume/shot-014.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-014.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-014.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-014.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-014.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "portfolio-resume-shot-015-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/portfolio/resume/shot-015.webp",
+    "r2Key": "portfolio/resume/shot-015.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-015.jpg",
+    "sourceLocal": "assets-source/portfolio/resume/shot-015.jpg",
+    "legacySourceLocal": "assets-source/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-015.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/15-portfolio-resume-headshot-taipei-need-15/taipei-resume-headshot-portfolio-job-hunting-015.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-hero-main-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/hero/main.webp",
+    "r2Key": "pricing/hero/main.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/08-pricing-page-hero-need-1/taipei-headshot-pricing-page-hero-001.jpg",
+    "sourceLocal": "assets-source/pricing/hero/main.jpg",
+    "legacySourceLocal": "assets-source/08-pricing-page-hero-need-1/taipei-headshot-pricing-page-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/08-pricing-page-hero-need-1/taipei-headshot-pricing-page-hero-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-id-photo-passport-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/id-photo/passport-001.webp",
+    "r2Key": "pricing/id-photo/passport-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-001.jpg",
+    "sourceLocal": "assets-source/pricing/id-photo/passport-001.jpg",
+    "legacySourceLocal": "assets-source/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-id-photo-passport-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/id-photo/passport-002.webp",
+    "r2Key": "pricing/id-photo/passport-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-002.jpg",
+    "sourceLocal": "assets-source/pricing/id-photo/passport-002.jpg",
+    "legacySourceLocal": "assets-source/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/10-pricing-id-photo-categories-need-2/taipei-id-photo-pricing-korean-passport-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-makeup-id-sample",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/makeup/id-photo-sample.webp",
+    "r2Key": "pricing/makeup/id-photo-sample.webp",
+    "legacyUrl": "https://res.cloudinary.com/dsykkdyxz/image/upload/q_auto/f_auto/v1779245400/%E8%AD%89%E4%BB%B6%E7%85%A7%E7%AF%84%E4%BE%8B_u1obvg.jpg",
+    "sourceLocal": "assets-source/pricing/makeup/id-photo-sample.jpg",
+    "downloadUrl": "https://res.cloudinary.com/dsykkdyxz/image/upload/q_auto/f_auto/v1779245400/%E8%AD%89%E4%BB%B6%E7%85%A7%E7%AF%84%E4%BE%8B_u1obvg.jpg",
+    "notes": "Pricing makeup ID photo sample",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-makeup-package-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/makeup/package-003.webp",
+    "r2Key": "pricing/makeup/package-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-003.jpg",
+    "sourceLocal": "assets-source/pricing/makeup/package-003.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-makeup-package-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/makeup/package-004.webp",
+    "r2Key": "pricing/makeup/package-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-004.jpg",
+    "sourceLocal": "assets-source/pricing/makeup/package-004.jpg",
+    "legacySourceLocal": "assets-source/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-makeup-package-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/makeup/package-005.webp",
+    "r2Key": "pricing/makeup/package-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-005.jpg",
+    "sourceLocal": "assets-source/pricing/makeup/package-005.jpg",
+    "legacySourceLocal": "assets-source/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/11-pricing-makeup-packages-need-5/taipei-studio-makeup-hair-pricing-packages-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-portrait-category-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/portrait/category-001.webp",
+    "r2Key": "pricing/portrait/category-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-001.jpg",
+    "sourceLocal": "assets-source/pricing/portrait/category-001.jpg",
+    "legacySourceLocal": "assets-source/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-portrait-category-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/portrait/category-002.webp",
+    "r2Key": "pricing/portrait/category-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-002.jpg",
+    "sourceLocal": "assets-source/pricing/portrait/category-002.jpg",
+    "legacySourceLocal": "assets-source/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-portrait-category-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/portrait/category-004.webp",
+    "r2Key": "pricing/portrait/category-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-004.jpg",
+    "sourceLocal": "assets-source/pricing/portrait/category-004.jpg",
+    "legacySourceLocal": "assets-source/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-portrait-category-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/portrait/category-005.webp",
+    "r2Key": "pricing/portrait/category-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-005.jpg",
+    "sourceLocal": "assets-source/pricing/portrait/category-005.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "pricing-portrait-category-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/pricing/portrait/category-010.webp",
+    "r2Key": "pricing/portrait/category-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-010.jpg",
+    "sourceLocal": "assets-source/pricing/portrait/category-010.jpg",
+    "legacySourceLocal": "assets-source/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/09-pricing-photography-categories-need-10/goldenyears-taipei-portrait-pricing-categories-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "studio-interior-space-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/studio/interior/space-001.webp",
+    "r2Key": "studio/interior/space-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/studio-interior-bts/goldenyears-taipei-studio-interior-space-001.jpg",
+    "sourceLocal": "assets-source/studio/interior/space-001.jpg",
+    "legacySourceLocal": "assets-source/studio-interior-bts/goldenyears-taipei-studio-interior-space-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/studio-interior-bts/goldenyears-taipei-studio-interior-space-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-001-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-001.webp",
+    "r2Key": "team/member-001.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-001.jpg",
+    "sourceLocal": "assets-source/team/member-001.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-001.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-002-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-002.webp",
+    "r2Key": "team/member-002.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-002.jpg",
+    "sourceLocal": "assets-source/team/member-002.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-002.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-002.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-003-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-003.webp",
+    "r2Key": "team/member-003.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-003.jpg",
+    "sourceLocal": "assets-source/team/member-003.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-003.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-003.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-004-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-004.webp",
+    "r2Key": "team/member-004.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-004.jpg",
+    "sourceLocal": "assets-source/team/member-004.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-004.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-004.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-005-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-005.webp",
+    "r2Key": "team/member-005.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-005.jpg",
+    "sourceLocal": "assets-source/team/member-005.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-005.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-005.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-006-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-006.webp",
+    "r2Key": "team/member-006.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-006.jpg",
+    "sourceLocal": "assets-source/team/member-006.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-006.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-006.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-007-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-007.webp",
+    "r2Key": "team/member-007.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-007.jpg",
+    "sourceLocal": "assets-source/team/member-007.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-007.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-007.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-008-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-008.webp",
+    "r2Key": "team/member-008.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-008.jpg",
+    "sourceLocal": "assets-source/team/member-008.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-008.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-008.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-009-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-009.webp",
+    "r2Key": "team/member-009.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-009.jpg",
+    "sourceLocal": "assets-source/team/member-009.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-009.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-009.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-010-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-010.webp",
+    "r2Key": "team/member-010.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-010.jpg",
+    "sourceLocal": "assets-source/team/member-010.jpg",
+    "legacySourceLocal": "assets-source/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-010.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-010.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "team-member-011-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/team/member-011.webp",
+    "r2Key": "team/member-011.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/photo-inbox/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-011.jpg",
+    "sourceLocal": "assets-source/team/member-011.jpg",
+    "legacySourceLocal": "assets-source/photo-inbox/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-011.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/photo-inbox/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-011.jpg",
+    "status": "pending"
+  },
+  {
+    "id": "tools-id-photo-crop-hero-webp",
+    "publicUrl": "https://photo.goldenyearsphoto.com/tools/id-photo-crop/hero.webp",
+    "r2Key": "tools/id-photo-crop/hero.webp",
+    "legacyUrl": "https://2026readdy.goldennextai.com/35-id-photo-crop-hero-need-1/taipei-id-photo-cropping-tool-hero-001.jpg",
+    "sourceLocal": "assets-source/tools/id-photo-crop/hero.jpg",
+    "legacySourceLocal": "assets-source/35-id-photo-crop-hero-need-1/taipei-id-photo-cropping-tool-hero-001.jpg",
+    "downloadUrl": "https://2026readdy.goldennextai.com/35-id-photo-crop-hero-need-1/taipei-id-photo-cropping-tool-hero-001.jpg",
+    "status": "pending"
+  }
+]

@@ -23,18 +23,6 @@ export function buildSrcSet(
     return undefined;
   }
 
-  // Cloudinary URLs: insert w_WIDTH into the transformation path
-  if (url.includes("res.cloudinary.com")) {
-    const entries = widths.map((w) => {
-      const sized = url.replace(
-        /\/upload\//,
-        `/upload/w_${w},q_auto,f_auto/`
-      );
-      return `${sized} ${w}w`;
-    });
-    return entries.join(", ");
-  }
-
   // Generic CDN: append w= query param.  If the URL already has query
   // params, use & instead of ? to avoid clobbering existing params.
   const sep = url.includes("?") ? "&" : "?";

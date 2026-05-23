@@ -50,7 +50,7 @@ export default function BrandStory() {
           >
             <div className="relative rounded-lg overflow-hidden">
               <LazyImage
-                src={aboutHome.image}
+                src="https://photo.goldenyearsphoto.com/courses/workshop/hero.webp"
                 alt={aboutHome.alt}
                 className="w-full h-auto object-contain"
                 loading="lazy"

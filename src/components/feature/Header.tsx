@@ -81,9 +81,15 @@ export default function Header() {
                 width="160"
                 height="40"
               />
-              <span className={`text-sm md:text-base font-serif font-medium tracking-wide hidden sm:block transition-colors duration-300 ${logoTextClass} ${textShadowClass}`}>
-                好時有影 Golden Years Studio
-              </span>
+              {location.pathname === "/" ? (
+                <h1 className={`text-sm md:text-base font-serif font-medium tracking-wide hidden sm:block transition-colors duration-300 m-0 p-0 leading-normal ${logoTextClass} ${textShadowClass}`}>
+                  好時有影 Golden Years Studio
+                </h1>
+              ) : (
+                <span className={`text-sm md:text-base font-serif font-medium tracking-wide hidden sm:block transition-colors duration-300 ${logoTextClass} ${textShadowClass}`}>
+                  好時有影 Golden Years Studio
+                </span>
+              )}
             </Link>
 
             {/* Desktop Nav */}

@@ -168,6 +168,7 @@ export default function Pricing() {
       <PageSEO
         title="價目表 | 好時有影 Golden Years Studio | 攝影、妝髮、課程價格透明公開"
         description="好時有影完整價目表：韓式證件照 NT$1,500 起、形象照 NT$3,500 起、妝髮服務 NT$600 起、工作坊課程。所有價格透明公開，無隱藏費用。台北公館攝影工作室，立即線上預約。"
+        keywords="攝影價格,證件照價格,形象照費用,台北攝影價格,畢業寫真價格,妝髮價格,全家福價格,攝影工作室價格,台北妝髮價格"
       />
       <FAQSchema questions={flatFAQ} pageName="pricing" />
       <PriceTableSchema items={priceTableItems} pageName="pricing" />

@@ -94,7 +94,7 @@ export const teamData = {
         {
           name: "靜怡",
           title: "資深修圖師",
-          image: "https://2026readdy.goldennextai.com/photo-inbox/07-about-team-headshots-need-11/goldenyears-taipei-photography-team-headshots-011.jpg",
+          image: team[10],
           alt: "好時有影修圖師靜怡 團隊照",
         },
       ],

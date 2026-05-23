@@ -1,0 +1,6 @@
+用途：攝影作品牆（12 分類，每類多張）
+程式：src/config/images.ts → portfolio.*
+頁面：/photography（Lightbox）
+建議：maxWidth 1200px，WebP quality 78，gallery 版型
+R2：15-portfolio-* ～ 26-portfolio-*、campaign-portrait-election 等
+optimize：npm run media:optimize -- --spec=gallery

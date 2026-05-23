@@ -1,0 +1,7 @@
+用途：Logo（Header/Footer/favicon）、OG 社群圖
+程式：src/config/cdn.ts → brand.logo / brand.og
+頁面：全站、index.html meta
+來源：原 storage.readdy-site.link + 既有 OG 圖
+建議：logo maxWidth 512px quality 90；OG 1200×630 區間 quality 85
+R2：00-goldenyears-brand-logo-social-need-2/*.webp
+optimize：npm run media:optimize -- --spec=logo（logo）/ --spec=og（OG）
