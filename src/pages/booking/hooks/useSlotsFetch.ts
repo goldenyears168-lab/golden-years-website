@@ -8,13 +8,13 @@ export function useSlotsFetch(
   dateTo: string,
   enabled: boolean,
 ) {
-  const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>();
+  const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!enabled || !serviceId || !providerId) return;
-    if (Object.keys(slotsByDate).length > 0) return;
+    if (!slotsByDate || Object.keys(slotsByDate).length > 0) return;
 
     let cancelled = false;
     setLoading(true);
