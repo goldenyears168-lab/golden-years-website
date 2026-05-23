@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 import { PageSkeleton } from "@/components/base/Skeleton";
 
-// ── lazy-loaded page components ──
+// ── lazy-loaded page component ──
 const Home = lazy(() => import("@/pages/home/page"));
 const About = lazy(() => import("@/pages/about/page"));
 const Pricing = lazy(() => import("@/pages/pricing/page"));
