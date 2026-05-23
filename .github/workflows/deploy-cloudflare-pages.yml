@@ -34,17 +34,18 @@ jobs:
           echo "::endgroup::"
           test -f out/index.html || { echo "::error::out/index.html 不存在，build 沒有產出"; exit 1; }
 
+      # 不透過 wrangler-action：它會吞掉 deploy 的 stderr，看不到真正錯誤。
+      # 直接呼叫 wrangler 並 2>&1，讓 Cloudflare API 的錯誤原封不動印在 console。
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_LOG: debug
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=goldenyearswebsite --branch=main
+        run: |
+          npx --no-install wrangler pages deploy out \
+            --project-name=goldenyearswebsite \
+            --branch=main 2>&1
 
-      # wrangler-action 失敗時只回報 exit code，真正錯誤在 debug log 檔裡。
-      # 失敗時把它印出來，才看得到 Cloudflare API 的實際回應。
       - name: 部署失敗時印出 wrangler debug log
         if: failure()
         run: |
