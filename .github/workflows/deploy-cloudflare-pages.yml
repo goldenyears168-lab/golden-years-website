@@ -5,9 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# 部署用排隊而非互相取消：連續 push 時讓 run 依序完成，
+# 避免後一個 run 取消前一個（被取消的 run 會顯示成失敗）。
 concurrency:
   group: pages-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -25,8 +27,17 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Verify build output
+        run: |
+          echo "::group::out 目錄內容"
+          ls -la out
+          echo "::endgroup::"
+          test -f out/index.html || { echo "::error::out/index.html 不存在，build 沒有產出"; exit 1; }
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
+        env:
+          WRANGLER_LOG: debug
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
