@@ -42,3 +42,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy out --project-name=goldenyearswebsite --branch=main
+
+      # wrangler-action 失敗時只回報 exit code，真正錯誤在 debug log 檔裡。
+      # 失敗時把它印出來，才看得到 Cloudflare API 的實際回應。
+      - name: 部署失敗時印出 wrangler debug log
+        if: failure()
+        run: |
+          echo "::group::wrangler debug log"
+          cat /home/runner/.config/.wrangler/logs/*.log 2>/dev/null || echo "找不到 wrangler log 檔"
+          echo "::endgroup::"
