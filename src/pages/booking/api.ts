@@ -1,21 +1,8 @@
 import type { AdditionalField, BookingResult } from './types';
 
-const PAGES_SIMPLYBOOK_API = 'https://goldenyearswebsite.pages.dev/api/simplybook';
-
-/** 自訂網域 POST body 含 email 時仍可能被 CF 邊緣擋下；pages.dev 同源 API 可正常回 JSON */
-function getSimplybookApiUrl(): string {
-  const configured = import.meta.env.VITE_SIMPLYBOOK_API as string | undefined;
-  if (configured?.trim()) return configured.trim().replace(/\/$/, '');
-
-  if (typeof window !== 'undefined') {
-    const host = window.location.hostname;
-    if (host === 'goldenyearsphoto.com' || host === 'www.goldenyearsphoto.com') {
-      return PAGES_SIMPLYBOOK_API;
-    }
-  }
-
-  return '/api/simplybook';
-}
+const SIMPLYBOOK_API =
+  (import.meta.env.VITE_SIMPLYBOOK_API as string | undefined)?.trim().replace(/\/$/, '') ||
+  '/api/simplybook';
 
 type ProxyBody = Record<string, unknown>;
 
@@ -23,7 +10,7 @@ type ProxySuccess<T> = { data: T };
 type ProxyFailure = { error: string };
 
 async function simplybookProxy<T>(body: ProxyBody): Promise<T> {
-  const res = await fetch(getSimplybookApiUrl(), {
+  const res = await fetch(SIMPLYBOOK_API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
