@@ -190,7 +190,7 @@ export function BookingApp() {
       });
       if (noteField) {
         const userNote = enrichedAdditional[noteField.name] ?? '';
-        const systemNote = `${externalService.title} · ${selectedVariant.label} / 分店：${storeLabel}`;
+        const systemNote = `${externalService.title} `;
         enrichedAdditional[noteField.name] = userNote
           ? `${systemNote}${userNote}`
           : systemNote;
