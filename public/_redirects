@@ -109,4 +109,6 @@
 /price-list/ /price-list 301
 /booking/ /booking 301
 
+# ── SPA catch-all: exclude static assets ──
+/assets/* /assets/:splat 200
 /* /index.html 200
