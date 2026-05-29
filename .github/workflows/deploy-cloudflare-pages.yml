@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# 部署用排隊而非互相取消：連續 push 時讓 run 依序完成，
+# 部署用排隊而非互相取消：連續 push 時讓 run 依序完成 ，
 # 避免後一個 run 取消前一個（被取消的 run 會顯示成失敗）。
 concurrency:
   group: pages-production
