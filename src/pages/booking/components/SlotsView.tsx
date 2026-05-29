@@ -1,32 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useBooking } from '../context/useBooking';
 import { formatTime, getDateRange, weekdayLabel } from '../api';
-import type { SelectedSlot } from '../types';
-
-type Props = {
-  dates: string[];
-  slotsByDate: Record<string, string[]>;
-  loading: boolean;
-  error: string | null;
-  onSelectSlot: (slot: SelectedSlot) => void;
-};
-
-function dateChipMeta(dateStr: string, today: string): { tag?: string; sub: string; week: string } {
-  const d = new Date(`${dateStr}T12:00:00`);
-  const sub = `${d.getMonth() + 1}/${d.getDate()}`;
-  const week = weekdayLabel(dateStr);
-  const tag = dateStr === today ? '今日' : undefined;
-  return { tag, sub, week };
-}
 
 export function SlotsView({
   dates,
   slotsByDate,
   loading,
   error,
-  onSelectSlot,
-}: Props) {
+}: {
+  dates: string[];
+  slotsByDate: Record<string, string[]>;
+  loading: boolean;
+  error: string | null;
+}) {
+  const { dispatch } = useBooking();
   const availableDates = useMemo(
-    () => dates.filter((d) => (slotsByDate[d]?.length ?? 0) > 0),
+    () => (dates ?? []).filter((d) => ((slotsByDate ?? {})[d]?.length ?? 0) > 0),
     [dates, slotsByDate],
   );
 
@@ -53,7 +42,6 @@ export function SlotsView({
     if (!el) return;
     el.addEventListener('scroll', checkScroll, { passive: true });
     window.addEventListener('resize', checkScroll, { passive: true });
-    // check after images/layout settle
     const timers = [setTimeout(checkScroll, 100), setTimeout(checkScroll, 500)];
     return () => {
       el.removeEventListener('scroll', checkScroll);
@@ -79,7 +67,6 @@ export function SlotsView({
     );
   }, [availableDates]);
 
-  /* clear selectedTime when date changes */
   useEffect(() => {
     setSelectedTime(null);
   }, [activeDate]);
@@ -89,7 +76,7 @@ export function SlotsView({
   const handleTimeClick = (time: string) => {
     if (!activeDate || selectedTime) return;
     setSelectedTime(time);
-    onSelectSlot({ date: activeDate, time });
+    dispatch({ type: 'SELECT_SLOT', slot: { date: activeDate, time } });
   };
 
   if (loading) {
@@ -103,8 +90,10 @@ export function SlotsView({
 
   if (error) {
     return (
-      <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm" role="alert">
-        <p>{error}</p>
+      <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm space-y-2" role="alert">
+        <p className="font-semibold">預約系統暫時無法使用</p>
+        <p className="text-xs opacity-80">{error}</p>
+        <p className="text-xs">請截圖此錯誤訊息給客服，或稍後再試。</p>
       </div>
     );
   }
@@ -123,13 +112,13 @@ export function SlotsView({
         選擇日期與時段，將前往下一頁填寫預約資料
       </p>
 
-      {/* Date chips — with scroll arrows & edge fade on mobile */}
+      {/* Date chips */}
       <div className="relative mb-3">
-        {/* Left arrow */}
         {canScrollLeft && (
           <button
             type="button"
             onClick={() => scrollBy('left')}
+            data-testid="scroll-left"
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20
               w-8 h-8 rounded-full bg-white/95 border border-brand-creamDark
               flex items-center justify-center shadow-sm cursor-pointer
@@ -140,11 +129,11 @@ export function SlotsView({
           </button>
         )}
 
-        {/* Right arrow */}
         {canScrollRight && (
           <button
             type="button"
             onClick={() => scrollBy('right')}
+            data-testid="scroll-right"
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20
               w-8 h-8 rounded-full bg-white/95 border border-brand-creamDark
               flex items-center justify-center shadow-sm cursor-pointer
@@ -155,11 +144,9 @@ export function SlotsView({
           </button>
         )}
 
-        {/* Left edge fade */}
         {canScrollLeft && (
           <div className="absolute left-0 top-0 bottom-2 w-10 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
         )}
-        {/* Right edge fade */}
         {canScrollRight && (
           <div className="absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
         )}
@@ -171,13 +158,17 @@ export function SlotsView({
           aria-label="可預約日期"
         >
           {availableDates.map((date) => {
-            const { tag, sub, week } = dateChipMeta(date, todayStr);
+            const d = new Date(`${date}T12:00:00`);
+            const sub = `${d.getMonth() + 1}/${d.getDate()}`;
+            const week = weekdayLabel(date);
+            const tag = date === todayStr ? '今日' : undefined;
             const active = activeDate === date;
             return (
               <button
                 key={date}
                 type="button"
                 role="tab"
+                data-testid={`date-${date}`}
                 aria-selected={active}
                 onClick={() => setActiveDate(date)}
                 className={`
@@ -224,6 +215,7 @@ export function SlotsView({
                 <button
                   key={t}
                   type="button"
+                  data-testid={`time-${t}`}
                   disabled={!!selectedTime}
                   onClick={() => handleTimeClick(t)}
                   className={`

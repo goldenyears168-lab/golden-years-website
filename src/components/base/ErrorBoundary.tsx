@@ -21,11 +21,16 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // In production this could be sent to a logging service
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _error = error;
-    const _errorInfo = errorInfo;
-    // Silent catch to avoid console noise in production builds
+    // Log to console for debugging
+    console.error('ErrorBoundary caught:', error, errorInfo);
+
+    // Send to GA4 if available
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
+        description: `${error.name}: ${error.message}`,
+        fatal: true,
+      });
+    }
   }
 
   override render() {

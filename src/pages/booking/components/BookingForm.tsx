@@ -1,52 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useBooking } from '../context/useBooking';
+import { STORES } from '../config';
 import {
   formatTime,
-  isFieldRequired,
-  normalizePhone,
-  parseSelectValues,
   weekdayLabel,
-  calculateArrivalTime,
-  getMakeupStyleLabel,
+  normalizePhone,
 } from '../api';
-import type { AdditionalField, ClientData, SelectedSlot } from '../types';
-
-type Props = {
-  serviceLabel: string;
-  storeLabel: string;
-  slot: SelectedSlot;
-  fields: AdditionalField[];
-  fieldsLoading: boolean;
-  submitting: boolean;
-  error: string | null;
-  onBack: () => void;
-  backLabel?: string;
-  onSubmit: (client: ClientData, additional: Record<string, string>) => void;
-  showSummary?: boolean;
-};
+import { BookingErrorMessages } from '../domain/errors';
+import type { ClientData } from '../types';
+import DynamicField from './fields/DynamicField';
+import ArrivalTimeNotice from './ArrivalTimeNotice';
 
 export function BookingForm({
-  serviceLabel,
-  storeLabel,
-  slot,
   fields,
   fieldsLoading,
-  submitting,
   error,
-  onBack,
-  backLabel,
   onSubmit,
   showSummary = true,
-}: Props) {
+}: {
+  fields: import('../types').AdditionalField[];
+  fieldsLoading: boolean;
+  error: string | null;
+  onSubmit: (client: ClientData, additional: Record<string, string>) => void;
+  showSummary?: boolean;
+}) {
+  const { state, dispatch } = useBooking();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [additional, setAdditional] = useState<Record<string, string>>({});
+  const [additional, setAdditional] = useState<Record<string, string>>();
   const [formError, setFormError] = useState<string | null>(null);
+  const initializedRef = useRef(false);
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const slot = state.selectedSlot;
+  const serviceLabel = state.externalService && state.selectedVariant
+    ? `${state.externalService.title} · ${state.selectedVariant.label}`
+    : '';
+  const storeLabel = state.storeKey
+    ? (STORES.find((s) => s.key === state.storeKey)?.label ?? '')
+    : '';
+
   useEffect(() => {
-    if (fields.length === 0) return;
+    if (fields.length === 0 || initializedRef.current) return;
+    initializedRef.current = true;
     setAdditional((prev) => {
       const next = { ...prev };
       for (const f of fields) {
@@ -65,7 +63,7 @@ export function BookingForm({
     setFormError(null);
 
     if (!name.trim()) {
-      setFormError('請填寫姓名');
+      setFormError(BookingErrorMessages.VALIDATION_ERROR);
       return;
     }
     if (!email.trim()) {
@@ -82,7 +80,7 @@ export function BookingForm({
     }
 
     for (const f of fields) {
-      if (isFieldRequired(f) && !additional[f.name]?.trim()) {
+      if (f.is_null === '0' && !additional?.[f.name]?.trim()) {
         setFormError(`請填寫：${f.title.replace(/\s+/g, ' ').trim()}`);
         return;
       }
@@ -93,6 +91,8 @@ export function BookingForm({
       additional ?? {},
     );
   };
+
+  if (!slot) return null;
 
   return (
     <form
@@ -121,16 +121,17 @@ export function BookingForm({
           </ul>
           <button
             type="button"
-            onClick={onBack}
+            onClick={() => dispatch({ type: 'GO_TO_STEP', step: 3 })}
+            data-testid="change-slot"
             className="mt-3 text-sm text-brand-gold hover:text-brand-navy underline cursor-pointer bg-transparent border-none p-0"
           >
-            {backLabel ?? '改選其他時段'}
+            改選其他時段
           </button>
         </div>
       )}
 
       {/* Contact Info */}
-      <fieldset className="border-none p-0 m-0 mb-4" disabled={submitting}>
+      <fieldset className="border-none p-0 m-0 mb-4" disabled={state.submitting}>
         <legend className="text-base font-semibold text-brand-navy mb-2 block">聯絡資料</legend>
 
         <label className="flex flex-col gap-2 mb-5">
@@ -143,6 +144,7 @@ export function BookingForm({
             onChange={(e) => setName(e.target.value)}
             required
             autoComplete="name"
+            data-testid="input-name"
             className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
@@ -159,6 +161,7 @@ export function BookingForm({
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
+            data-testid="input-email"
             className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
@@ -176,6 +179,7 @@ export function BookingForm({
             placeholder="0912345678"
             required
             autoComplete="tel"
+            data-testid="input-phone"
             className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
               focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
               bg-white text-brand-charcoal"
@@ -187,12 +191,12 @@ export function BookingForm({
       {fieldsLoading ? (
         <p className="text-sm text-brand-textMuted mb-4">載入表單欄位…</p>
       ) : (
-        <fieldset className="border-none p-0 m-0 mb-4" disabled={submitting}>
+        <fieldset className="border-none p-0 m-0 mb-4" disabled={state.submitting}>
           {fields.map((field) => (
             <DynamicField
               key={field.name}
               field={field}
-              value={additional[field.name] ?? ''}
+              value={additional?.[field.name] ?? ''}
               onChange={(v) => setField(field.name, v)}
             />
           ))}
@@ -206,7 +210,7 @@ export function BookingForm({
         </div>
       ) : null}
 
-      {/* 自動計算建議到店時間 —— 放在確認按鈕之前，確保用戶按鈕前最後一眼看到 */}
+      {/* Arrival Time Notice */}
       <ArrivalTimeNotice
         slot={slot}
         serviceLabel={serviceLabel}
@@ -216,7 +220,8 @@ export function BookingForm({
       {/* Submit */}
       <button
         type="submit"
-        disabled={submitting || fieldsLoading}
+        data-testid="submit-booking"
+        disabled={state.submitting || fieldsLoading}
         className="
           w-full inline-flex items-center justify-center gap-2
           px-6 py-4 md:py-5
@@ -229,7 +234,7 @@ export function BookingForm({
           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
         "
       >
-        {submitting ? (
+        {state.submitting ? (
           <>
             <i className="ri-loader-4-line animate-spin" aria-hidden />
             送出中…
@@ -242,131 +247,5 @@ export function BookingForm({
         )}
       </button>
     </form>
-  );
-}
-
-function DynamicField({
-  field,
-  value,
-  onChange,
-}: {
-  field: AdditionalField;
-  value: string;
-  onChange: (v: string) => void;
-}) {
-  const required = isFieldRequired(field);
-  const title = field.title.replace(/\s+/g, ' ').trim();
-
-  if (field.type === 'select') {
-    const options = parseSelectValues(field.values);
-    return (
-      <div className="flex flex-col gap-2 mb-5">
-        <span className="text-sm font-medium text-brand-charcoal">
-          {title} {required ? <em className="text-red-600 not-italic">*</em> : null}
-        </span>
-        <div className="flex flex-wrap gap-2">
-          {options.map((opt) => (
-            <button
-              key={opt}
-              type="button"
-              onClick={() => onChange(opt)}
-              aria-pressed={value === opt}
-              className={`
-                px-3 py-2 text-sm
-                border-2 rounded-full
-                cursor-pointer
-                transition-all duration-150
-                ${value === opt
-                  ? 'border-brand-navy bg-brand-cream font-semibold'
-                  : 'border-brand-creamDark bg-white hover:border-brand-gold'
-                }
-              `}
-            >
-              {opt}
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  const isLong = title.length > 50;
-
-  return (
-    <label className="flex flex-col gap-2 mb-5">
-      <span className="text-sm font-medium text-brand-charcoal">
-        {title} {required ? <em className="text-red-600 not-italic">*</em> : null}
-      </span>
-      {isLong ? (
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          rows={2}
-          placeholder={field.default ?? undefined}
-          className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
-            focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
-            bg-white text-brand-charcoal resize-y"
-        />
-      ) : (
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={field.default ?? undefined}
-          className="px-3 py-2 border-2 border-gray-300 rounded-lg text-base
-            focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold
-            bg-white text-brand-charcoal"
-        />
-      )}
-    </label>
-  );
-}
-
-function ArrivalTimeNotice({
-  slot,
-  serviceLabel,
-  additional,
-}: {
-  slot: SelectedSlot;
-  serviceLabel: string;
-  additional: Record<string, string> | undefined;
-}) {
-  const arrival = calculateArrivalTime(slot.time, serviceLabel, additional ?? {});
-  const styleLabel = getMakeupStyleLabel(additional ?? {});
-  const isMakeup = serviceLabel.includes('妝髮');
-
-  return (
-    <div className="mb-5 p-3 md:p-4 rounded-xl bg-brand-cream border border-brand-gold/30 shadow-sm">
-      <div className="flex items-start gap-3">
-        <div className="w-9 h-9 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i className="ri-time-line text-brand-gold text-base" aria-hidden />
-        </div>
-        <div className="min-w-0">
-          {arrival ? (
-            <>
-              <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
-                建議到店時間：{slot.date}（{weekdayLabel(slot.date)}）{arrival}
-              </p>
-              <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
-                {isMakeup
-                  ? `拍攝時間為 ${formatTime(slot.time)}，${styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。`
-                  : `拍攝時間為 ${formatTime(slot.time)}，請提前 5 分鐘抵達以便完成準備。`}
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
-                {isMakeup ? '請提前到店完成造型準備' : '請提前 5 分鐘抵達'}
-              </p>
-              <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
-                {isMakeup
-                  ? `拍攝時間為 ${formatTime(slot.time)}，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。`
-                  : `拍攝時間為 ${formatTime(slot.time)}，建議提前到達以便完成準備。`}
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
   );
 }

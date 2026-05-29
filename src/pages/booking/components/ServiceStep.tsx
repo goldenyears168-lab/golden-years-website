@@ -1,41 +1,12 @@
 import { useState } from 'react';
+import { useBooking } from '../context/useBooking';
 import { EXTERNAL_SERVICES, type ExternalService, type ServiceVariant } from '../config-services';
 import { LINE_OFFICIAL_URL } from '../config';
 
-type Props = {
-  selectedService: ExternalService | null;
-  selectedVariant: ServiceVariant | null;
-  onSelect: (service: ExternalService, variant: ServiceVariant) => void;
-};
-
-type Grouped = {
-  categoryId: string;
-  categoryLabel: string;
-  categoryIcon: string;
-  services: ExternalService[];
-};
-
-function groupByCategory(services: ExternalService[]): Grouped[] {
-  const map = new Map<string, Grouped>();
-  for (const s of services) {
-    const existing = map.get(s.categoryId);
-    if (existing) {
-      existing.services.push(s);
-    } else {
-      map.set(s.categoryId, {
-        categoryId: s.categoryId,
-        categoryLabel: s.categoryLabel,
-        categoryIcon: s.categoryIcon,
-        services: [s],
-      });
-    }
-  }
-  return Array.from(map.values());
-}
-
-export function ServiceStep({ selectedService, selectedVariant, onSelect }: Props) {
+export function ServiceStep() {
+  const { state, dispatch } = useBooking();
   const [expandedId, setExpandedId] = useState<string | null>(
-    selectedService?.id ?? null,
+    state.externalService?.id ?? null,
   );
 
   const handleCardClick = (service: ExternalService) => {
@@ -50,7 +21,7 @@ export function ServiceStep({ selectedService, selectedVariant, onSelect }: Prop
     service: ExternalService,
     variant: ServiceVariant,
   ) => {
-    onSelect(service, variant);
+    dispatch({ type: 'SELECT_SERVICE', service, variant });
   };
 
   const bookableServices = EXTERNAL_SERVICES.filter((s) => !s.isLineRedirect);
@@ -75,11 +46,12 @@ export function ServiceStep({ selectedService, selectedVariant, onSelect }: Prop
                 service={service}
                 isExpanded={expandedId === service.id}
                 isSelected={
-                  selectedService?.id === service.id && selectedVariant !== null
+                  state.externalService?.id === service.id &&
+                  state.selectedVariant !== null
                 }
                 selectedVariantLabel={
-                  selectedService?.id === service.id
-                    ? selectedVariant?.label
+                  state.externalService?.id === service.id
+                    ? state.selectedVariant?.label
                     : undefined
                 }
                 onCardClick={() => handleCardClick(service)}
@@ -112,6 +84,34 @@ export function ServiceStep({ selectedService, selectedVariant, onSelect }: Prop
 }
 
 /* ------------------------------------------------------------------ */
+/*  Grouping helper                                                    */
+/* ------------------------------------------------------------------ */
+type Grouped = {
+  categoryId: string;
+  categoryLabel: string;
+  categoryIcon: string;
+  services: ExternalService[];
+};
+
+function groupByCategory(services: ExternalService[]): Grouped[] {
+  const map = new Map<string, Grouped>();
+  for (const s of services) {
+    const existing = map.get(s.categoryId);
+    if (existing) {
+      existing.services.push(s);
+    } else {
+      map.set(s.categoryId, {
+        categoryId: s.categoryId,
+        categoryLabel: s.categoryLabel,
+        categoryIcon: s.categoryIcon,
+        services: [s],
+      });
+    }
+  }
+  return Array.from(map.values());
+}
+
+/* ------------------------------------------------------------------ */
 /*  ServiceCard                                                        */
 /* ------------------------------------------------------------------ */
 function ServiceCard({
@@ -141,6 +141,7 @@ function ServiceCard({
       <button
         type="button"
         onClick={onCardClick}
+        data-testid={`service-card-${service.id}`}
         className="
           flex items-center gap-2 sm:gap-3 md:gap-4 p-2.5 sm:p-3 md:p-4
           bg-white border-none cursor-pointer text-left
@@ -188,6 +189,7 @@ function ServiceCard({
           <p className="text-xs text-brand-textMuted mb-1">選擇方案：</p>
           <button
             type="button"
+            data-testid="variant-basic"
             onClick={() => onVariantSelect(service.variants.basic)}
             className={`
               w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
@@ -202,6 +204,7 @@ function ServiceCard({
           </button>
           <button
             type="button"
+            data-testid="variant-makeup"
             onClick={() => onVariantSelect(service.variants.makeup)}
             className={`
               w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium

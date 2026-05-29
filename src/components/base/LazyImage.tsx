@@ -1,4 +1,4 @@
-import { useState, type ImgHTMLAttributes } from "react";
+import { useState, useMemo, type ImgHTMLAttributes } from "react";
 import { FALLBACK_IMAGE } from "@/mocks/constants";
 import { buildSrcSet, getSizes, buildPictureSources } from "@/utils/image";
 
@@ -49,19 +49,31 @@ export default function LazyImage({
   };
 
   // Auto-generate srcSet when autoSrcSet is true and no explicit srcSet provided
-  const effectiveSrcSet = propSrcSet ?? (autoSrcSet && typeof src === "string" ? buildSrcSet(src) : undefined);
-  const effectiveSizes = propSizes ?? (autoSrcSet && effectiveSrcSet ? getSizes(sizesPattern) : undefined);
-
-  // Auto-enable next-gen formats for photo URLs unless explicitly disabled (null)
-  const shouldUseFormats = formats !== null && (
-    formats !== undefined
-      ? formats.length > 0
-      : typeof src === "string" && /\.(jpe?g|png)$/i.test(src) && !src.startsWith("data:")
+  const effectiveSrcSet = useMemo(
+    () => propSrcSet ?? (autoSrcSet && typeof src === "string" ? buildSrcSet(src) : undefined),
+    [propSrcSet, autoSrcSet, src]
   );
 
-  const pictureSources = shouldUseFormats && typeof src === "string"
-    ? buildPictureSources(src, [400, 800, 1200])
-    : undefined;
+  const effectiveSizes = useMemo(
+    () => propSizes ?? (autoSrcSet && effectiveSrcSet ? getSizes(sizesPattern) : undefined),
+    [propSizes, autoSrcSet, effectiveSrcSet, sizesPattern]
+  );
+
+  // Auto-enable next-gen formats for photo URLs unless explicitly disabled (null)
+  const shouldUseFormats = useMemo(
+    () => formats !== null && (
+      formats !== undefined
+        ? formats.length > 0
+        : typeof src === "string" && /\.(jpe?g|png)$/i.test(src) && !src.startsWith("data:")
+    ),
+    [formats, src]
+  );
+
+  const pictureSources = useMemo(() => {
+    return shouldUseFormats && typeof src === "string"
+      ? buildPictureSources(src, [400, 800, 1200])
+      : undefined;
+  }, [shouldUseFormats, src]);
 
   const mergedOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     handleError();

@@ -1,5 +1,5 @@
 import { useSearchParams, Link } from "react-router-dom";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Header from "@/components/feature/Header";
 import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
@@ -63,23 +63,27 @@ export default function PhotographyServices() {
     [setSearchParams]
   );
 
-  const displayedImages =
-    activeCategory === "all"
-      ? featuredPortfolio.slice(0, visibleCount)
-      : portfolioCategories
-          .filter((cat) => cat.slug === activeCategory)
-          .flatMap((cat) =>
-            cat.images.slice(0, visibleCount).map((img) => ({
-              ...img,
-              categorySlug: cat.slug,
-              categoryTitle: cat.title,
-            }))
-          );
+  const displayedImages = useMemo(() => {
+    if (activeCategory === "all") {
+      return featuredPortfolio.slice(0, visibleCount);
+    }
+    return portfolioCategories
+      .filter((cat) => cat.slug === activeCategory)
+      .flatMap((cat) =>
+        cat.images.slice(0, visibleCount).map((img) => ({
+          ...img,
+          categorySlug: cat.slug,
+          categoryTitle: cat.title,
+        }))
+      );
+  }, [activeCategory, visibleCount]);
 
-  const hasMoreImages =
-    activeCategory === "all"
-      ? visibleCount < featuredPortfolio.length
-      : (portfolioCategories.find((c) => c.slug === activeCategory)?.images.length ?? 0) > visibleCount;
+  const hasMoreImages = useMemo(() => {
+    if (activeCategory === "all") {
+      return visibleCount < featuredPortfolio.length;
+    }
+    return (portfolioCategories.find((c) => c.slug === activeCategory)?.images.length ?? 0) > visibleCount;
+  }, [activeCategory, visibleCount]);
 
   const activeServiceInfo = activeCategory !== "all"
     ? photographyServices.find((s) => s.id === activeCategory)

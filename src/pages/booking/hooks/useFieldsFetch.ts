@@ -1,8 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { fetchAdditionalFields } from '../api';
+import { BookingError, BookingErrorMessages } from '../domain/errors';
 import type { AdditionalField } from '../types';
 
-export function useFieldsFetch(serviceId: number | null, enabled: boolean) {
+export type UseFieldsFetchResult = {
+  fields: AdditionalField[];
+  loading: boolean;
+  error: string | null;
+  setFields: React.Dispatch<React.SetStateAction<AdditionalField[]>>;
+  reset: () => void;
+};
+
+export function useFieldsFetch(serviceId: number | null, enabled: boolean): UseFieldsFetchResult {
   const [fields, setFields] = useState<AdditionalField[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,9 +30,9 @@ export function useFieldsFetch(serviceId: number | null, enabled: boolean) {
       .catch((e) => {
         if (!cancelled) {
           setError(
-            e instanceof Error
+            e instanceof BookingError
               ? e.message
-              : '無法載入預約表單，請重新整理頁面後再試。',
+              : BookingErrorMessages.FIELDS_LOAD_FAILED,
           );
         }
       })

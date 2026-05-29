@@ -4,6 +4,7 @@ import Footer from '@/components/feature/Footer';
 import FloatingButtons from '@/components/feature/FloatingButtons';
 import PageSEO from '@/components/base/PageSEO';
 import { BookingSuccess } from '../components/BookingSuccess';
+import { safeJsonParse } from '../domain/errors';
 import type { BookingSummary } from '../types';
 
 import { STORAGE_KEY } from '../config';
@@ -13,7 +14,7 @@ export default function BookingThankYouPage() {
 
   /* retrieve summary from localStorage */
   const raw = localStorage.getItem(STORAGE_KEY);
-  const summary: BookingSummary | null = raw ? JSON.parse(raw) : null;
+  const summary = safeJsonParse<BookingSummary>(raw);
 
   const handleNewBooking = () => {
     localStorage.removeItem(STORAGE_KEY);

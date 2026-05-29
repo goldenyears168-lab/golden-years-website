@@ -1,32 +1,28 @@
-import { STORE_IMAGES, type ExternalService } from '../config-services';
-import type { ServiceVariant } from '../config-services';
-import type { StoreKey } from '../config';
+import { useBooking } from '../context/useBooking';
+import { STORE_IMAGES } from '../config-services';
 
-type Props = {
-  selectedStore: StoreKey | null;
-  onSelect: (storeKey: StoreKey) => void;
-  selectedService?: ExternalService | null;
-  selectedVariant?: ServiceVariant | null;
-};
-
-export function StoreStep({ selectedStore, onSelect, selectedService, selectedVariant }: Props) {
-  const stores = Object.entries(STORE_IMAGES) as [StoreKey, typeof STORE_IMAGES[StoreKey]][];
+export function StoreStep() {
+  const { state, dispatch } = useBooking();
+  const stores = Object.entries(STORE_IMAGES) as [
+    import('../config').StoreKey,
+    typeof STORE_IMAGES[import('../config').StoreKey]
+  ][];
 
   return (
     <div>
       {/* Mini header */}
-      {selectedService && (
+      {state.externalService && (
         <div className="mb-4 text-center">
           <p className="text-sm text-brand-textMuted">
             已選擇：
             <span className="font-medium text-brand-charcoal">
-              {selectedService.title}
+              {state.externalService.title}
             </span>
-            {selectedVariant && (
+            {state.selectedVariant && (
               <>
                 <span className="text-brand-textMuted mx-1">·</span>
                 <span className="text-brand-gold font-medium">
-                  {selectedVariant.label}
+                  {state.selectedVariant.label}
                 </span>
               </>
             )}
@@ -36,12 +32,13 @@ export function StoreStep({ selectedStore, onSelect, selectedService, selectedVa
 
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 max-w-3xl mx-auto">
         {stores.map(([key, data]) => {
-          const active = selectedStore === key;
+          const active = state.storeKey === key;
           return (
             <button
               key={key}
               type="button"
-              onClick={() => onSelect(key)}
+              data-testid={`store-${key}`}
+              onClick={() => dispatch({ type: 'SELECT_STORE', storeKey: key })}
               className={`
                 group flex flex-col
                 bg-white rounded-xl border-2 overflow-hidden

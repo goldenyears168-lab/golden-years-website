@@ -4,6 +4,7 @@ import FloatingButtons from '@/components/feature/FloatingButtons';
 import PageSEO from '@/components/base/PageSEO';
 import ParallaxHero from '@/components/base/ParallaxHero';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { BookingProvider } from './context/BookingContext';
 import { booking as bookingImg } from '@/config/images';
 import { BookingApp } from './components/BookingApp';
 
@@ -153,7 +154,9 @@ export default function Booking() {
           <div className="w-full px-4 md:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <div className="bg-white rounded-lg border border-brand-navy/5 p-4 md:p-6 lg:p-8">
-                <BookingApp />
+                <BookingProvider>
+                  <BookingApp />
+                </BookingProvider>
               </div>
             </div>
           </div>

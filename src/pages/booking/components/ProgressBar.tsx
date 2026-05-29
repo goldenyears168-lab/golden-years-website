@@ -1,25 +1,28 @@
-type Props = {
-  currentStep: number;
-  labels: string[];
-  onStepClick?: (step: number) => void;
-  visitedSteps?: Set<number>;
-};
+import { useBooking } from '../context/useBooking';
 
-export function ProgressBar({ currentStep, labels, onStepClick, visitedSteps }: Props) {
+export function ProgressBar({ labels }: { labels: string[] }) {
+  const { state, dispatch } = useBooking();
+
+  const handleStepClick = (targetStep: number) => {
+    if (!state.visitedSteps.has(targetStep)) return;
+    dispatch({ type: 'GO_TO_STEP', step: targetStep });
+  };
+
   return (
     <div className="flex items-center justify-center gap-1 md:gap-3 mb-8 md:mb-10">
       {labels.map((label, index) => {
         const step = index + 1;
-        const isCompleted = step < currentStep;
-        const isCurrent = step === currentStep;
-        const isClickable = onStepClick !== undefined && (visitedSteps?.has(step) ?? step === 1);
+        const isCompleted = step < state.step;
+        const isCurrent = step === state.step;
+        const isClickable = state.visitedSteps.has(step);
 
         return (
           <div key={step} className="flex items-center gap-1 md:gap-3">
             <button
               type="button"
-              onClick={() => isClickable && onStepClick?.(step)}
+              onClick={() => isClickable && handleStepClick(step)}
               disabled={!isClickable}
+              data-testid={`step-${step}`}
               className={`
                 flex flex-col items-center gap-1
                 bg-transparent border-none p-0

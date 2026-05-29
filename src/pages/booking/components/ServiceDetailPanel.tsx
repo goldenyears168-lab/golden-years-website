@@ -1,18 +1,11 @@
+import { useBooking } from '../context/useBooking';
 import type { ServiceDetailData } from '../data/service-details';
 
-type Props = {
-  data: ServiceDetailData;
-  serviceTitle: string;
-  variantLabel: string;
-  onContinue: () => void;
-};
+export function ServiceDetailPanel({ data }: { data: ServiceDetailData }) {
+  const { state, dispatch } = useBooking();
+  const serviceTitle = state.externalService?.title ?? '';
+  const variantLabel = state.selectedVariant?.label ?? '';
 
-export function ServiceDetailPanel({
-  data,
-  serviceTitle,
-  variantLabel,
-  onContinue,
-}: Props) {
   return (
     <div id="service-detail-panel" className="mt-6 md:mt-8 rounded-xl border border-brand-navy/8 overflow-hidden bg-white">
       {/* Header */}
@@ -36,7 +29,7 @@ export function ServiceDetailPanel({
         )}
       </div>
 
-      {/* 合併為單一區塊：直接平鋪所有內容 */}
+      {/* Content sections */}
       <div className="px-4 md:px-6 py-4 md:py-5 space-y-5">
         {data.sections.map((section) => (
           <div key={section.title}>
@@ -54,7 +47,8 @@ export function ServiceDetailPanel({
       <div className="px-4 md:px-6 py-4 md:py-5 bg-brand-cream/40 border-t border-brand-navy/8 flex justify-center">
         <button
           type="button"
-          onClick={onContinue}
+          onClick={() => dispatch({ type: 'GO_TO_STEP', step: 2 })}
+          data-testid="confirm-service"
           className="inline-flex items-center gap-2 px-12 py-2.5 md:px-16 md:py-3 bg-brand-navy text-white text-sm font-medium rounded-lg hover:bg-brand-navy/90 transition-colors cursor-pointer whitespace-nowrap"
         >
           確認並繼續

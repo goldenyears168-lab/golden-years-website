@@ -1,5 +1,14 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { fetchSlots } from '../api';
+import { BookingError, BookingErrorMessages } from '../domain/errors';
+
+export type UseSlotsFetchResult = {
+  slotsByDate: Record<string, string[]>;
+  loading: boolean;
+  error: string | null;
+  setSlotsByDate: React.Dispatch<React.SetStateAction<Record<string, string[]>>>;
+  reset: () => void;
+};
 
 export function useSlotsFetch(
   serviceId: number | null,
@@ -7,14 +16,15 @@ export function useSlotsFetch(
   dateFrom: string,
   dateTo: string,
   enabled: boolean,
-) {
+): UseSlotsFetchResult {
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const loadedRef = useRef(false);
 
   useEffect(() => {
     if (!enabled || !serviceId || !providerId) return;
-    if (!slotsByDate || Object.keys(slotsByDate).length > 0) return;
+    if (loadedRef.current) return;
 
     let cancelled = false;
     setLoading(true);
@@ -22,14 +32,14 @@ export function useSlotsFetch(
 
     fetchSlots(serviceId, providerId, dateFrom, dateTo)
       .then(({ slotsByDate: matrix }) => {
-        if (!cancelled) setSlotsByDate(matrix);
+        if (!cancelled) setSlotsByDate(matrix ?? {});
       })
       .catch((e) => {
         if (!cancelled) {
           setError(
-            e instanceof Error
+            e instanceof BookingError
               ? e.message
-              : '查詢可預約時段失敗，請重新整理頁面或聯繫官方 LINE。',
+              : BookingErrorMessages.SLOTS_UNAVAILABLE,
           );
         }
       })
@@ -37,14 +47,17 @@ export function useSlotsFetch(
         if (!cancelled) setLoading(false);
       });
 
+    loadedRef.current = true;
+
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId, providerId, dateFrom, dateTo, slotsByDate]);
+  }, [enabled, serviceId, providerId, dateFrom, dateTo]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});
     setError(null);
+    loadedRef.current = false;
   }, []);
 
   return { slotsByDate, loading, error, setSlotsByDate, reset };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { portfolioCategories } from "@/mocks/portfolio-categories";
 import { featuredPortfolio } from "@/mocks/portfolio";
@@ -19,7 +19,7 @@ export default function PortfolioSection() {
   };
 
   // 根據當前分類取得要顯示的三張圖
-  const displayImages = (() => {
+  const displayImages = useMemo(() => {
     if (activeCategory === "all") {
       return featuredPortfolio.slice(0, 3).map((img, i) => ({
         id: `featured-${i}`,
@@ -38,7 +38,7 @@ export default function PortfolioSection() {
       categoryTitle: cat.title,
       categorySlug: cat.slug,
     }));
-  })();
+  }, [activeCategory]);
 
   return (
     <section className="section-padding bg-brand-cream">
