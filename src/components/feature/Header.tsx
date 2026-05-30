@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
@@ -17,14 +17,28 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 60);
-  }, []);
-
   useEffect(() => {
+    let lastScrolled = window.scrollY > 60;
+    setScrolled(lastScrolled);
+
+    let ticking = false;
+    const handleScroll = () => {
+      const current = window.scrollY > 60;
+      if (current !== lastScrolled) {
+        lastScrolled = current;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            setScrolled(lastScrolled);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -76,7 +90,7 @@ export default function Header() {
                 src="https://storage.readdy-site.link/project_files/837246a8-cef0-4cee-9ec0-8c040e316fc2/de8fcc45-8ee7-4674-8d6b-186e029f15ce_logo.jpg?v=93ac2161747426618b1e90281be62c65"
                 alt="好時有影 Golden Years Studio"
                 className="h-9 md:h-10 w-auto object-contain"
-                fetchPriority="high"
+                fetchPriority="auto"
                 decoding="async"
                 width="160"
                 height="40"

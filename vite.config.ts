@@ -6,6 +6,18 @@ import AutoImport from "unplugin-auto-import/vite";
 const base = process.env.BASE_PATH || "/";
 const isPreview = process.env.IS_PREVIEW ? true : false;
 
+function asyncCssPlugin() {
+  return {
+    name: "async-css",
+    transformIndexHtml(html: string) {
+      return html.replace(
+        /<link rel="stylesheet"([^>]*)>/g,
+        '<link rel="stylesheet"$1 media="print" onload="this.media=\'all\'" /><noscript><link rel="stylesheet"$1 /></noscript>'
+      );
+    },
+  };
+}
+
 export default defineConfig({
   define: {
     __BASE_PATH__: JSON.stringify(base),
@@ -61,6 +73,7 @@ export default defineConfig({
       ],
       dts: true,
     }),
+    asyncCssPlugin(),
   ],
   base,
   build: {
@@ -82,13 +95,6 @@ export default defineConfig({
             id.includes("node_modules/react-router-dom")
           ) {
             return "vendor";
-          }
-          if (
-            id.includes("node_modules/i18next") ||
-            id.includes("node_modules/react-i18next") ||
-            id.includes("node_modules/i18next-browser-languagedetector")
-          ) {
-            return "i18n";
           }
           return null;
         },

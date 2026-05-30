@@ -20,11 +20,14 @@ export function useSlotsFetch(
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const loadedRef = useRef(false);
+  // Track cache key so we re-fetch when service or store changes
+  const loadedRef = useRef<string | null>(null);
+
+  const cacheKey = `${serviceId}-${providerId}-${dateFrom}-${dateTo}`;
 
   useEffect(() => {
     if (!enabled || !serviceId || !providerId) return;
-    if (loadedRef.current) return;
+    if (loadedRef.current === cacheKey) return;
 
     let cancelled = false;
     setLoading(true);
@@ -44,20 +47,21 @@ export function useSlotsFetch(
         }
       })
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+          loadedRef.current = cacheKey;
+        }
       });
-
-    loadedRef.current = true;
 
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId, providerId, dateFrom, dateTo]);
+  }, [enabled, serviceId, providerId, dateFrom, dateTo, cacheKey]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});
     setError(null);
-    loadedRef.current = false;
+    loadedRef.current = null;
   }, []);
 
   return { slotsByDate, loading, error, setSlotsByDate, reset };

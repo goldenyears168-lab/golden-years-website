@@ -64,7 +64,7 @@ export default function LazyImage({
     () => formats !== null && (
       formats !== undefined
         ? formats.length > 0
-        : typeof src === "string" && /\.(jpe?g|png)$/i.test(src) && !src.startsWith("data:")
+        : typeof src === "string" && /\.(jpe?g|png|webp)$/i.test(src) && !src.startsWith("data:")
     ),
     [formats, src]
   );
@@ -74,6 +74,16 @@ export default function LazyImage({
       ? buildPictureSources(src, [400, 800, 1200])
       : undefined;
   }, [shouldUseFormats, src]);
+
+  // CLS 防護：確保容器有固定尺寸，圖片載入前後不會跳動
+  const hasFixedSize = width !== undefined && height !== undefined;
+  const containerStyle: React.CSSProperties = {};
+  if (hasFixedSize) {
+    containerStyle.aspectRatio = `${Number(width)} / ${Number(height)}`;
+  } else {
+    // 無固定尺寸時，給最小高度防止 skeleton 消失後高度塌陷
+    containerStyle.minHeight = "200px";
+  }
 
   const mergedOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     handleError();
@@ -102,7 +112,7 @@ export default function LazyImage({
     <div
       className={`relative overflow-hidden ${containerClassName}`}
       aria-label={alt}
-      style={width && height ? { aspectRatio: `${Number(width)} / ${Number(height)}` } : undefined}
+      style={containerStyle}
     >
       {!loaded && (
         <div className={`absolute inset-0 animate-pulse bg-brand-creamDark ${skeletonClassName}`} />

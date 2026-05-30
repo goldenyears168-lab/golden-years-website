@@ -9,7 +9,6 @@ const SUPABASE_ANON_KEY = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY ?? '';
 // ── SimplyBook 直接連線配置（Edge Function 失敗時的 fallback） ──
 const SB_COMPANY = 'goldenyearsportrait2';
 const SB_API_KEY = '7bcce4caaefa3ee16aac9ef225d6e28eafcb0ee31059fb8c78d72aa9ac7879db';
-const SB_API_SECRET = '51f5f93c1200350ed1ac95f055b64ff7d0c801b7bd849113993b073a9ec4de43';
 const SB_LOGIN_URL = 'https://user-api.simplybook.me/login/';
 const SB_API_URL = 'https://user-api.simplybook.me/';
 
@@ -342,15 +341,13 @@ export async function submitBooking(payload: BookPayload): Promise<BookingResult
       payload.additional,
     ])) as { bookings?: Array<{ id: string | number; hash: string; code?: string; start_date_time?: string; end_date_time?: string; is_confirmed?: string }>; require_confirm?: boolean };
 
-    // 如果需要確認，用 API Secret
-    if (raw.require_confirm && SB_API_SECRET) {
-      const bookings = raw.bookings ?? [];
-      for (const b of bookings) {
-        const id = String(b.id);
-        const hash = b.hash;
-        const sign = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${id}${hash}${SB_API_SECRET}`));
-        // 實際上 SimplyBook 用的是 MD5，這裡簡化處理
-      }
+    // 如果需要確認，需用 API Secret 計算簽名（此邏輯僅在 Edge Function 完全不可用时才触发，
+    // 且前端不應持有 API Secret。因此若 require_confirm 為 true，直接拋出錯誤提示用戶聯繫客服。）
+    if (raw.require_confirm) {
+      throw new BookingError(
+        '預約需要額外確認，請聯繫官方 LINE 或客服協助完成預約。',
+        BookingErrorCode.API_ERROR,
+      );
     }
 
     const bookings = (raw.bookings ?? []).map((b) => ({

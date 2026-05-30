@@ -11,9 +11,11 @@ export function useParallax(rate = 0.25): React.RefObject<HTMLDivElement | null>
 
     let rafId = 0;
     let ticking = false;
+    let isVisible = true;
 
     const applyOffset = () => {
       ticking = false;
+      if (!isVisible) return;
       const el = ref.current;
       if (!el) return;
       const y = Math.round(window.scrollY * rate);
@@ -22,16 +24,33 @@ export function useParallax(rate = 0.25): React.RefObject<HTMLDivElement | null>
     };
 
     const handleScroll = () => {
-      if (!ticking) {
+      if (!ticking && isVisible) {
         rafId = requestAnimationFrame(applyOffset);
         ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    applyOffset();
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          applyOffset();
+          window.addEventListener("scroll", handleScroll, { passive: true });
+        } else {
+          window.removeEventListener("scroll", handleScroll);
+          cancelAnimationFrame(rafId);
+          ticking = false;
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
       cancelAnimationFrame(rafId);
     };

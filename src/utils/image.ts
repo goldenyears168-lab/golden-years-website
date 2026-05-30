@@ -8,7 +8,7 @@
  * 2. Cloudinary URLs get proper transformation paths.
  */
 
-const SUPPORTED_EXTS = /\.(jpe?g|png)$/i;
+const SUPPORTED_EXTS = /\.(jpe?g|png|webp)$/i;
 
 /**
  * Attempt to build a srcSet for a given image URL.

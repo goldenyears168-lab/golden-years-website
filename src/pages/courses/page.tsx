@@ -1,13 +1,9 @@
-import { useEffect } from "react";
 import Header from "@/components/feature/Header";
 import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
 
 export default function CoursesPage() {
-  useEffect(() => {
-    document.title = "課程活動｜好時有影 Golden Years Studio";
-  }, []);
 
   return (
     <>

@@ -21,6 +21,7 @@ export function AppRoutes() {
   useEffect(() => {
     window.REACT_APP_NAVIGATE = navigate;
     navigateResolver(window.REACT_APP_NAVIGATE);
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
   return element;
 }

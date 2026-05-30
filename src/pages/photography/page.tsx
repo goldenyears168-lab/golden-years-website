@@ -25,7 +25,7 @@ export default function PhotographyServices() {
   const [visibleCount, setVisibleCount] = useState(12);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll reveals
+  // 合併 scroll reveal：一個 section 只放一個 ref
   const [heroRef, heroVisible] = useScrollReveal<HTMLElement>();
   const [quoteRef, quoteVisible] = useScrollReveal<HTMLElement>();
   const [filterRef, filterVisible] = useScrollReveal<HTMLDivElement>();
@@ -36,7 +36,7 @@ export default function PhotographyServices() {
   useEffect(() => {
     const cat = searchParams.get("category") || "all";
     setActiveCategory(cat);
-    setVisibleCount(12); // reset batch on category change
+    setVisibleCount(12);
   }, [searchParams]);
 
   // Auto-load more images when sentinel enters viewport
@@ -63,6 +63,7 @@ export default function PhotographyServices() {
     [setSearchParams]
   );
 
+  // useMemo 避免不必要的重複計算，減少渲染開銷
   const displayedImages = useMemo(() => {
     if (activeCategory === "all") {
       return featuredPortfolio.slice(0, visibleCount);
@@ -146,10 +147,10 @@ export default function PhotographyServices() {
         >
           <div className="container-brand">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
-              {/* Left: Photo — 佔 4/12 (1/3) */}
+              {/* Left: Photo */}
               <div className="lg:col-span-4">
                 <div className="flex flex-col items-center">
-                  <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
+                  <div className="relative w-full max-w-[340px] rounded-lg overflow-hidden flex-shrink-0" style={{ aspectRatio: "3 / 4" }}>
                     <LazyImage
                       src={team[0]}
                       alt="好時有影 Annie 總監首席攝影師"
@@ -175,7 +176,7 @@ export default function PhotographyServices() {
                 </div>
               </div>
 
-              {/* Right: Quote — 佔 8/12 (2/3) */}
+              {/* Right: Quote */}
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 flex items-center justify-center bg-brand-navy rounded-full flex-shrink-0">
@@ -232,9 +233,9 @@ export default function PhotographyServices() {
               </p>
             </div>
 
-            {/* Filter Tabs - Horizontal scroll on mobile, wrap on desktop */}
+            {/* Filter Tabs */}
             <div className="relative mb-6 md:mb-8">
-              {/* Mobile: scrollable with first 6 + more toggle */}
+              {/* Mobile: scrollable */}
               <div className="md:hidden flex items-center gap-2 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <button
                   onClick={() => handleCategoryChange("all")}
@@ -284,7 +285,7 @@ export default function PhotographyServices() {
                 )}
               </div>
 
-              {/* Desktop: all categories wrap */}
+              {/* Desktop: wrap */}
               <div className="hidden md:flex flex-wrap items-center justify-center gap-2">
                 <button
                   onClick={() => handleCategoryChange("all")}
@@ -312,7 +313,7 @@ export default function PhotographyServices() {
               </div>
             </div>
 
-            {/* Active service info bar - compact */}
+            {/* Active service info */}
             {activeServiceInfo && (
               <div className="max-w-4xl mx-auto mb-6 md:mb-8 bg-brand-creamDark rounded-lg px-5 py-4 md:px-6 md:py-4 border border-brand-navy/5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex-1 min-w-0">
@@ -341,7 +342,7 @@ export default function PhotographyServices() {
               </span>
             </div>
 
-            {/* Masonry Gallery — batch loaded */}
+            {/* Masonry Gallery — 固定每張圖片的容器尺寸防止 CLS */}
             <div
               ref={galleryRef}
               className={`sr-fade-up ${galleryVisible ? "sr-visible" : ""}`}
@@ -351,6 +352,7 @@ export default function PhotographyServices() {
                   <div
                     key={`${img.categorySlug}-${index}`}
                     className="break-inside-avoid rounded-lg overflow-hidden group"
+                    style={{ minHeight: "200px" }}
                   >
                     <div className="relative">
                       <LazyImage
@@ -361,7 +363,9 @@ export default function PhotographyServices() {
                         decoding="async"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         autoSrcSet
-                        containerClassName="min-h-[120px]"
+                        containerClassName="min-h-[200px]"
+                        width={600}
+                        height={800}
                         onError={(e) => {
                           const target = e.currentTarget;
                           target.src = photographyImg.featured[0];
@@ -377,7 +381,7 @@ export default function PhotographyServices() {
                 ))}
               </div>
 
-              {/* Sentinel for auto-loading + Load More button */}
+              {/* Load More */}
               {hasMoreImages && (
                 <div className="mt-8 md:mt-10 text-center">
                   <button
@@ -387,7 +391,6 @@ export default function PhotographyServices() {
                     <i className="ri-arrow-down-line" />
                     載入更多作品
                   </button>
-                  {/* IntersectionObserver sentinel */}
                   <div ref={sentinelRef} className="h-4" aria-hidden="true" />
                 </div>
               )}
@@ -420,7 +423,7 @@ export default function PhotographyServices() {
           </div>
         </section>
 
-        {/* CTA - Primary action emphasized */}
+        {/* CTA */}
         <section className="py-16 md:py-20 bg-brand-navy text-white text-center">
           <div
             ref={ctaRef}

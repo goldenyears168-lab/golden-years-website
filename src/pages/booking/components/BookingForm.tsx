@@ -11,6 +11,8 @@ import type { ClientData } from '../types';
 import DynamicField from './fields/DynamicField';
 import ArrivalTimeNotice from './ArrivalTimeNotice';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function BookingForm({
   fields,
   fieldsLoading,
@@ -28,11 +30,9 @@ export function BookingForm({
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [additional, setAdditional] = useState<Record<string, string>>();
+  const [additional, setAdditional] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
   const initializedRef = useRef(false);
-
-  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const slot = state.selectedSlot;
   const serviceLabel = state.externalService && state.selectedVariant
@@ -80,7 +80,7 @@ export function BookingForm({
     }
 
     for (const f of fields) {
-      if (f.is_null === '0' && !additional?.[f.name]?.trim()) {
+      if (f.is_null === '0' && !additional[f.name]?.trim()) {
         setFormError(`請填寫：${f.title.replace(/\s+/g, ' ').trim()}`);
         return;
       }
@@ -88,7 +88,7 @@ export function BookingForm({
 
     onSubmit(
       { name: name.trim(), email: email.trim(), phone: normalizePhone(phone.trim()) },
-      additional ?? {},
+      additional,
     );
   };
 
@@ -196,7 +196,7 @@ export function BookingForm({
             <DynamicField
               key={field.name}
               field={field}
-              value={additional?.[field.name] ?? ''}
+              value={additional[field.name] ?? ''}
               onChange={(v) => setField(field.name, v)}
             />
           ))}

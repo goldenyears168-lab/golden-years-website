@@ -85,7 +85,7 @@ function QuoteSection() {
             ref={imgRef}
             className={`sr-slide-left ${imgVisible ? "sr-visible" : ""}`}
           >
-            <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
+            <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "3 / 4" }}>
               <LazyImage
                 src={makeupImg.teacher}
                 alt="好時有影首席造型師羽彤老師專業妝髮"
@@ -382,9 +382,10 @@ function ComparisonSection() {
   );
 }
 
-/* ===================== Plans（奇偶交錯排版） ===================== */
+/* ===================== Plans（奇偶交錯排版，合併 observer） ===================== */
 function PlansSection() {
   const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
+  const [plansRef, plansVisible] = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className="bg-brand-creamDark">
@@ -405,9 +406,11 @@ function PlansSection() {
           </h2>
         </div>
 
-        {makeupPageData.plans.map((plan, index) => (
-          <PlanBlock key={plan.id} plan={plan} index={index} />
-        ))}
+        <div ref={plansRef}>
+          {makeupPageData.plans.map((plan, index) => (
+            <PlanBlock key={plan.id} plan={plan} index={index} visible={plansVisible} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -416,22 +419,21 @@ function PlansSection() {
 interface PlanBlockProps {
   plan: (typeof makeupPageData.plans)[0];
   index: number;
+  visible: boolean;
 }
 
-function PlanBlock({ plan, index }: PlanBlockProps) {
-  const [ref, visible] = useScrollReveal<HTMLDivElement>();
+function PlanBlock({ plan, index, visible }: PlanBlockProps) {
   const isReversed = index % 2 === 1;
 
   return (
     <div
-      ref={ref}
       className={`py-12 md:py-20 ${index > 0 ? "border-t border-brand-cream" : ""} sr-fade-up ${visible ? "sr-visible" : ""}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center ${isReversed ? "lg:flex-row-reverse" : ""}`}>
         {/* 圖片 */}
         <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
-          <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
+          <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "3 / 4" }}>
             <LazyImage
               src={plan.image}
               alt={`好時有影台北${plan.title}`}
@@ -540,8 +542,7 @@ function FAQSection() {
 
 /* ===================== Booking Timeline ===================== */
 function BookingTimelineSection() {
-  const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
-  const [stepsRef, stepsVisible] = useScrollReveal<HTMLDivElement>();
+  const [ref, visible] = useScrollReveal<HTMLDivElement>();
 
   const steps = [
     {
@@ -560,8 +561,8 @@ function BookingTimelineSection() {
     <section className="section-padding bg-brand-creamDark">
       <div className="container-brand max-w-3xl">
         <div
-          ref={headerRef}
-          className={`text-center mb-10 md:mb-14 sr-fade-up ${headerVisible ? "sr-visible" : ""}`}
+          ref={ref}
+          className={`text-center mb-10 md:mb-14 sr-fade-up ${visible ? "sr-visible" : ""}`}
         >
           <div className="inline-flex items-center gap-3 mb-4">
             <span className="block w-8 md:w-10 h-px bg-brand-gold" />
@@ -577,8 +578,7 @@ function BookingTimelineSection() {
 
         {/* Desktop Timeline — horizontal */}
         <div
-          ref={stepsRef}
-          className={`hidden md:block sr-fade-up ${stepsVisible ? "sr-visible" : ""}`}
+          className={`hidden md:block sr-fade-up ${visible ? "sr-visible" : ""}`}
         >
           <div className="flex items-start justify-between relative">
             {/* dashed connector */}

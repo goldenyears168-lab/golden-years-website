@@ -52,18 +52,16 @@ const priceTableItems = [
 const flatFAQ = pricingFAQ.flatMap((cat) => cat.qa);
 
 /* ------------------------------------------------------------------ */
-/*  子元件：攝影服務的單一分類（含動畫）                                */
+/*  子元件：攝影服務的單一分類（合併 observer 減少 TBT）              */
 /* ------------------------------------------------------------------ */
 function AnimatedCategory({ category }: { category: typeof pricingCategories[0] }) {
-  const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>();
-  const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>();
+  const [ref, visible] = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div className="mb-10 md:mb-12 last:mb-0">
+    <div ref={ref} className="mb-10 md:mb-12 last:mb-0">
       {/* 子分類標題 */}
       <div
-        ref={headerRef}
-        className={`flex items-center gap-3 mb-5 md:mb-6 sr-fade-up ${headerVisible ? "sr-visible" : ""}`}
+        className={`flex items-center gap-3 mb-5 md:mb-6 sr-fade-up ${visible ? "sr-visible" : ""}`}
       >
         <div className="w-9 h-9 flex items-center justify-center bg-brand-navy rounded-md">
           <i className={`${category.icon} text-white text-sm`} />
@@ -74,17 +72,14 @@ function AnimatedCategory({ category }: { category: typeof pricingCategories[0] 
       </div>
 
       {/* 項目卡片 */}
-      <div
-        ref={gridRef}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {category.items.map((item, index) => (
           <div
             key={item.id}
-            className={`group bg-white rounded-lg border border-brand-creamDark overflow-hidden hover:border-brand-gold/30 hover:-translate-y-1 hover:shadow-sm transition-all duration-300 flex flex-row sr-fade-up sr-fast ${gridVisible ? "sr-visible" : ""}`}
-            style={{ transitionDelay: gridVisible ? `${index * 60}ms` : "0ms" }}
+            className={`group bg-white rounded-lg border border-brand-creamDark overflow-hidden hover:border-brand-gold/30 hover:-translate-y-1 hover:shadow-sm transition-all duration-300 flex flex-row sr-fade-up sr-fast ${visible ? "sr-visible" : ""}`}
+            style={{ transitionDelay: visible ? `${index * 60}ms` : "0ms" }}
           >
-            <div className="w-28 flex-shrink-0 aspect-[3/4]">
+            <div className="w-28 flex-shrink-0 overflow-hidden rounded-l-lg">
               <LazyImage
                 src={item.image}
                 alt={`好時有影台北${item.title}`}
@@ -294,7 +289,7 @@ export default function Pricing() {
                   key={item.id}
                   className={`bg-white rounded-lg overflow-hidden border border-brand-creamDark hover:-translate-y-1 hover:shadow-sm transition-all duration-300 flex flex-row sr-fade-up ${workshopVisible ? "sr-visible" : ""}`}
                 >
-                  <div className="w-32 md:w-40 flex-shrink-0">
+                  <div className="w-32 md:w-40 flex-shrink-0 overflow-hidden rounded-l-lg">
                     <LazyImage
                       src={item.image}
                       alt={`好時有影台北${item.title}`}

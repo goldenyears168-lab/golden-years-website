@@ -1,19 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { heroData } from "@/mocks/home";
 import { Link } from "react-router-dom";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useParallax } from "@/hooks/useParallax";
 import { handleImgError } from "@/mocks/constants";
-import { getFormatUrl } from "@/utils/image";
+import { getFormatUrl, buildSrcSet } from "@/utils/image";
 
 const HERO_COUNT = heroData.images.length;
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideImgLoaded, setSlideImgLoaded] = useState(true);
-  const [ref, visible] = useScrollReveal<HTMLElement>();
-  const [isIntersecting, setIsIntersecting] = useState(true);
-  const parallaxRef = useParallax(0.25);
+  const [carouselReady, setCarouselReady] = useState(false);
 
   const nextSlide = useCallback(() => {
     setSlideImgLoaded(false);
@@ -26,71 +22,63 @@ export default function HeroSection() {
     setCurrentIndex(index);
   }, [currentIndex]);
 
-  /* 離屏暫停 auto-slide，回畫面再續播 */
+  /* 延後 3 秒才啟動輪播，讓首屏 LCP 完全穩定 */
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsIntersecting(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [ref]);
+    const t = setTimeout(() => setCarouselReady(true), 3000);
+    return () => clearTimeout(t);
+  }, []);
 
+  /* 輪播就緒後才啟動 auto-slide */
   useEffect(() => {
-    if (!isIntersecting) return;
+    if (!carouselReady) return;
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
-  }, [nextSlide, isIntersecting]);
+  }, [nextSlide, carouselReady]);
 
   /* 僅預載「下一張」，避免與 LCP 首幀搶頻寬 */
   useEffect(() => {
+    if (!carouselReady) return;
     const nextSrc = heroData.images[(currentIndex + 1) % HERO_COUNT].src;
     const t = window.setTimeout(() => {
       const img = new Image();
       img.src = nextSrc;
     }, 2000);
     return () => clearTimeout(t);
-  }, [currentIndex]);
+  }, [currentIndex, carouselReady]);
 
   const { src: heroSrc, alt: heroAlt } = heroData.images[currentIndex];
+  const isFirstFrame = currentIndex === 0;
 
   return (
     <section
-      ref={ref}
-      className={`relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-brand-cream sr-fade-up sr-slow ${visible ? "sr-visible" : ""}`}
+      className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-brand-cream"
     >
-      {/* Parallax Background Layer */}
-      <div
-        ref={parallaxRef}
-        className="absolute inset-0 will-change-transform"
-        aria-hidden="true"
-      >
-        <div className="absolute inset-0">
-          <picture>
-            <source srcSet={getFormatUrl(heroSrc, "avif")} type="image/avif" />
-            <source srcSet={getFormatUrl(heroSrc, "webp")} type="image/webp" />
-            <img
-              src={heroSrc}
-              alt={heroAlt}
-              className={`w-full h-full object-cover transition-opacity duration-1000 ${
-                slideImgLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              fetchPriority={currentIndex === 0 ? "high" : "auto"}
-              loading="eager"
-              decoding="async"
-              sizes="100vw"
-              width={1920}
-              height={1280}
-              onLoad={() => setSlideImgLoaded(true)}
-              onError={handleImgError}
-            />
-          </picture>
-        </div>
+      {/* Background Layer — 首屏純靜態，無 parallax */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <picture>
+          <source srcSet={buildSrcSet(getFormatUrl(heroSrc, "avif"), [640, 960, 1280, 1920])} type="image/avif" sizes="100vw" />
+          <source srcSet={buildSrcSet(getFormatUrl(heroSrc, "webp"), [640, 960, 1280, 1920])} type="image/webp" sizes="100vw" />
+          <img
+            src={heroSrc}
+            alt={heroAlt}
+            className={`w-full h-full object-cover ${
+              isFirstFrame ? "opacity-100" : (slideImgLoaded ? "opacity-100" : "opacity-0")
+            }`}
+            style={isFirstFrame ? undefined : { transition: "opacity 1s ease" }}
+            fetchPriority={isFirstFrame ? "high" : "auto"}
+            loading={isFirstFrame ? "eager" : "lazy"}
+            decoding="async"
+            sizes="100vw"
+            srcSet={buildSrcSet(heroSrc, [640, 960, 1280, 1920])}
+            width={1920}
+            height={1280}
+            onLoad={() => setSlideImgLoaded(true)}
+            onError={handleImgError}
+          />
+        </picture>
       </div>
 
-      {/* Gradient overlay stays fixed (no parallax) for text readability */}
+      {/* Gradient overlay stays fixed for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-[1]" />
 
       {/* Content */}
