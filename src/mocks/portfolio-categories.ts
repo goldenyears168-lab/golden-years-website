@@ -62,7 +62,7 @@ export const portfolioCategories = [
   {
     id: "friends",
     slug: "friends",
-    title: "朋友寫真照",
+    title: "朋友寫真照/畢業寫真照",
     subtitle: "友誼紀念",
     description:
       "有些友情，值得被好好留下。我們依互動、服裝與畫面層次進行安排，讓每個人都自然入鏡。清楚透明的拍攝流程，陪伴你們在青春與人生階段交會時，留下多年後仍會想翻看的回憶。",
@@ -89,11 +89,11 @@ export const portfolioCategories = [
   {
     id: "pet",
     slug: "pet",
-    title: "寵物寫真照",
+    title: "寵物寫真合照",
     subtitle: "毛孩紀念",
     description:
       "毛孩是家人，也是生命裡重要的陪伴。我們會預留熟悉環境與互動時間，以耐心引導降低緊張感。用自然真實的方式，記錄您與毛孩相伴的人生片段，留下未來回頭看仍會微笑的紀念。",
-    images: makeImages(img.pet, "寵物寫真照作品"),
+    images: makeImages(img.pet, "寵物寫真合照作品"),
   },
   {
     id: "id-formal",

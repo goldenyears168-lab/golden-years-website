@@ -16,6 +16,7 @@ export function useSlotsFetch(
   dateFrom: string,
   dateTo: string,
   enabled: boolean,
+  allowedTimes?: string[],
 ): UseSlotsFetchResult {
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ export function useSlotsFetch(
   // Track cache key so we re-fetch when service or store changes
   const loadedRef = useRef<string | null>(null);
 
-  const cacheKey = `${serviceId}-${providerId}-${dateFrom}-${dateTo}`;
+  const cacheKey = `${serviceId}-${providerId}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
 
   useEffect(() => {
     if (!enabled || !serviceId || !providerId) return;
@@ -35,7 +36,21 @@ export function useSlotsFetch(
 
     fetchSlots(serviceId, providerId, dateFrom, dateTo)
       .then(({ slotsByDate: matrix }) => {
-        if (!cancelled) setSlotsByDate(matrix ?? {});
+        if (cancelled) return;
+
+        // Apply allowedTimes filter if specified
+        if (allowedTimes && allowedTimes.length > 0) {
+          const filtered: Record<string, string[]> = {};
+          for (const [date, times] of Object.entries(matrix ?? {})) {
+            const matched = times.filter((t) => allowedTimes.includes(t.slice(0, 5)));
+            if (matched.length > 0) {
+              filtered[date] = matched;
+            }
+          }
+          setSlotsByDate(filtered);
+        } else {
+          setSlotsByDate(matrix ?? {});
+        }
       })
       .catch((e) => {
         if (!cancelled) {
@@ -56,7 +71,7 @@ export function useSlotsFetch(
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId, providerId, dateFrom, dateTo, cacheKey]);
+  }, [enabled, serviceId, providerId, dateFrom, dateTo, cacheKey, allowedTimes]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});

@@ -480,27 +480,27 @@ export type BookingLogPayload = {
 
 export async function saveBookingLog(payload: BookingLogPayload): Promise<void> {
   try {
-    const { error } = await supabase.from('booking_logs').insert({
-      simplybook_id: payload.simplybook_id,
-      simplybook_code: payload.simplybook_code,
-      service_name: payload.service_name,
-      variant_name: payload.variant_name,
-      store_label: payload.store_label,
-      booking_date: payload.booking_date,
-      booking_time: payload.booking_time,
-      client_name: payload.client_name,
-      client_email: payload.client_email,
-      client_phone: payload.client_phone,
-      additional_fields: payload.additional_fields,
-      status: payload.status ?? 'confirmed',
-      source: payload.source ?? 'direct',
-      error_message: payload.error_message ?? null,
+    const { error } = await supabase.rpc('save_booking_log', {
+      _simplybook_id: payload.simplybook_id,
+      _simplybook_code: payload.simplybook_code,
+      _service_name: payload.service_name,
+      _variant_name: payload.variant_name,
+      _store_label: payload.store_label,
+      _booking_date: payload.booking_date,
+      _booking_time: payload.booking_time,
+      _client_name: payload.client_name,
+      _client_email: payload.client_email,
+      _client_phone: payload.client_phone,
+      _additional_fields: payload.additional_fields,
+      _status: payload.status ?? 'confirmed',
+      _source: payload.source ?? 'direct',
+      _error_message: payload.error_message ?? null,
     });
 
     if (error) {
       console.error('[saveBookingLog] Supabase insert failed:', error.message);
     } else {
-      console.log('[saveBookingLog] Saved to Supabase successfully');
+      console.log('[saveBookingLog] Saved to Supabase (photobooking) successfully');
     }
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);

@@ -27,7 +27,7 @@ export const home = {
 export const about = {
   hero: `${R2}/about/banner/secondary.webp`,
   banner: `${R2}/about/banner/secondary.webp`,
-  founder: `${R2}/team/member-001.webp`,
+  founder: "https://static.readdy.ai/image/f210470b19f87465d5c93edf5b8d8087/041378aa91dfb8fafe400cacda87ac3c.jpeg",
 };
 
 /* ── 3. 團隊 ── */

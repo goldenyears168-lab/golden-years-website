@@ -74,7 +74,7 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
 
       {/* 確認信提醒 */}
       <p className="text-sm text-brand-navy font-semibold">
-        請查看您的電子信箱確認信，點擊信內連結以完成預約。
+        收到預約確認信才代表預約成功喔
       </p>
       <p className="text-sm text-brand-textMuted">
         若未收到信件，請檢查垃圾郵件匣。

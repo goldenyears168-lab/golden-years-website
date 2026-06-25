@@ -1,268 +1,249 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { crypto } from 'jsr:@std/crypto';
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+// ─────────────────────────────────────────────
+// SimplyBook Proxy Edge Function
+// Handles: health | slots | fields | book
+// ─────────────────────────────────────────────
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, apikey',
 };
 
-// ── 優先讀取環境變數，若未設定則使用 fallback 憑證 ──
-const FALLBACK_COMPANY = "goldenyearsportrait2";
-const FALLBACK_API_KEY = "7bcce4caaefa3ee16aac9ef225d6e28eafcb0ee31059fb8c78d72aa9ac7879db";
-const FALLBACK_API_SECRET = "51f5f93c1200350ed1ac95f055b64ff7d0c801b7bd849113993b073a9ec4de43";
+const SB_LOGIN_URL = 'https://user-api.simplybook.me/login/';
+const SB_API_URL = 'https://user-api.simplybook.me/';
 
-const SIMPLYBOOK_COMPANY_LOGIN = Deno.env.get("SIMPLYBOOK_COMPANY_LOGIN") || FALLBACK_COMPANY;
-const SIMPLYBOOK_API_KEY = Deno.env.get("SIMPLYBOOK_API_KEY") || FALLBACK_API_KEY;
-const SIMPLYBOOK_API_SECRET = Deno.env.get("SIMPLYBOOK_API_SECRET") || FALLBACK_API_SECRET;
-const SIMPLYBOOK_LOGIN_URL = Deno.env.get("SIMPLYBOOK_LOGIN_URL") || "https://user-api.simplybook.me/login/";
-const SIMPLYBOOK_API_URL = Deno.env.get("SIMPLYBOOK_API_URL") || "https://user-api.simplybook.me/";
+/* ── 從 Edge Function Secrets 讀取 ── */
+const COMPANY = Deno.env.get('SIMPLYBOOK_COMPANY') ?? '';
+const API_KEY = Deno.env.get('SIMPLYBOOK_API_KEY') ?? '';
+const API_SECRET = Deno.env.get('SIMPLYBOOK_API_SECRET') ?? '';
 
-type JsonRpcResponse = {
-  result?: unknown;
-  error?: { message?: string; code?: number | string };
-};
-
-let cachedToken: { value: string; expiresAt: number } | null = null;
+/* ── 記憶體快取 token ── */
+let _token: { value: string; expiresAt: number } | null = null;
 
 async function getToken(): Promise<string> {
-  if (cachedToken && Date.now() < cachedToken.expiresAt) {
-    return cachedToken.value;
+  if (_token && Date.now() < _token.expiresAt) {
+    return _token.value;
   }
-
-  console.log("[SimplyBook] Fetching token... company:", SIMPLYBOOK_COMPANY_LOGIN, "apiKey length:", SIMPLYBOOK_API_KEY.length);
-  const res = await fetch(SIMPLYBOOK_LOGIN_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch(SB_LOGIN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      jsonrpc: "2.0",
-      method: "getToken",
-      params: [SIMPLYBOOK_COMPANY_LOGIN, SIMPLYBOOK_API_KEY],
+      jsonrpc: '2.0',
+      method: 'getToken',
+      params: [COMPANY, API_KEY],
       id: 1,
     }),
   });
-
   const rawText = await res.text();
-  console.log("[SimplyBook] Token response status:", res.status, "body:", rawText.slice(0, 500));
-  let data: JsonRpcResponse;
+  let data: { result?: string; error?: { message?: string } };
   try {
-    data = JSON.parse(rawText) as JsonRpcResponse;
+    data = JSON.parse(rawText);
   } catch {
-    throw new Error(`SimplyBook token: invalid JSON (status ${res.status}): ${rawText.slice(0, 500)}`);
+    throw new Error(`Token invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
   }
-
   if (data.error) {
-    throw new Error(`SimplyBook token error: ${JSON.stringify(data.error)}`);
+    throw new Error(`Token error: ${JSON.stringify(data.error)}`);
   }
-  const token = String(data.result);
-  cachedToken = { value: token, expiresAt: Date.now() + 50 * 60 * 1000 };
-  console.log("[SimplyBook] Token obtained successfully, length:", token.length);
+  const token = data.result ?? '';
+  _token = { value: token, expiresAt: Date.now() + 50 * 60 * 1000 };
   return token;
 }
 
-async function rpc(method: string, params: unknown[]): Promise<unknown> {
+async function callRpc(method: string, params: unknown[]): Promise<unknown> {
   const token = await getToken();
-
-  console.log("[SimplyBook] RPC call:", method, "params:", JSON.stringify(params).slice(0, 200));
-  const res = await fetch(SIMPLYBOOK_API_URL, {
-    method: "POST",
+  const res = await fetch(SB_API_URL, {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      "X-Company-Login": SIMPLYBOOK_COMPANY_LOGIN,
-      "X-Token": token,
+      'Content-Type': 'application/json',
+      'X-Company-Login': COMPANY,
+      'X-Token': token,
     },
-    body: JSON.stringify({ jsonrpc: "2.0", method, params, id: 1 }),
+    body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 }),
   });
-
   const rawText = await res.text();
-  console.log("[SimplyBook] RPC response status:", res.status, "body:", rawText.slice(0, 500));
-  let data: JsonRpcResponse;
+  let data: { result?: unknown; error?: { message?: string } };
   try {
-    data = JSON.parse(rawText) as JsonRpcResponse;
+    data = JSON.parse(rawText);
   } catch {
-    throw new Error(`SimplyBook ${method}: invalid JSON (status ${res.status}): ${rawText.slice(0, 500)}`);
+    throw new Error(`RPC ${method} invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
   }
-
   if (data.error) {
-    throw new Error(`SimplyBook ${method} error: ${JSON.stringify(data.error)}`);
+    throw new Error(`RPC ${method} error: ${JSON.stringify(data.error)}`);
   }
   return data.result;
 }
 
-type BookingRpcResult = {
-  require_confirm?: boolean;
-  bookings?: Array<{ id: string | number; hash: string; code?: string; start_date_time?: string; end_date_time?: string; is_confirmed?: string }>;
-  id?: string | number;
-  hash?: string;
-  code?: string;
-};
-
-// ── 簡化版：暫時不使用 MD5 確認，直接回傳原始結果 ──
-async function confirmIfNeeded(result: BookingRpcResult) {
-  if (!result.require_confirm || !SIMPLYBOOK_API_SECRET) return result;
-  console.log("[SimplyBook] Booking requires confirmation but auto-confirm is disabled. Returning raw result.");
-  return result;
+/* ── 計算 require_confirm 簽名 ── */
+async function computeConfirmSignature(bookingId: string, hash: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(`${bookingId}${hash}${API_SECRET}`);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
-serve(async (req) => {
-  console.log("[EdgeFunction] Request received:", req.method, req.url);
+async function confirmBooking(bookingId: string, hash: string): Promise<unknown> {
+  const signature = await computeConfirmSignature(bookingId, hash);
+  return callRpc('confirmBooking', [bookingId, hash, signature]);
+}
 
-  if (req.method === "OPTIONS") {
-    return new Response(null, { status: 204, headers: corsHeaders });
+/* ── JSON 回應輔助 ── */
+function jsonResponse(data: unknown, status = 200): Response {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
+  });
+}
+
+function errorResponse(message: string, status = 500): Response {
+  return jsonResponse({ error: message }, status);
+}
+
+/* ── 主 handler ── */
+async function handler(req: Request): Promise<Response> {
+  // OPTIONS 預檢
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: CORS_HEADERS });
   }
 
-  // ── GET 健康檢查：最簡單的連線測試 ──
-  if (req.method === "GET") {
-    const url = new URL(req.url);
-    const path = url.pathname;
-    console.log("[EdgeFunction] GET request path:", path);
-
-    const credsStatus = {
-      company: SIMPLYBOOK_COMPANY_LOGIN,
-      apiKeySet: !!SIMPLYBOOK_API_KEY,
-      apiSecretSet: !!SIMPLYBOOK_API_SECRET,
-      apiKeyLength: SIMPLYBOOK_API_KEY.length,
-      usingFallback: SIMPLYBOOK_API_KEY === FALLBACK_API_KEY,
-    };
-    console.log("[EdgeFunction] Health check:", JSON.stringify(credsStatus));
-
-    return new Response(
-      JSON.stringify({ ok: true, message: "Edge Function is running", ...credsStatus }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+  // GET 健康檢查（給前端 checkEdgeFunction 用）
+  if (req.method === 'GET') {
+    return jsonResponse({
+      ok: true,
+      apiKeySet: Boolean(COMPANY && API_KEY),
+      apiSecretSet: Boolean(API_SECRET),
+      company: COMPANY,
+      message: 'SimplyBook Proxy is running',
+    });
   }
 
+  // 只處理 POST
+  if (req.method !== 'POST') {
+    return errorResponse('Method not allowed', 405);
+  }
+
+  let body: Record<string, unknown>;
   try {
-    const body = await req.json();
-    console.log("[EdgeFunction] Request body:", JSON.stringify(body).slice(0, 300));
-    const { action, ...params } = body as Record<string, unknown>;
+    body = await req.json();
+  } catch {
+    return errorResponse('Invalid JSON body', 400);
+  }
 
-    if (!action) {
-      return new Response(
-        JSON.stringify({ message: "Missing action", error: "Missing action" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+  const { action } = body;
+
+  /* ── health ── */
+  if (action === 'health') {
+    return jsonResponse({
+      ok: true,
+      apiKeySet: Boolean(COMPANY && API_KEY),
+      apiSecretSet: Boolean(API_SECRET),
+      company: COMPANY,
+    });
+  }
+
+  /* ── slots ── */
+  if (action === 'slots') {
+    const serviceId = Number(body.serviceId);
+    const providerId = Number(body.providerId);
+    const dateFrom = String(body.dateFrom ?? '');
+    const dateTo = String(body.dateTo ?? '');
+
+    if (!serviceId || !providerId || !dateFrom || !dateTo) {
+      return errorResponse('Missing serviceId, providerId, dateFrom, or dateTo', 400);
     }
 
-    if (action === "health") {
-      const credsStatus = {
-        company: SIMPLYBOOK_COMPANY_LOGIN,
-        apiKeySet: !!SIMPLYBOOK_API_KEY,
-        apiSecretSet: !!SIMPLYBOOK_API_SECRET,
-        apiKeyLength: SIMPLYBOOK_API_KEY.length,
-        usingFallback: SIMPLYBOOK_API_KEY === FALLBACK_API_KEY,
-      };
-      console.log("[EdgeFunction] Health check:", JSON.stringify(credsStatus));
-      return new Response(
-        JSON.stringify({ ok: true, ...credsStatus }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    if (action === "slots") {
-      const serviceId = Number(params.serviceId);
-      const providerId = Number(params.providerId);
-      const dateFrom = String(params.dateFrom ?? "");
-      const dateTo = String(params.dateTo ?? "");
-
-      if (!serviceId || !providerId || !dateFrom || !dateTo) {
-        return new Response(
-          JSON.stringify({ message: "Missing parameters", error: "Missing parameters" }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      console.log("[EdgeFunction] Fetching slots for service", serviceId, "provider", providerId, "from", dateFrom, "to", dateTo);
-      const matrix = (await rpc("getStartTimeMatrix", [
-        dateFrom,
-        dateTo,
-        serviceId,
-        providerId,
-        1,
+    try {
+      const matrix = (await callRpc('getStartTimeMatrix', [
+        dateFrom, dateTo, serviceId, providerId, 1,
       ])) as Record<string, string[]>;
+      return jsonResponse({ slotsByDate: matrix ?? {} });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return errorResponse(`SimplyBook slots error: ${msg}`, 502);
+    }
+  }
 
-      return new Response(
-        JSON.stringify({ data: { slotsByDate: matrix ?? {} } }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+  /* ── fields ── */
+  if (action === 'fields') {
+    const serviceId = Number(body.serviceId);
+    if (!serviceId) {
+      return errorResponse('Missing serviceId', 400);
     }
 
-    if (action === "fields") {
-      const serviceId = Number(params.serviceId);
-      if (!serviceId) {
-        return new Response(
-          JSON.stringify({ message: "Missing serviceId", error: "Missing serviceId" }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
+    try {
+      const fields = (await callRpc('getAdditionalFields', [serviceId])) as unknown[];
+      return jsonResponse({ fields: fields ?? [] });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return errorResponse(`SimplyBook fields error: ${msg}`, 502);
+    }
+  }
 
-      const fields = (await rpc("getAdditionalFields", [serviceId])) as unknown[];
-      return new Response(
-        JSON.stringify({ data: { fields: fields ?? [] } }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+  /* ── book ── */
+  if (action === 'book') {
+    const serviceId = Number(body.serviceId);
+    const providerId = Number(body.providerId);
+    const date = String(body.date ?? '');
+    const time = String(body.time ?? '');
+    const client = body.client as Record<string, string> | undefined;
+    const additional = body.additional as Record<string, string> | undefined;
+
+    if (!serviceId || !providerId || !date || !time || !client) {
+      return errorResponse('Missing required booking parameters', 400);
     }
 
-    if (action === "book") {
-      const serviceId = Number(params.serviceId);
-      const providerId = Number(params.providerId);
-      const date = String(params.date ?? "");
-      const time = String(params.time ?? "");
-      const client = params.client as { name?: string; email?: string; phone?: string } | undefined;
-      const additional = (params.additional ?? {}) as Record<string, string>;
-
-      if (!serviceId || !providerId || !date || !time || !client?.name || !client?.email || !client?.phone) {
-        return new Response(
-          JSON.stringify({ message: "Missing required booking fields", error: "Missing required booking fields" }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      let raw = (await rpc("book", [
+    try {
+      const raw = (await callRpc('book', [
         serviceId,
         providerId,
         date,
         time,
         client,
-        additional,
-      ])) as BookingRpcResult;
+        additional ?? {},
+      ])) as {
+        bookings?: Array<{
+          id: string | number;
+          hash: string;
+          code?: string;
+          start_date_time?: string;
+          end_date_time?: string;
+          is_confirmed?: string;
+        }>;
+        require_confirm?: boolean;
+      };
 
-      raw = await confirmIfNeeded(raw);
+      const requireConfirm = Boolean(raw.require_confirm);
+
+      // 若需要確認，使用 API Secret 自動確認
+      if (requireConfirm && raw.bookings) {
+        for (const b of raw.bookings) {
+          try {
+            await confirmBooking(String(b.id), b.hash);
+          } catch (confirmErr) {
+            console.error('confirmBooking failed:', confirmErr);
+          }
+        }
+      }
 
       const bookings = (raw.bookings ?? []).map((b) => ({
         id: String(b.id),
-        code: b.code ?? "",
+        code: b.code ?? '',
         start_date_time: b.start_date_time ?? `${date} ${time}`,
-        end_date_time: b.end_date_time ?? "",
-        is_confirmed: b.is_confirmed ?? "1",
-        hash: b.hash,
+        end_date_time: b.end_date_time ?? '',
+        is_confirmed: b.is_confirmed ?? '1',
       }));
 
-      return new Response(
-        JSON.stringify({
-          data: {
-            require_confirm: Boolean(raw.require_confirm),
-            bookings,
-          },
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return jsonResponse({ require_confirm: false, bookings });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return errorResponse(`SimplyBook book error: ${msg}`, 502);
     }
-
-    return new Response(
-      JSON.stringify({ message: "Unknown action", error: "Unknown action" }),
-      { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
-  } catch (err) {
-    console.error("[EdgeFunction] Caught error:", err);
-    const errMsg = err instanceof Error ? err.message : "API error";
-    const errStack = err instanceof Error ? err.stack : undefined;
-    return new Response(
-      JSON.stringify({
-        message: errMsg,
-        error: errMsg,
-        details: errStack,
-      }),
-      { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
   }
-});
+
+  return errorResponse(`Unknown action: ${String(action)}`, 400);
+}
+
+Deno.serve(handler);

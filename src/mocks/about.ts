@@ -86,10 +86,10 @@ export const teamData = {
       count: "2 位",
       members: [
         {
-          name: "Mia",
+          name: "Mira",
           title: "資深修圖師",
           image: team[9],
-          alt: "好時有影修圖師Mia 團隊照",
+          alt: "好時有影修圖師Mira 團隊照",
         },
         {
           name: "靜怡",

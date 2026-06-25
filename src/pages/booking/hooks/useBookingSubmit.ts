@@ -42,7 +42,7 @@ export function useBookingSubmit(
         const userNote = enrichedAdditional[noteField.name] ?? '';
         const systemNote = `預約項目：${state.externalService.title} · ${state.selectedVariant.label} / 分店：${storeLabel}`;
         enrichedAdditional[noteField.name] = userNote
-          ? `${systemNote}\n\n--- 客戶備註 ---\n${userNote}`
+          ? `${systemNote}${userNote}`
           : systemNote;
       }
 

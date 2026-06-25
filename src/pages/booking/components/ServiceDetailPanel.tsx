@@ -1,6 +1,24 @@
 import { useBooking } from '../context/useBooking';
 import type { ServiceDetailData } from '../data/service-details';
 
+function renderContent(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const inner = part.slice(2, -2);
+      return (
+        <strong
+          key={i}
+          className="block font-semibold text-brand-navy border-l-2 border-brand-gold pl-3 py-1 my-1 bg-brand-gold/5 rounded-r"
+        >
+          {inner}
+        </strong>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 export function ServiceDetailPanel({ data }: { data: ServiceDetailData }) {
   const { state, dispatch } = useBooking();
   const serviceTitle = state.externalService?.title ?? '';
@@ -37,7 +55,7 @@ export function ServiceDetailPanel({ data }: { data: ServiceDetailData }) {
               {section.title}
             </h4>
             <div className="text-sm text-brand-charcoal leading-relaxed whitespace-pre-line bg-brand-cream/30 rounded-lg p-3 md:p-4">
-              {section.content}
+              {renderContent(section.content)}
             </div>
           </div>
         ))}

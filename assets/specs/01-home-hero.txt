@@ -1,7 +1,0 @@
-用途：首頁 Hero 輪播（5 張）
-程式：src/config/images.ts → home.hero
-頁面：/ 
-同步：index.html preload 與 home.hero[0] 相同
-建議：maxWidth 1920px，WebP quality 82，單檔目標 < 200KB（LCP 首張 < 150KB）
-R2：01-taipei-homepage-hero-carousel-need-5/*.webp
-optimize：npm run media:optimize -- --spec=hero

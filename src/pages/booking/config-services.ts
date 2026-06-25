@@ -120,8 +120,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
   },
   {
     id: 'friends',
-    title: '朋友寫真照',
-    subtitle: '閨蜜、兄弟合照',
+    title: '朋友寫真照/畢業寫真照',
+    subtitle: '閨蜜、兄弟合照，2人以上合照',
     image: `${R2}/portfolio/friends/group-005.webp`,
     categoryId: 'milestone',
     categoryLabel: '生命里程碑',
@@ -152,7 +152,7 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     id: 'maternity',
     title: '孕婦寫真照',
     subtitle: '孕期紀錄、孕媽咪寫真',
-    image: `${R2}/home/hero/slide-001.webp`,
+    image: 'https://static.readdy.ai/image/a59c001a1bbea72997731a60711927db/5a560e6c2562c5e1bb74ca8d40cab150.jpeg',
     categoryId: 'milestone',
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
@@ -165,7 +165,7 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
   },
   {
     id: 'pet',
-    title: '寵物寫真照',
+    title: '寵物寫真合照',
     subtitle: '毛孩紀念',
     image: `${R2}/pricing/portrait/category-010.webp`,
     categoryId: 'milestone',

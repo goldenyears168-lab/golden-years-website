@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 首頁 — 最高優先級 -->
   <url>
-    <loc>https://www.goldenyearsphoto.com/</loc>
+    <loc>https://goldenyearsphoto.com/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- 核心服務頁 — 高優先級 -->
   <url>
-    <loc>https://www.goldenyearsphoto.com/photography/</loc>
+    <loc>https://goldenyearsphoto.com/photography/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/hair-makeup/</loc>
+    <loc>https://goldenyearsphoto.com/hair-makeup/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/price-list/</loc>
+    <loc>https://goldenyearsphoto.com/price-list/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/courses/</loc>
+    <loc>https://goldenyearsphoto.com/courses/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/about/</loc>
+    <loc>https://goldenyearsphoto.com/about/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/booking/</loc>
+    <loc>https://goldenyearsphoto.com/booking/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.goldenyearsphoto.com/blog/</loc>
+    <loc>https://goldenyearsphoto.com/blog/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- 自助裁切工具 — 重要流量入口 -->
   <url>
-    <loc>https://www.goldenyearsphoto.com/crop-tool/</loc>
+    <loc>https://goldenyearsphoto.com/crop-tool/</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

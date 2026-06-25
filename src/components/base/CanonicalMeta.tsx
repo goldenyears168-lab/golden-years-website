@@ -12,7 +12,7 @@ function CanonicalMeta() {
 
   useEffect(() => {
     // 只使用 pathname，排除查询参数、hash，避免 URL 参数导致重复内容
-    const canonicalUrl = `https://www.goldenyearsphoto.com${pathname.endsWith("/") ? pathname : `${pathname}/`}`;
+    const canonicalUrl = `https://goldenyearsphoto.com${pathname.endsWith("/") ? pathname : `${pathname}/`}`;
 
     if (!linkRef.current) {
       // 首次运行时查找或创建 link 元素

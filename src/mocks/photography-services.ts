@@ -91,7 +91,7 @@ export const photographyServices = [
   },
   {
     id: "friends",
-    title: "朋友寫真照",
+    title: "朋友寫真照/畢業寫真照",
     subtitle: "友誼紀念",
     price: "NT$ 1,199",
     description:
@@ -109,13 +109,13 @@ export const photographyServices = [
     id: "maternity",
     title: "孕婦寫真照",
     subtitle: "母愛紀念",
-    price: "NT$ 1,199",
+    price: "NT$ 999",
     description:
       "孕期寫真紀錄的是期待與溫柔。我們將舒適與安全放在第一，以穩定 SOP 安排拍攝節奏與現場流程。陪伴您迎接新生命的重要旅程，為成為母親的此刻留下溫柔而珍貴的祝福。",
   },
   {
     id: "pet",
-    title: "寵物寫真照",
+    title: "寵物寫真合照",
     subtitle: "毛孩紀念",
     price: "NT$ 1,199",
     description:

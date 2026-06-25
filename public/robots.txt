@@ -1,5 +1,5 @@
 # Golden Years Studio — 好時有影專業攝影工作室
-# https://www.goldenyearsphoto.com/
+# https://goldenyearsphoto.com/
 
 # Allow all search engine crawlers
 User-agent: *
@@ -9,7 +9,7 @@ Allow: /
 Crawl-delay: 1
 
 # Specify preferred host to avoid duplicate content issues
-Host: https://www.goldenyearsphoto.com
+Host: https://goldenyearsphoto.com
 
 # Sitemap location for efficient crawling
-Sitemap: https://www.goldenyearsphoto.com/sitemap.xml
+Sitemap: https://goldenyearsphoto.com/sitemap.xml
