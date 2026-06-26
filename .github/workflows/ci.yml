@@ -1,5 +1,5 @@
 # 品質檢查：lint + type-check + build
-# 部署仍由 Cloudflare Pages 原生 GitHub 整合處理（pages-build-deployment）
+# 部署由 .github/workflows/deploy-cloudflare-pages.yml（push main 時 wrangler deploy）
 name: CI
 
 on:
