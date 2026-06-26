@@ -1,198 +1,58 @@
-import { supabase } from '@/lib/supabase';
+import { supabase, SUPABASE_URL } from '@/lib/supabase';
 import { BookingError, BookingErrorCode } from './domain/errors';
+import { getBookingFormFields } from './booking-form-fields';
+import { buildBookRpcParams, STORE_LABELS } from './booking-payload';
 import type { AdditionalField, BookingResult } from './types';
+import type { StoreKey } from './config';
 
-// ── 直接讀取環境變數（用於原生 fetch 呼叫 Edge Function） ──
-const SUPABASE_URL = (import.meta.env.VITE_PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '');
-const SUPABASE_ANON_KEY = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY ?? '';
-
-// ── SimplyBook 直接連線配置（Edge Function 失敗時的 fallback） ──
-const SB_COMPANY = 'goldenyearsportrait2';
-const SB_API_KEY = '7bcce4caaefa3ee16aac9ef225d6e28eafcb0ee31059fb8c78d72aa9ac7879db';
-const SB_LOGIN_URL = 'https://user-api.simplybook.me/login/';
-const SB_API_URL = 'https://user-api.simplybook.me/';
-
-let _sbToken: { value: string; expiresAt: number } | null = null;
-
-async function getSimplyBookToken(): Promise<string> {
-  if (_sbToken && Date.now() < _sbToken.expiresAt) {
-    return _sbToken.value;
+function mapRpcError(message: string): string {
+  if (
+    message.includes('已有預約') ||
+    message.includes('未開放') ||
+    message.includes('無效') ||
+    message.includes('請選擇') ||
+    message.includes('找不到') ||
+    message.includes('無法取消') ||
+    message.includes('請最晚於')
+  ) {
+    return message;
   }
-  const res = await fetch(SB_LOGIN_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'getToken',
-      params: [SB_COMPANY, SB_API_KEY],
-      id: 1,
-    }),
-  });
-  const rawText = await res.text();
-  let data: { result?: unknown; error?: { message?: string } };
-  try {
-    data = JSON.parse(rawText);
-  } catch {
-    throw new Error(`SimplyBook token: invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
-  }
-  if (data.error) {
-    throw new Error(`SimplyBook token error: ${JSON.stringify(data.error)}`);
-  }
-  const token = String(data.result);
-  _sbToken = { value: token, expiresAt: Date.now() + 50 * 60 * 1000 };
-  return token;
+  return message || '預約系統暫時無法處理您的請求，請稍後再試，或聯繫官方 LINE。';
 }
 
-async function simplyBookRpc(method: string, params: unknown[]): Promise<unknown> {
-  const token = await getSimplyBookToken();
-  const res = await fetch(SB_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Company-Login': SB_COMPANY,
-      'X-Token': token,
-    },
-    body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 }),
-  });
-  const rawText = await res.text();
-  let data: { result?: unknown; error?: { message?: string } };
-  try {
-    data = JSON.parse(rawText);
-  } catch {
-    throw new Error(`SimplyBook ${method}: invalid JSON (status ${res.status}): ${rawText.slice(0, 200)}`);
-  }
-  if (data.error) {
-    throw new Error(`SimplyBook ${method} error: ${JSON.stringify(data.error)}`);
-  }
-  return data.result;
+function throwIfRpcError(error: { message: string } | null): void {
+  if (!error) return;
+  throw new BookingError(mapRpcError(error.message), BookingErrorCode.API_ERROR);
 }
 
-// ── 診斷：先測試 GET 連線 ──
-export async function checkEdgeFunction(): Promise<{
-  reachable: boolean;
-  status?: number;
-  response?: string;
-  error?: string;
-  url?: string;
-}> {
-  const url = `${SUPABASE_URL}/functions/v1/simplybook-proxy`;
-  console.log('[checkEdgeFunction] 📤 Testing GET', url);
-  try {
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'apikey': SUPABASE_ANON_KEY,
-      },
-    });
-    console.log('[checkEdgeFunction] 📥 GET status:', res.status);
-    const rawText = await res.text();
-    console.log('[checkEdgeFunction] 📥 GET body:', rawText.slice(0, 300));
-    return {
-      reachable: true,
-      status: res.status,
-      response: rawText.slice(0, 300),
-      url,
-    };
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error('[checkEdgeFunction] ❌ GET failed:', msg);
-    return {
-      reachable: false,
-      error: msg,
-      url,
-    };
-  }
-}
-
-// ── 內部：使用原生 fetch 呼叫 Edge Function（避免 supabase.functions.invoke 的連線問題） ──
-async function callEdgeFunction<T>(body: Record<string, unknown>): Promise<T> {
-  const url = `${SUPABASE_URL}/functions/v1/simplybook-proxy`;
-  console.log('[SimplyBookProxy] 📤 POST', url);
-  console.log('[SimplyBookProxy] 📦 body:', JSON.stringify(body).slice(0, 300));
-  console.log('[SimplyBookProxy] 🔑 Headers:', {
-    contentType: 'application/json',
-    authLength: SUPABASE_ANON_KEY.length,
-    apikeyLength: SUPABASE_ANON_KEY.length,
-  });
-
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'apikey': SUPABASE_ANON_KEY,
-      },
-      body: JSON.stringify(body),
-    });
-
-    console.log('[SimplyBookProxy] 📥 HTTP status:', res.status, 'ok:', res.ok);
-    const rawText = await res.text();
-    console.log('[SimplyBookProxy] 📥 Response body:', rawText.slice(0, 500));
-
-    if (!res.ok) {
-      throw new BookingError(
-        `Edge Function HTTP ${res.status}: ${rawText.slice(0, 200)}`,
-        BookingErrorCode.API_ERROR,
-      );
-    }
-
-    let data: unknown;
-    try {
-      data = JSON.parse(rawText);
-    } catch {
-      throw new BookingError(
-        `Edge Function returned invalid JSON: ${rawText.slice(0, 200)}`,
-        BookingErrorCode.API_ERROR,
-      );
-    }
-
-    if (data === undefined || data === null) {
-      throw new BookingError(
-        'Edge Function returned empty data',
-        BookingErrorCode.API_ERROR,
-      );
-    }
-
-    // Edge Function 回傳格式: { data: {...} } 或 { ok: true, ... }
-    const responseData = (data as { data?: T; ok?: boolean }).data ?? (data as T);
-    console.log('[SimplyBookProxy] ✅ Edge Function response ok');
-    return responseData;
-  } catch (err) {
-    if (err instanceof BookingError) {
-      console.error('[SimplyBookProxy] ❌ BookingError thrown:', err.code, err.message);
-      throw err;
-    }
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error('[SimplyBookProxy] ❌ Network or unexpected error:', msg);
-    throw new BookingError(
-      `Edge Function 無法連線：${msg}`,
-      BookingErrorCode.API_ERROR,
-    );
-  }
-}
-
-// ── 健康檢查：測試 Edge Function 是否可連線 ──
 export async function healthCheck(): Promise<{
   ok: boolean;
-  apiKeySet: boolean;
-  apiSecretSet: boolean;
-  company: string;
+  backend?: string;
+  supabaseConfigured?: boolean;
   diagnostics?: string;
 }> {
-  try {
-    const data = await callEdgeFunction<{
-      ok: boolean;
-      apiKeySet: boolean;
-      apiSecretSet: boolean;
-      company: string;
-    }>({ action: 'health' });
-    return data;
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    return { ok: false, apiKeySet: false, apiSecretSet: false, company: '', diagnostics: msg };
+  const configured = Boolean(SUPABASE_URL && import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY);
+  if (!configured) {
+    return { ok: false, supabaseConfigured: false, diagnostics: 'Supabase 未設定' };
   }
+
+  const { error } = await supabase.rpc('list_website_slots', {
+    _service_id: 4,
+    _store_name: '中山店',
+    _date_from: '2099-01-01',
+    _date_to: '2099-01-01',
+  });
+
+  if (error) {
+    return {
+      ok: false,
+      backend: 'supabase',
+      supabaseConfigured: true,
+      diagnostics: error.message,
+    };
+  }
+
+  return { ok: true, backend: 'supabase', supabaseConfigured: true };
 }
 
 export type SlotsResponse = {
@@ -224,149 +84,86 @@ export function getDateRange(days: number): { from: string; to: string; dates: s
 
 export async function fetchSlots(
   serviceId: number,
-  providerId: number,
+  storeKey: StoreKey,
   dateFrom: string,
   dateTo: string,
 ): Promise<SlotsResponse> {
-  console.log('[fetchSlots] 🔍 Starting slot fetch...');
+  const { data, error } = await supabase.rpc('list_website_slots', {
+    _service_id: serviceId,
+    _store_name: STORE_LABELS[storeKey],
+    _date_from: dateFrom,
+    _date_to: dateTo,
+  });
 
-  // 先嘗試 Edge Function
-  try {
-    const { slotsByDate } = await callEdgeFunction<{ slotsByDate: Record<string, string[]> }>({
-      action: 'slots',
-      serviceId,
-      providerId,
-      dateFrom,
-      dateTo,
-    });
-    console.log('[fetchSlots] ✅ via Edge Function');
-    return { slotsByDate: slotsByDate ?? {} };
-  } catch (edgeErr) {
-    if (edgeErr instanceof BookingError) {
-      console.error('[fetchSlots] ❌ Edge Function failed - code:', edgeErr.code, 'message:', edgeErr.message);
-    } else {
-      console.error('[fetchSlots] ❌ Edge Function failed - unknown error:', edgeErr);
-    }
-  }
+  throwIfRpcError(error);
 
-  // Fallback：直接連 SimplyBook
-  console.log('[fetchSlots] 🔄 Fallback to direct SimplyBook API...');
-  try {
-    const matrix = (await simplyBookRpc('getStartTimeMatrix', [
-      dateFrom, dateTo, serviceId, providerId, 1,
-    ])) as Record<string, string[]>;
-    console.log('[fetchSlots] ✅ via Fallback (Direct SimplyBook)');
-    return { slotsByDate: matrix ?? {} };
-  } catch (directErr) {
-    console.error('[fetchSlots] ❌ Direct SimplyBook also failed:', directErr);
-    throw new BookingError(
-      `Edge Function 失敗，直接連線也失敗：${directErr instanceof Error ? directErr.message : String(directErr)}`,
-      BookingErrorCode.API_ERROR,
-    );
-  }
+  const slotsByDate = (data ?? {}) as Record<string, string[]>;
+  return { slotsByDate };
 }
 
 export async function fetchAdditionalFields(serviceId: number): Promise<AdditionalField[]> {
-  // 先嘗試 Edge Function
-  try {
-    const { fields } = await callEdgeFunction<{ fields: unknown[] }>({
-      action: 'fields',
-      serviceId,
-    });
-    console.log('[fetchAdditionalFields] ✅ via Edge Function');
-    return (fields ?? []).map((f) => f as AdditionalField).sort((a, b) => Number(a.pos) - Number(b.pos));
-  } catch (edgeErr) {
-    if (edgeErr instanceof BookingError) {
-      console.error('[fetchAdditionalFields] ❌ Edge Function failed - code:', edgeErr.code, 'message:', edgeErr.message);
-    } else {
-      console.error('[fetchAdditionalFields] ❌ Edge Function failed - unknown error:', edgeErr);
-    }
-  }
-
-  // Fallback：直接連 SimplyBook
-  console.log('[fetchAdditionalFields] 🔄 Fallback to direct SimplyBook API...');
-  try {
-    const fields = (await simplyBookRpc('getAdditionalFields', [serviceId])) as unknown[];
-    console.log('[fetchAdditionalFields] ✅ via Fallback (Direct SimplyBook)');
-    return (fields ?? []).map((f) => f as AdditionalField).sort((a, b) => Number(a.pos) - Number(b.pos));
-  } catch (directErr) {
-    console.error('[fetchAdditionalFields] ❌ Direct SimplyBook also failed:', directErr);
-    throw new BookingError(
-      `Edge Function 失敗，直接連線也失敗：${directErr instanceof Error ? directErr.message : String(directErr)}`,
-      BookingErrorCode.API_ERROR,
-    );
-  }
+  return getBookingFormFields(serviceId);
 }
 
 export type BookPayload = {
   serviceId: number;
-  providerId: number;
+  storeKey: StoreKey;
   date: string;
   time: string;
   client: { name: string; email: string; phone: string };
   additional: Record<string, string>;
 };
 
+type BookRpcResult = {
+  id: string;
+  code: string;
+  start_date_time: string;
+  end_date_time: string;
+  is_confirmed: string;
+};
+
 export async function submitBooking(payload: BookPayload): Promise<BookingResult> {
-  // 先嘗試 Edge Function
-  try {
-    const result = await callEdgeFunction<BookingResult>({
-      action: 'book',
-      serviceId: payload.serviceId,
-      providerId: payload.providerId,
-      date: payload.date,
-      time: payload.time,
-      client: payload.client,
-      additional: payload.additional,
-    });
-    console.log('[submitBooking] ✅ via Edge Function');
-    return result;
-  } catch (edgeErr) {
-    if (edgeErr instanceof BookingError) {
-      console.error('[submitBooking] ❌ Edge Function failed - code:', edgeErr.code, 'message:', edgeErr.message);
-    } else {
-      console.error('[submitBooking] ❌ Edge Function failed - unknown error:', edgeErr);
-    }
-  }
+  const params = buildBookRpcParams(payload);
+  const { data, error } = await supabase.rpc('book_website_slot', params);
 
-  // Fallback：直接連 SimplyBook
-  console.log('[submitBooking] 🔄 Fallback to direct SimplyBook API...');
-  try {
-    const raw = (await simplyBookRpc('book', [
-      payload.serviceId,
-      payload.providerId,
-      payload.date,
-      payload.time,
-      payload.client,
-      payload.additional,
-    ])) as { bookings?: Array<{ id: string | number; hash: string; code?: string; start_date_time?: string; end_date_time?: string; is_confirmed?: string }>; require_confirm?: boolean };
+  throwIfRpcError(error);
 
-    // 如果需要確認，需用 API Secret 計算簽名（此邏輯僅在 Edge Function 完全不可用时才触发，
-    // 且前端不應持有 API Secret。因此若 require_confirm 為 true，直接拋出錯誤提示用戶聯繫客服。）
-    if (raw.require_confirm) {
-      throw new BookingError(
-        '預約需要額外確認，請聯繫官方 LINE 或客服協助完成預約。',
-        BookingErrorCode.API_ERROR,
-      );
-    }
+  const booking = data as BookRpcResult;
+  return {
+    require_confirm: false,
+    bookings: [
+      {
+        ...booking,
+        hash: booking.id,
+      },
+    ],
+  };
+}
 
-    const bookings = (raw.bookings ?? []).map((b) => ({
-      id: String(b.id),
-      code: b.code ?? '',
-      start_date_time: b.start_date_time ?? `${payload.date} ${payload.time}`,
-      end_date_time: b.end_date_time ?? '',
-      is_confirmed: b.is_confirmed ?? '1',
-    }));
+export type WebsiteBookingPreview = {
+  id: string;
+  booking_uuid: string;
+  code: string;
+  store_name: string;
+  shoot_datetime: string;
+  shoot_type: string;
+  makeup_addon: string | null;
+  service_id: number;
+  status: string;
+  can_cancel: boolean;
+  cancel_block_reason: string | null;
+};
 
-    console.log('[submitBooking] ✅ via Fallback (Direct SimplyBook)');
-    return { require_confirm: Boolean(raw.require_confirm), bookings };
-  } catch (directErr) {
-    console.error('[submitBooking] ❌ Direct SimplyBook also failed:', directErr);
-    throw new BookingError(
-      `Edge Function 失敗，直接連線也失敗：${directErr instanceof Error ? directErr.message : String(directErr)}`,
-      BookingErrorCode.API_ERROR,
-    );
-  }
+export async function fetchBookingByToken(token: string): Promise<WebsiteBookingPreview> {
+  const { data, error } = await supabase.rpc('get_website_booking', { _token: token });
+  throwIfRpcError(error);
+  return data as WebsiteBookingPreview;
+}
+
+export async function cancelBookingByToken(token: string): Promise<WebsiteBookingPreview> {
+  const { data, error } = await supabase.rpc('cancel_website_booking', { _token: token });
+  throwIfRpcError(error);
+  return data as WebsiteBookingPreview;
 }
 
 export function formatTime(t: string): string {
@@ -396,115 +193,14 @@ export function isFieldRequired(field: { is_null?: string }): boolean {
   return field.is_null === '0';
 }
 
-/* ── 新增：依妝髮方案自動計算建議到店時間 ── */
-function getMakeupMinutes(style: string): number {
-  if (style.includes('訂製')) return 100;
-  if (style.includes('精緻') || style.includes('韓系')) return 70;
-  if (style.includes('基礎') || style.includes('日常')) return 40;
-  return 40;
-}
-
-export function detectMakeupStyle(
-  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
-): string | null {
-  const values: string[] = [];
-  if (!additional) return null;
-  if (Array.isArray(additional)) {
-    values.push(...additional.map((a) => a.value));
-  } else {
-    values.push(...Object.values(additional));
-  }
-  for (const v of values) {
-    if (v.includes('訂製')) return v;
-    if (v.includes('精緻') || v.includes('韓系')) return v;
-    if (v.includes('基礎') || v.includes('日常')) return v;
-  }
-  return null;
-}
-
-export function calculateArrivalTime(
-  slotTime: string,
-  variantLabel: string,
-  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
-): string | null {
-  const timePart = slotTime.split(' ').pop() ?? slotTime;
-  const [hStr, mStr] = timePart.split(':');
-  const h = parseInt(hStr, 10);
-  const m = parseInt(mStr, 10);
-  if (Number.isNaN(h) || Number.isNaN(m)) return null;
-
-  const date = new Date();
-  date.setHours(h, m, 0, 0);
-
-  if (variantLabel.includes('妝髮')) {
-    const style = detectMakeupStyle(additional);
-    const minutes = style ? getMakeupMinutes(style) : 40;
-    date.setMinutes(date.getMinutes() - minutes);
-  } else {
-    date.setMinutes(date.getMinutes() - 5);
-  }
-
-  const newH = String(date.getHours()).padStart(2, '0');
-  const newM = String(date.getMinutes()).padStart(2, '0');
-  return `${newH}:${newM}`;
-}
-
-export function getMakeupStyleLabel(
-  additional: Record<string, string> | { title: string; value: string }[] | null | undefined,
-): string | null {
-  const style = detectMakeupStyle(additional);
-  if (!style) return null;
-  if (style.includes('訂製')) return '訂製造型方案（提前 1 小時 40 分鐘）';
-  if (style.includes('精緻') || style.includes('韓系')) return '精緻韓系妝髮（提前 1 小時 10 分鐘）';
-  if (style.includes('基礎') || style.includes('日常')) return '基礎日常妝髮（提前 40 分鐘）';
-  return null;
-}
-
-/* ── 新增：預約成功後寫入 Supabase 備份 ── */
-export type BookingLogPayload = {
-  simplybook_id: string;
-  simplybook_code: string;
-  service_name: string;
-  variant_name: string;
-  store_label: string;
-  booking_date: string;
-  booking_time: string;
-  client_name: string;
-  client_email: string;
-  client_phone: string;
-  additional_fields: { title: string; value: string }[];
-  status?: string;
-  source?: string;
-  error_message?: string | null;
-};
-
-export async function saveBookingLog(payload: BookingLogPayload): Promise<void> {
-  try {
-    const { error } = await supabase.rpc('save_booking_log', {
-      _simplybook_id: payload.simplybook_id,
-      _simplybook_code: payload.simplybook_code,
-      _service_name: payload.service_name,
-      _variant_name: payload.variant_name,
-      _store_label: payload.store_label,
-      _booking_date: payload.booking_date,
-      _booking_time: payload.booking_time,
-      _client_name: payload.client_name,
-      _client_email: payload.client_email,
-      _client_phone: payload.client_phone,
-      _additional_fields: payload.additional_fields,
-      _status: payload.status ?? 'confirmed',
-      _source: payload.source ?? 'direct',
-      _error_message: payload.error_message ?? null,
-    });
-
-    if (error) {
-      console.error('[saveBookingLog] Supabase insert failed:', error.message);
-    } else {
-      console.log('[saveBookingLog] Saved to Supabase (photobooking) successfully');
-    }
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error('[saveBookingLog] Unexpected error:', msg);
-  }
-}
-/* ── end ── */
+export {
+  ADDON_MAKEUP_OPTIONS,
+  STANDALONE_MAKEUP_OPTIONS,
+  calculateArrivalTime,
+  detectMakeupStyle,
+  getMakeupDurationMinutes,
+  getMakeupEarlyMinutes,
+  getMakeupStyleLabel,
+  isStandaloneMakeupLabel,
+  subtractMinutesFromTime,
+} from './arrival-time';

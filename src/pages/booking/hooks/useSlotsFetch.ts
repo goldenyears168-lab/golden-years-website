@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { fetchSlots } from '../api';
 import { BookingError, BookingErrorMessages } from '../domain/errors';
+import type { StoreKey } from '../config';
 
 export type UseSlotsFetchResult = {
   slotsByDate: Record<string, string[]>;
@@ -12,7 +13,7 @@ export type UseSlotsFetchResult = {
 
 export function useSlotsFetch(
   serviceId: number | null,
-  providerId: number | null,
+  storeKey: string | null,
   dateFrom: string,
   dateTo: string,
   enabled: boolean,
@@ -24,17 +25,17 @@ export function useSlotsFetch(
   // Track cache key so we re-fetch when service or store changes
   const loadedRef = useRef<string | null>(null);
 
-  const cacheKey = `${serviceId}-${providerId}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
+  const cacheKey = `${serviceId}-${storeKey}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
 
   useEffect(() => {
-    if (!enabled || !serviceId || !providerId) return;
+    if (!enabled || !serviceId || !storeKey) return;
     if (loadedRef.current === cacheKey) return;
 
     let cancelled = false;
     setLoading(true);
     setError(null);
 
-    fetchSlots(serviceId, providerId, dateFrom, dateTo)
+    fetchSlots(serviceId, storeKey as StoreKey, dateFrom, dateTo)
       .then(({ slotsByDate: matrix }) => {
         if (cancelled) return;
 
@@ -71,7 +72,7 @@ export function useSlotsFetch(
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId, providerId, dateFrom, dateTo, cacheKey, allowedTimes]);
+  }, [enabled, serviceId, storeKey, dateFrom, dateTo, cacheKey, allowedTimes]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});

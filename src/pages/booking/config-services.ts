@@ -15,8 +15,10 @@ export type ExternalService = {
   categoryIcon: string;
   variants: {
     basic: ServiceVariant;
-    makeup: ServiceVariant;
+    makeup?: ServiceVariant;
   };
+  /** 單妝髮：僅一種方案，不綁拍攝類型 */
+  isStandaloneMakeup?: boolean;
   isLineRedirect: boolean;
   lineUrl?: string;
   priceFrom: number;
@@ -209,6 +211,23 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     },
     isLineRedirect: false,
     priceFrom: 399,
+  },
+
+  /* ── 單妝髮（獨立服務，不含拍攝） ── */
+  {
+    id: 'standalone-makeup',
+    title: '單妝髮',
+    subtitle: '僅妝髮造型，不含拍攝',
+    image: `${R2}/hair-makeup/plans/package-003.webp`,
+    categoryId: 'makeup',
+    categoryLabel: '妝髮服務',
+    categoryIcon: 'ri-scissors-cut-line',
+    variants: {
+      basic: { label: '預約單妝髮', simplybookId: 17 },
+    },
+    isStandaloneMakeup: true,
+    isLineRedirect: false,
+    priceFrom: 600,
   },
 ];
 

@@ -7,7 +7,9 @@ export type ServiceItem = {
   providers: Record<StoreKey, number>;
 };
 
-/** 六個服務項目（與 SimplyBook 後台一致） */
+/** 七個服務項目（內部 service_id；17 為單妝髮，非 SimplyBook） */
+export const STANDALONE_MAKEUP_SERVICE_ID = 17;
+
 export const SERVICES: ServiceItem[] = [
   {
     id: 4,
@@ -43,6 +45,12 @@ export const SERVICES: ServiceItem[] = [
     id: 16,
     label: '加購妝髮 · 證件照',
     description: '證件照搭配專業妝髮服務',
+    providers: { zhongshan: 5, gongguan: 19 },
+  },
+  {
+    id: STANDALONE_MAKEUP_SERVICE_ID,
+    label: '單妝髮',
+    description: '僅預約專業妝髮造型，不含拍攝',
     providers: { zhongshan: 5, gongguan: 19 },
   },
 ];

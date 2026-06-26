@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 import { useBooking } from '../context/useBooking';
-import { SERVICES, STORES, STORAGE_KEY, type StoreKey } from '../config';
-import { submitBooking, calculateArrivalTime, saveBookingLog } from '../api';
+import { STORES, STORAGE_KEY, type StoreKey } from '../config';
+import { submitBooking, calculateArrivalTime } from '../api';
 import { BookingErrorMessages } from '../domain/errors';
 import type { ClientData, AdditionalField } from '../types';
 
@@ -42,15 +42,11 @@ export function useBookingSubmit(
         const userNote = enrichedAdditional[noteField.name] ?? '';
         const systemNote = `預約項目：${state.externalService.title} · ${state.selectedVariant.label} / 分店：${storeLabel}`;
         enrichedAdditional[noteField.name] = userNote
-          ? `${systemNote}${userNote}`
+          ? `${systemNote} / ${userNote}`
           : systemNote;
       }
 
-      const svc = SERVICES.find(
-        (s) => s.id === state.selectedVariant.simplybookId,
-      );
-      const resolvedProviderId = svc?.providers[state.storeKey as StoreKey];
-      if (!resolvedProviderId) {
+      if (!state.storeKey) {
         dispatch({
           type: 'SET_BOOK_ERROR',
           error: BookingErrorMessages.PROVIDER_NOT_FOUND,
@@ -64,7 +60,7 @@ export function useBookingSubmit(
       try {
         const result = await submitBooking({
           serviceId: state.selectedVariant.simplybookId,
-          providerId: resolvedProviderId,
+          storeKey: state.storeKey as StoreKey,
           date: state.selectedSlot.date,
           time: state.selectedSlot.time,
           client,
@@ -77,29 +73,10 @@ export function useBookingSubmit(
             '預約系統暫時無法處理您的請求，請稍後再試，或聯繫官方 LINE。',
           );
 
-        // ── 寫入 Supabase 備份 ──
         const additionalAnswers = currentFields.map((f) => ({
           title: f.title.replace(/\s+/g, ' ').trim(),
           value: additional[f.name] ?? '',
         }));
-        saveBookingLog({
-          simplybook_id: booking.id,
-          simplybook_code: booking.code,
-          service_name: state.externalService.title,
-          variant_name: state.selectedVariant.label,
-          store_label: storeLabel,
-          booking_date: state.selectedSlot.date,
-          booking_time: state.selectedSlot.time,
-          client_name: client.name,
-          client_email: client.email,
-          client_phone: client.phone,
-          additional_fields: additionalAnswers,
-          status: booking.is_confirmed === '1' ? 'confirmed' : 'pending',
-          source: 'direct',
-        }).catch((err) => {
-          console.warn('[useBookingSubmit] saveBookingLog failed:', err);
-        });
-        // ── end ──
 
         if (window.gtag) {
           window.gtag('event', 'service_booking', {

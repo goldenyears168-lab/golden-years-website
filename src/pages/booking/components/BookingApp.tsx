@@ -6,11 +6,7 @@ import { BookingStepContent } from './BookingStepContent';
 import { useSlotsFetch } from '../hooks/useSlotsFetch';
 import { useFieldsFetch } from '../hooks/useFieldsFetch';
 import { useBookingSubmit } from '../hooks/useBookingSubmit';
-import {
-  SERVICES,
-  DAYS_AHEAD,
-  type StoreKey,
-} from '../config';
+import { DAYS_AHEAD } from '../config';
 import { getDateRange } from '../api';
 
 const STEP_LABELS = ['選擇服務', '選擇分店', '選擇時段', '填寫資料'];
@@ -22,15 +18,9 @@ export function BookingApp() {
 
   const dateRange = useMemo(() => getDateRange(DAYS_AHEAD), []);
 
-  const providerId = useMemo(() => {
-    if (!state.selectedVariant || !state.storeKey) return null;
-    const svc = SERVICES.find((s) => s.id === state.selectedVariant.simplybookId);
-    return svc?.providers[state.storeKey] ?? null;
-  }, [state.selectedVariant, state.storeKey]);
-
   const slotsFetch = useSlotsFetch(
     state.selectedVariant?.simplybookId ?? null,
-    providerId,
+    state.storeKey,
     dateRange.from,
     dateRange.to,
     state.step === 3,

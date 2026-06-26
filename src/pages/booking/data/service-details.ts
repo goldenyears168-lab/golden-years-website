@@ -26,6 +26,7 @@ export function getDetailKey(
   serviceId: string,
   variantType: 'basic' | 'makeup',
 ): string | null {
+  if (serviceId === 'standalone-makeup') return 'standalone-makeup';
   if (PORTRAIT_IDS.includes(serviceId)) return `portrait-${variantType}`;
   if (GROUP_IDS.includes(serviceId)) return `group-${variantType}`;
   if (MATERNITY_IDS.includes(serviceId)) return `maternity-${variantType}`;
@@ -513,7 +514,39 @@ ${MAKEUP_RULE}`,
   ],
 };
 
+const standaloneMakeup: ServiceDetailData = {
+  heading: '單妝髮｜專業妝髮造型（不含拍攝）',
+  notice: '＊預約時段即為妝髮開始時間，請準時到店。',
+  sections: [
+    {
+      title: '服務說明',
+      content: `單妝髮為獨立妝髮服務，不含棚拍。
+
+基礎日常妝髮：約 30 分鐘
+精緻韓系妝髮：約 1 小時
+訂製造型方案：約 1.5 小時
+
+＊建議素顏或淡妝到店，頭髮維持乾燥即可。`,
+    },
+    {
+      title: '價格（官網方案）',
+      content: `基礎日常妝髮：女 $800、男 $600
+精緻韓系妝髮：女 $1,500、男 $1,200
+訂製造型方案：女 $3,000
+
+＊現場結帳依實際方案計價。`,
+    },
+    {
+      title: '預約須知',
+      content: `· 請選擇妝髮開始時間，非拍攝時間
+· 如需取消或改期，請私訊官方 LINE（@614cnqns）
+· 收到預約確認信才代表預約成功`,
+    },
+  ],
+};
+
 export const SERVICE_DETAILS: Record<string, ServiceDetailData> = {
+  'standalone-makeup': standaloneMakeup,
   'portrait-basic': portraitBasic,
   'portrait-makeup': portraitMakeup,
   'group-basic': groupBasic,

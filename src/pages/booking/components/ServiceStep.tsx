@@ -187,36 +187,58 @@ function ServiceCard({
       {isExpanded && !service.isLineRedirect && (
         <div className="px-3 pb-3 sm:px-4 sm:pb-4 border-t border-brand-creamDark space-y-2 pt-2.5">
           <p className="text-xs text-brand-textMuted mb-1">選擇方案：</p>
-          <button
-            type="button"
-            data-testid="variant-basic"
-            onClick={() => onVariantSelect(service.variants.basic)}
-            className={`
-              w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
-              transition-all duration-150 cursor-pointer
-              ${selectedVariantLabel === service.variants.basic.label
-                ? 'border-brand-navy bg-brand-cream text-brand-navy'
-                : 'border-brand-creamDark bg-white text-brand-charcoal hover:border-brand-gold'
-              }
-            `}
-          >
-            {service.variants.basic.label}
-          </button>
-          <button
-            type="button"
-            data-testid="variant-makeup"
-            onClick={() => onVariantSelect(service.variants.makeup)}
-            className={`
-              w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
-              transition-all duration-150 cursor-pointer
-              ${selectedVariantLabel === service.variants.makeup.label
-                ? 'border-brand-navy bg-brand-cream text-brand-navy'
-                : 'border-brand-creamDark bg-white text-brand-charcoal hover:border-brand-gold'
-              }
-            `}
-          >
-            {service.variants.makeup.label}
-          </button>
+          {service.isStandaloneMakeup ? (
+            <button
+              type="button"
+              data-testid="variant-standalone-makeup"
+              onClick={() => onVariantSelect(service.variants.basic)}
+              className={`
+                w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
+                transition-all duration-150 cursor-pointer
+                ${selectedVariantLabel === service.variants.basic.label
+                  ? 'border-brand-navy bg-brand-cream text-brand-navy'
+                  : 'border-brand-creamDark bg-white text-brand-charcoal hover:border-brand-gold'
+                }
+              `}
+            >
+              {service.variants.basic.label}
+            </button>
+          ) : (
+            <>
+              <button
+                type="button"
+                data-testid="variant-basic"
+                onClick={() => onVariantSelect(service.variants.basic)}
+                className={`
+                  w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
+                  transition-all duration-150 cursor-pointer
+                  ${selectedVariantLabel === service.variants.basic.label
+                    ? 'border-brand-navy bg-brand-cream text-brand-navy'
+                    : 'border-brand-creamDark bg-white text-brand-charcoal hover:border-brand-gold'
+                  }
+                `}
+              >
+                {service.variants.basic.label}
+              </button>
+              {service.variants.makeup && (
+                <button
+                  type="button"
+                  data-testid="variant-makeup"
+                  onClick={() => onVariantSelect(service.variants.makeup!)}
+                  className={`
+                    w-full px-3 py-2.5 sm:py-3 rounded-md border-2 text-sm font-medium
+                    transition-all duration-150 cursor-pointer
+                    ${selectedVariantLabel === service.variants.makeup!.label
+                      ? 'border-brand-navy bg-brand-cream text-brand-navy'
+                      : 'border-brand-creamDark bg-white text-brand-charcoal hover:border-brand-gold'
+                    }
+                  `}
+                >
+                  {service.variants.makeup!.label}
+                </button>
+              )}
+            </>
+          )}
         </div>
       )}
 

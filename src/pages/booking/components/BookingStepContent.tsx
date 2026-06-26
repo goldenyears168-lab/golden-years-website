@@ -31,6 +31,7 @@ export function BookingStepContent({
 
   const detailKey = (() => {
     if (!state.externalService || !state.selectedVariant) return null;
+    if (state.externalService.isStandaloneMakeup) return 'standalone-makeup';
     const variantType: 'basic' | 'makeup' =
       state.selectedVariant.simplybookId ===
       state.externalService.variants.basic.simplybookId
@@ -71,6 +72,7 @@ export function BookingStepContent({
             slotsByDate={slotsFetch.slotsByDate}
             loading={slotsFetch.loading}
             error={slotsFetch.error}
+            isStandaloneMakeup={state.externalService?.isStandaloneMakeup}
           />
         </div>
       )}

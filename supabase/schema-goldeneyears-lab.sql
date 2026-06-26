@@ -55,10 +55,7 @@ CREATE TABLE IF NOT EXISTS public.bookings (
     synced_at timestamp with time zone DEFAULT now(),
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now(),
-    import_source text DEFAULT 'system',
-    makeup_artist_code text,
-    makeup_claimed_at timestamp with time zone,
-    makeup_dispatch_status text NOT NULL DEFAULT 'pending'
+    import_source text DEFAULT 'system'
 );
 
 -- ─────────────────────────────────────────────────────────────────────────────
@@ -91,10 +88,10 @@ CREATE TABLE IF NOT EXISTS public.shoot_sessions (
     fee_total integer,
     cash integer DEFAULT 0,
     transfer integer DEFAULT 0,
+    blessing_message text DEFAULT '',
+    on_site_note text DEFAULT '',
     discount integer DEFAULT 0,
     surcharge integer DEFAULT 0,
-    on_site_note text DEFAULT '',
-    blessing_message text DEFAULT '',
     cloud_link text DEFAULT '',
     delivery_deadline timestamp with time zone,
     delivery_days integer DEFAULT 0,
@@ -131,8 +128,6 @@ CREATE TABLE IF NOT EXISTS public.shoot_sessions (
     team_lead_code text,
     import_source text DEFAULT 'system',
     edit_history jsonb DEFAULT '[]',
-    makeup_claimed_at timestamp with time zone,
-    makeup_dispatch_status text NOT NULL DEFAULT 'pending',
     retoucher_payout numeric,
     photo_count_total integer DEFAULT 0,
     store_manager_code text,
@@ -451,9 +446,6 @@ BEGIN
         purpose,
         makeup_addon,
         makeup_plan,
-        makeup_artist_code,
-        makeup_claimed_at,
-        makeup_dispatch_status,
         marketing_duration,
         workflow_stage,
         checked_in_at,
@@ -478,9 +470,6 @@ BEGIN
         b.purpose,
         b.makeup_addon,
         v_makeup_plan,
-        b.makeup_artist_code,
-        b.makeup_claimed_at,
-        COALESCE(b.makeup_dispatch_status, 'pending'),
         b.marketing_duration,
         'photographer',
         now(),
@@ -490,169 +479,6 @@ BEGIN
     RETURNING id INTO sid;
 
     RETURN sid;
-END;
-$$ LANGUAGE plpgsql;
-
--- 15.2 認領化妝師（booking 版本）
-CREATE OR REPLACE FUNCTION public.claim_makeup_artist(p_booking_id bigint, p_staff_code text)
-RETURNS text AS $$
-DECLARE
-    v_record RECORD;
-    v_staff RECORD;
-BEGIN
-    SELECT code, display_name INTO v_staff
-    FROM public.staff
-    WHERE code = p_staff_code
-        AND is_active = true
-        AND roles @> ARRAY['stylist'];
-
-    IF NOT FOUND THEN
-        RETURN 'invalid_code';
-    END IF;
-
-    SELECT id, makeup_artist_code, makeup_dispatch_status
-    INTO v_record
-    FROM public.bookings
-    WHERE id = p_booking_id
-    FOR UPDATE;
-
-    IF NOT FOUND THEN
-        RETURN 'session_not_found';
-    END IF;
-
-    IF v_record.makeup_artist_code IS NOT NULL THEN
-        RETURN 'already_claimed';
-    END IF;
-
-    UPDATE public.bookings
-    SET makeup_artist_code = p_staff_code,
-        makeup_claimed_at = NOW(),
-        makeup_dispatch_status = 'claimed',
-        updated_at = NOW()
-    WHERE id = p_booking_id;
-
-    UPDATE public.shoot_sessions
-    SET makeup_artist_code = p_staff_code,
-        makeup_claimed_at = NOW(),
-        makeup_dispatch_status = 'claimed',
-        updated_at = NOW()
-    WHERE booking_id = p_booking_id;
-
-    RETURN 'success';
-END;
-$$ LANGUAGE plpgsql;
-
--- 15.3 取消認領化妝師（booking 版本）
-CREATE OR REPLACE FUNCTION public.cancel_makeup_claim(p_booking_id bigint)
-RETURNS text AS $$
-DECLARE
-    v_record RECORD;
-BEGIN
-    SELECT id, makeup_artist_code, makeup_dispatch_status
-    INTO v_record
-    FROM public.bookings
-    WHERE id = p_booking_id
-    FOR UPDATE;
-
-    IF NOT FOUND THEN
-        RETURN 'session_not_found';
-    END IF;
-
-    IF v_record.makeup_artist_code IS NULL THEN
-        RETURN 'not_claimed';
-    END IF;
-
-    UPDATE public.bookings
-    SET makeup_artist_code = NULL,
-        makeup_claimed_at = NULL,
-        makeup_dispatch_status = 'pending',
-        updated_at = NOW()
-    WHERE id = p_booking_id;
-
-    UPDATE public.shoot_sessions
-    SET makeup_artist_code = NULL,
-        makeup_claimed_at = NULL,
-        makeup_dispatch_status = 'pending',
-        updated_at = NOW()
-    WHERE booking_id = p_booking_id;
-
-    RETURN 'success';
-END;
-$$ LANGUAGE plpgsql;
-
--- 15.4 認領化妝師（session 版本）
-CREATE OR REPLACE FUNCTION public.claim_makeup_artist_by_session(p_session_id uuid, p_staff_code text)
-RETURNS text AS $$
-DECLARE
-    v_rows_updated integer;
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM public.staff
-        WHERE code = p_staff_code
-            AND is_active = true
-            AND 'stylist' = ANY(roles)
-    ) THEN
-        RETURN 'invalid_code';
-    END IF;
-
-    IF NOT EXISTS (
-        SELECT 1 FROM public.shoot_sessions WHERE id = p_session_id
-    ) THEN
-        RETURN 'session_not_found';
-    END IF;
-
-    UPDATE public.shoot_sessions
-    SET makeup_artist_code = p_staff_code,
-        makeup_claimed_at = now(),
-        makeup_dispatch_status = 'claimed',
-        updated_at = now()
-    WHERE id = p_session_id
-        AND makeup_artist_code IS NULL;
-
-    GET DIAGNOSTICS v_rows_updated = ROW_COUNT;
-
-    IF v_rows_updated = 0 THEN
-        RETURN 'already_claimed';
-    END IF;
-
-    RETURN 'success';
-END;
-$$ LANGUAGE plpgsql;
-
--- 15.5 取消認領化妝師（session 版本）
-CREATE OR REPLACE FUNCTION public.cancel_makeup_claim_by_session(p_session_id uuid)
-RETURNS text AS $$
-DECLARE
-    v_current_code text;
-    v_rows_updated integer;
-BEGIN
-    SELECT makeup_artist_code INTO v_current_code
-    FROM public.shoot_sessions
-    WHERE id = p_session_id;
-
-    IF NOT FOUND THEN
-        RETURN 'session_not_found';
-    END IF;
-
-    IF v_current_code IS NULL THEN
-        RETURN 'not_claimed';
-    END IF;
-
-    UPDATE public.shoot_sessions
-    SET makeup_artist_code = NULL,
-        makeup_claimed_at = NULL,
-        makeup_dispatch_status = 'notified',
-        updated_at = now()
-    WHERE id = p_session_id
-        AND makeup_artist_code IS NOT NULL;
-
-    GET DIAGNOSTICS v_rows_updated = ROW_COUNT;
-
-    IF v_rows_updated = 0 THEN
-        RETURN 'not_claimed';
-    END IF;
-
-    RETURN 'success';
 END;
 $$ LANGUAGE plpgsql;
 

@@ -7,11 +7,13 @@ export function SlotsView({
   slotsByDate,
   loading,
   error,
+  isStandaloneMakeup = false,
 }: {
   dates: string[];
   slotsByDate: Record<string, string[]>;
   loading: boolean;
   error: string | null;
+  isStandaloneMakeup?: boolean;
 }) {
   const { dispatch } = useBooking();
   const availableDates = useMemo(
@@ -206,7 +208,10 @@ export function SlotsView({
       {activeDate ? (
         <div role="tabpanel" className="border-t border-brand-creamDark pt-4">
           <p className="text-sm font-semibold text-brand-textMuted mb-3">
-            {activeDate}（{weekdayLabel(activeDate)}）可預約時段（此為攝影棚時段，妝髮服務會需要再更提前）
+            {activeDate}（{weekdayLabel(activeDate)}）可預約時段
+            {isStandaloneMakeup
+              ? '（此為妝髮開始時間，請依方案預留足夠時間）'
+              : '（此為攝影棚時段，妝髮服務會需要再更提前）'}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
             {timesForActive.map((t) => {

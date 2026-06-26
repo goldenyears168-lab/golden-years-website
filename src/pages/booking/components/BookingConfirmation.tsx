@@ -1,4 +1,4 @@
-import { formatTime, weekdayLabel, getMakeupStyleLabel } from '../api';
+import { formatTime, weekdayLabel, getMakeupStyleLabel, isStandaloneMakeupLabel } from '../api';
 import type { BookingSummary } from '../types';
 
 export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
@@ -7,8 +7,9 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
   const [datePart, timePart] = start.includes(' ') ? start.split(' ') : [start, ''];
   const timeFormatted = timePart ? formatTime(timePart) : '';
 
-  const isMakeup = serviceLabel.includes('妝髮');
-  const styleLabel = getMakeupStyleLabel(additionalAnswers);
+  const isStandalone = isStandaloneMakeupLabel(serviceLabel);
+  const isMakeupAddon = serviceLabel.includes('妝髮') && !isStandalone;
+  const styleLabel = getMakeupStyleLabel(additionalAnswers, { standalone: isStandalone });
 
   return (
     <div className="space-y-5">
@@ -18,7 +19,9 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
           期待與您見面！
         </p>
         <p className="text-sm text-brand-textMuted leading-relaxed">
-          我們已收到您的預約，拍攝當天請提前抵達。
+          {isStandalone
+            ? '我們已收到您的妝髮預約，請準時到店。'
+            : '我們已收到您的預約，拍攝當天請提前抵達。'}
         </p>
       </div>
 
@@ -35,22 +38,24 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
                   建議到店時間：{datePart} {arrivalTime}
                 </p>
                 <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
-                  拍攝時間為 {timeFormatted}
-                  {isMakeup
-                    ? `，${styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。`
-                    : '，請提前 5 分鐘抵達以便完成準備。'}
+                  {isStandalone
+                    ? `妝髮開始時間為 ${timeFormatted}${styleLabel ? `，您選擇的是「${styleLabel}」` : ''}，請提前 5 分鐘抵達。`
+                    : isMakeupAddon
+                      ? `拍攝時間為 ${timeFormatted}，${styleLabel ? `您選擇的是「${styleLabel}」` : '含妝髮服務'}請提前到店完成造型準備。`
+                      : `拍攝時間為 ${timeFormatted}，請提前 5 分鐘抵達以便完成準備。`}
                 </p>
               </>
             ) : (
               <>
                 <p className="text-sm md:text-base font-semibold text-brand-navy leading-snug">
-                  {isMakeup ? '請提前到店完成造型準備' : '請提前 5 分鐘抵達'}
+                  {isStandalone ? '請提前 5 分鐘抵達' : isMakeupAddon ? '請提前到店完成造型準備' : '請提前 5 分鐘抵達'}
                 </p>
                 <p className="text-xs md:text-sm text-brand-textMuted mt-1 leading-relaxed">
-                  拍攝時間為 {timeFormatted}
-                  {isMakeup
-                    ? '，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。'
-                    : '，建議提前到達以便完成準備。'}
+                  {isStandalone
+                    ? `妝髮開始時間為 ${timeFormatted}，實際所需時間依所選妝髮方案而定。`
+                    : isMakeupAddon
+                      ? `拍攝時間為 ${timeFormatted}，含妝髮服務建議於拍攝時間前提前到達，實際時間依所選妝髮方案而定。`
+                      : `拍攝時間為 ${timeFormatted}，建議提前到達以便完成準備。`}
                 </p>
               </>
             )}
@@ -81,7 +86,7 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
       </p>
 
       <p className="text-sm text-brand-textMuted leading-relaxed">
-        若需取消、更改時段，請直接至預約確認信取消並重新預約。
+        若需取消或改期，請使用確認信中的取消連結；逾時請私訊官方 LINE（@614cnqns）。
       </p>
     </div>
   );
