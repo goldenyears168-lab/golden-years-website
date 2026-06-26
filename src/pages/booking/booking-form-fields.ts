@@ -9,9 +9,9 @@ function genderField(pos: number): AdditionalField {
     name: 'data_field_1',
     title: '您的性別',
     type: 'select',
-    values: '男生,女生',
+    values: '女生,男生,非二元性別',
     default: null,
-    is_null: '0',
+    is_null: '1',
     pos: String(pos),
   };
 }
@@ -20,7 +20,7 @@ function jobTitleField(pos: number): AdditionalField {
   return {
     id: '2',
     name: 'data_field_2',
-    title: '職稱或專業',
+    title: '您的職稱或專業領域 (若未畢業可填學校系級)',
     type: 'text',
     values: null,
     default: null,
@@ -33,9 +33,10 @@ function referralField(pos: number): AdditionalField {
   return {
     id: '3',
     name: 'data_field_3',
-    title: '從何知道好時有影',
+    title: '請問是從何知道我們的服務呢?',
     type: 'select',
-    values: 'Instagram,Google 搜尋,朋友介紹,以前拍過,其他',
+    values:
+      'Google搜尋,IG/FB,朋友介紹,家人,公司同事,之前曾經來過,認識攝影師或造型師,其他',
     default: null,
     is_null: '0',
     pos: String(pos),
@@ -46,11 +47,11 @@ function purposeField(pos: number): AdditionalField {
   return {
     id: '9',
     name: 'data_field_9',
-    title: '拍攝目的',
+    title: '您的拍攝目的或用途',
     type: 'text',
     values: null,
     default: null,
-    is_null: '1',
+    is_null: '0',
     pos: String(pos),
   };
 }
@@ -59,11 +60,11 @@ function marketingField(pos: number): AdditionalField {
   return {
     id: '10',
     name: 'data_field_10',
-    title: '距離上次拍攝多久',
+    title: '第一次聽到好時有影大約是多久之前呢',
     type: 'select',
-    values: '第一次拍攝,1 年內,1-3 年前,3 年以上',
+    values: '一個月內,三個月內,半年,一年,兩年,三年以上',
     default: null,
-    is_null: '1',
+    is_null: '0',
     pos: String(pos),
   };
 }
@@ -72,10 +73,10 @@ function noteField(pos: number): AdditionalField {
   return {
     id: '5',
     name: 'data_field_5',
-    title: '備註（選填）',
-    type: 'text',
+    title: '備註 (全身照、急件、請在此備註)',
+    type: 'textarea',
     values: null,
-    default: '請勿在此問問題，如有疑問或特殊需求，歡迎直接撥打電話或私訊 LINE',
+    default: null,
     is_null: '1',
     pos: String(pos),
   };
@@ -124,10 +125,10 @@ function extraIdPhotoField(pos: number): AdditionalField {
   return {
     id: '7',
     name: 'data_field_7',
-    title: '再加購證件照',
+    title: '原預約項目外是否再加購證件照（不含妝髮，+$399/張）',
     type: 'select',
     values:
-      '不需再加購,同一人，額外再加購一張證件照(+399/張),不同人，也要拍證件照(限不含妝髮，+399/張)',
+      '不需再加購,同一人，額外再加購一張證件照(+$399/張),不同人，也要拍證件照(限不含妝髮，+$399/張)',
     default: '不需再加購',
     is_null: '0',
     pos: String(pos),
@@ -142,13 +143,13 @@ function buildPhotoFields(opts: { idPhoto?: boolean; group?: boolean }): Additio
   const fields: AdditionalField[] = [
     genderField(1),
     jobTitleField(2),
-    referralField(3),
-    purposeField(4),
+    purposeField(3),
+    referralField(4),
     marketingField(5),
-    noteField(6),
   ];
-  if (opts.idPhoto) fields.splice(3, 0, extraIdPhotoField(4));
-  if (opts.group) fields.splice(3, 0, groupSizeField(4));
+  if (opts.group) fields.splice(2, 0, groupSizeField(3));
+  if (opts.idPhoto) fields.push(extraIdPhotoField(6));
+  fields.push(noteField(7));
   return reindex(fields);
 }
 
@@ -160,13 +161,13 @@ function buildMakeupFields(opts: {
     genderField(1),
     jobTitleField(2),
     makeupField(3),
-    referralField(4),
-    purposeField(5),
+    purposeField(4),
+    referralField(5),
     marketingField(6),
-    noteField(7),
   ];
-  if (opts.idPhoto) fields.splice(4, 0, extraIdPhotoField(5));
-  if (opts.group) fields.splice(4, 0, groupSizeField(5));
+  if (opts.group) fields.splice(2, 0, groupSizeField(3));
+  if (opts.idPhoto) fields.push(extraIdPhotoField(7));
+  fields.push(noteField(8));
   return reindex(fields);
 }
 
@@ -181,7 +182,7 @@ function buildStandaloneMakeupFields(): AdditionalField[] {
 
 const FIELDS_BY_SERVICE: Record<number, AdditionalField[]> = {
   3: buildPhotoFields({ idPhoto: true }),
-  4: buildPhotoFields({}),
+  4: buildPhotoFields({ idPhoto: true }),
   5: buildPhotoFields({ group: true }),
   12: buildMakeupFields({}),
   14: buildMakeupFields({ group: true }),

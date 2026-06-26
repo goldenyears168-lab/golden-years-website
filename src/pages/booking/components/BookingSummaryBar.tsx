@@ -10,31 +10,20 @@ export function BookingSummaryBar() {
   }
 
   return (
-    <div className="mb-6 p-3 md:p-4 bg-brand-cream rounded-lg border border-brand-creamDark flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+    <div className="mb-6 p-3 md:p-4 bg-brand-cream rounded-lg border border-brand-creamDark text-sm text-brand-charcoal">
       <span className="text-brand-textMuted">已選：</span>
-      <span className="font-medium text-brand-charcoal">
-        {state.externalService.title}
-      </span>
-      <span className="text-brand-textMuted text-xs">·</span>
-      <span className="text-brand-charcoal text-xs">
-        {state.selectedVariant.label}
-      </span>
-      {state.storeKey && (
-        <>
-          <span className="text-brand-textMuted text-xs">·</span>
-          <span className="text-brand-charcoal text-xs">
-            {STORES.find((s) => s.key === state.storeKey)?.label}
-          </span>
-        </>
-      )}
-      {state.selectedSlot && (
-        <>
-          <span className="text-brand-textMuted text-xs">·</span>
-          <span className="text-brand-charcoal text-xs">
-            {state.selectedSlot.date} {formatTime(state.selectedSlot.time)}
-          </span>
-        </>
-      )}
+      {[
+        state.externalService.title,
+        state.selectedVariant.label,
+        state.storeKey
+          ? STORES.find((s) => s.key === state.storeKey)?.label
+          : null,
+        state.selectedSlot
+          ? `${state.selectedSlot.date} ${formatTime(state.selectedSlot.time)}`
+          : null,
+      ]
+        .filter(Boolean)
+        .join('，')}
     </div>
   );
 }
