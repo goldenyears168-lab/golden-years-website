@@ -1,21 +1,25 @@
-export enum BookingErrorCode {
-  NETWORK_ERROR = 'NETWORK_ERROR',
-  SLOTS_UNAVAILABLE = 'SLOTS_UNAVAILABLE',
-  FIELDS_LOAD_FAILED = 'FIELDS_LOAD_FAILED',
-  SUBMIT_FAILED = 'SUBMIT_FAILED',
-  PROVIDER_NOT_FOUND = 'PROVIDER_NOT_FOUND',
-  API_ERROR = 'API_ERROR',
-  VALIDATION_ERROR = 'VALIDATION_ERROR',
-}
+export const BookingErrorCode = {
+  NETWORK_ERROR: 'NETWORK_ERROR',
+  SLOTS_UNAVAILABLE: 'SLOTS_UNAVAILABLE',
+  FIELDS_LOAD_FAILED: 'FIELDS_LOAD_FAILED',
+  SUBMIT_FAILED: 'SUBMIT_FAILED',
+  PROVIDER_NOT_FOUND: 'PROVIDER_NOT_FOUND',
+  API_ERROR: 'API_ERROR',
+  VALIDATION_ERROR: 'VALIDATION_ERROR',
+} as const;
+
+export type BookingErrorCode =
+  (typeof BookingErrorCode)[keyof typeof BookingErrorCode];
 
 export class BookingError extends Error {
-  constructor(
-    message: string,
-    public code: BookingErrorCode,
-    public statusCode?: number,
-  ) {
+  code: BookingErrorCode;
+  statusCode?: number;
+
+  constructor(message: string, code: BookingErrorCode, statusCode?: number) {
     super(message);
     this.name = 'BookingError';
+    this.code = code;
+    this.statusCode = statusCode;
   }
 }
 

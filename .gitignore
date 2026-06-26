@@ -2,4 +2,8 @@ node_modules
 out
 dist
 *.local
+.env
 .env.local
+.env.*.local
+.tmp-media-optimized/
+supabase/.temp/

@@ -156,7 +156,7 @@ export default function Pricing() {
   const [makeupRef, makeupVisible] = useScrollReveal<HTMLElement>();
   const [workshopRef, workshopVisible] = useScrollReveal<HTMLElement>();
   const [faqRef, faqVisible] = useScrollReveal<HTMLDivElement>();
-  const [ctaRef, ctaVisible] = useScrollReveal<HTMLElement>();
+  const [ctaRef, ctaVisible] = useScrollReveal();
 
   return (
     <>

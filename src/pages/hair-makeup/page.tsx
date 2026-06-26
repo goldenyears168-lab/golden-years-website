@@ -41,7 +41,7 @@ export default function MakeupServices() {
 
 /* ===================== Hero ===================== */
 function HeroSection() {
-  const [ref, visible] = useScrollReveal<HTMLElement>();
+  const [ref, visible] = useScrollReveal();
 
   return (
     <ParallaxHero
@@ -654,7 +654,7 @@ function BookingTimelineSection() {
 
 /* ===================== CTA ===================== */
 function CTASection() {
-  const [ref, visible] = useScrollReveal<HTMLElement>();
+  const [ref, visible] = useScrollReveal();
 
   return (
     <section className="py-20 md:py-28 bg-brand-navy text-white text-center">

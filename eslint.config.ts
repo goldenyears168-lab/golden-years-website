@@ -57,10 +57,6 @@ export default [
         JSX: 'readonly',
         IdleRequestCallback: 'readonly',
         __BASE_PATH__: 'readonly',
-        __IS_PREVIEW__: 'readonly',
-        __READDY_PROJECT_ID__: 'readonly',
-        __READDY_VERSION_ID__: 'readonly',
-        __READDY_AI_DOMAIN__: 'readonly',
       },
     },
     plugins: {
@@ -97,6 +93,12 @@ export default [
     },
     rules: {
       'local-route/route-element-jsx': 'error',
+    },
+  },
+  {
+    files: ['src/pages/booking/context/BookingContext.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   },
 ]

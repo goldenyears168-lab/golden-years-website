@@ -31,7 +31,7 @@ export default function PhotographyServices() {
   const [filterRef, filterVisible] = useScrollReveal<HTMLDivElement>();
   const [galleryRef, galleryVisible] = useScrollReveal<HTMLDivElement>();
   const [faqHeaderRef, faqHeaderVisible] = useScrollReveal<HTMLDivElement>();
-  const [ctaRef, ctaVisible] = useScrollReveal<HTMLElement>();
+  const [ctaRef, ctaVisible] = useScrollReveal();
 
   useEffect(() => {
     const cat = searchParams.get("category") || "all";
