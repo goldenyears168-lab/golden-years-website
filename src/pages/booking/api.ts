@@ -1,12 +1,10 @@
 import { supabase, SUPABASE_URL } from '@/lib/supabase';
 import { BookingError, BookingErrorCode } from './domain/errors';
 import { getBookingFormFields } from './booking-form-fields';
-import { buildBookRpcParams, buildClientFields, STORE_LABELS } from './booking-payload';
+import { buildClientFields, STORE_LABELS } from './booking-payload';
 import { displayFromServiceEnum, serviceIdToEnum } from './service-mapping';
 import type { AdditionalField, BookingResult } from './types';
 import type { StoreKey } from './config';
-
-const USE_APPOINTMENTS_V2 = import.meta.env.VITE_USE_APPOINTMENTS_V2 === 'true';
 
 function mapRpcError(message: string): string {
   if (
@@ -47,31 +45,12 @@ export async function healthCheck(): Promise<{
     return { ok: false, supabaseConfigured: false, diagnostics: 'Supabase 未設定' };
   }
 
-  if (USE_APPOINTMENTS_V2) {
-    const { error } = await supabase.rpc('list_available_slots', {
-      p_service: 'portrait',
-      p_store: '中山店',
-      p_date_from: '2099-01-01',
-      p_date_to: '2099-01-01',
-    });
-    if (error) {
-      return {
-        ok: false,
-        backend: 'supabase-v2',
-        supabaseConfigured: true,
-        diagnostics: error.message,
-      };
-    }
-    return { ok: true, backend: 'supabase-v2', supabaseConfigured: true };
-  }
-
-  const { error } = await supabase.rpc('list_website_slots', {
-    _service_id: 4,
-    _store_name: '中山店',
-    _date_from: '2099-01-01',
-    _date_to: '2099-01-01',
+  const { error } = await supabase.rpc('list_available_slots', {
+    p_service: 'portrait',
+    p_store: '中山店',
+    p_date_from: '2099-01-01',
+    p_date_to: '2099-01-01',
   });
-
   if (error) {
     return {
       ok: false,
@@ -80,7 +59,6 @@ export async function healthCheck(): Promise<{
       diagnostics: error.message,
     };
   }
-
   return { ok: true, backend: 'supabase', supabaseConfigured: true };
 }
 
@@ -153,33 +131,20 @@ export async function fetchSlots(
   dateFrom: string,
   dateTo: string,
 ): Promise<SlotsResponse> {
-  if (USE_APPOINTMENTS_V2) {
-    const service = serviceIdToEnum(serviceId);
-    if (!service) {
-      throw new BookingError('無效的服務項目', BookingErrorCode.API_ERROR);
-    }
-
-    const { data, error } = await supabase.rpc('list_available_slots', {
-      p_service: service,
-      p_store: STORE_LABELS[storeKey],
-      p_date_from: dateFrom,
-      p_date_to: dateTo,
-    });
-
-    throwIfRpcError(error);
-    return parseSlotRpcData(data);
+  const service = serviceIdToEnum(serviceId);
+  if (!service) {
+    throw new BookingError('無效的服務項目', BookingErrorCode.API_ERROR);
   }
 
-  const { data, error } = await supabase.rpc('list_website_slots', {
-    _service_id: serviceId,
-    _store_name: STORE_LABELS[storeKey],
-    _date_from: dateFrom,
-    _date_to: dateTo,
+  const { data, error } = await supabase.rpc('list_available_slots', {
+    p_service: service,
+    p_store: STORE_LABELS[storeKey],
+    p_date_from: dateFrom,
+    p_date_to: dateTo,
   });
 
   throwIfRpcError(error);
-  const slotsByDate = (data ?? {}) as Record<string, string[]>;
-  return { slotsByDate, slotIds: {} };
+  return parseSlotRpcData(data);
 }
 
 export async function fetchAdditionalFields(serviceId: number): Promise<AdditionalField[]> {
@@ -196,66 +161,40 @@ export type BookPayload = {
   additional: Record<string, string>;
 };
 
-type BookRpcResult = {
-  id: string;
-  code: string;
-  start_date_time: string;
-  end_date_time: string;
-  is_confirmed: string;
-};
-
 export async function submitBooking(payload: BookPayload): Promise<BookingResult> {
-  if (USE_APPOINTMENTS_V2) {
-    if (!payload.appointmentId) {
-      throw new BookingError(
-        '找不到此時段，請重新整理後再試',
-        BookingErrorCode.API_ERROR,
-      );
-    }
-
-    const clientFields = buildClientFields(payload);
-    const { data, error } = await supabase.rpc('book_slot', {
-      p_appointment_id: payload.appointmentId,
-      p_client_name: payload.client.name,
-      p_client_email: payload.client.email,
-      p_client_phone: payload.client.phone,
-      p_client_fields: clientFields,
-    });
-
-    throwIfRpcError(error);
-
-    const result = data as { code?: string; appointment_id?: string };
-    const code = result.code ?? '';
-    const appointmentId = result.appointment_id ?? payload.appointmentId;
-    const startDateTime = `${payload.date} ${payload.time.slice(0, 5)}`;
-
-    return {
-      require_confirm: false,
-      bookings: [
-        {
-          id: appointmentId,
-          code,
-          start_date_time: startDateTime,
-          end_date_time: startDateTime,
-          is_confirmed: '1',
-          hash: appointmentId,
-        },
-      ],
-    };
+  if (!payload.appointmentId) {
+    throw new BookingError(
+      '找不到此時段，請重新整理後再試',
+      BookingErrorCode.API_ERROR,
+    );
   }
 
-  const params = buildBookRpcParams(payload);
-  const { data, error } = await supabase.rpc('book_website_slot', params);
+  const clientFields = buildClientFields(payload);
+  const { data, error } = await supabase.rpc('book_slot', {
+    p_appointment_id: payload.appointmentId,
+    p_client_name: payload.client.name,
+    p_client_email: payload.client.email,
+    p_client_phone: payload.client.phone,
+    p_client_fields: clientFields,
+  });
 
   throwIfRpcError(error);
 
-  const booking = data as BookRpcResult;
+  const result = data as { code?: string; appointment_id?: string };
+  const code = result.code ?? '';
+  const appointmentId = result.appointment_id ?? payload.appointmentId;
+  const startDateTime = `${payload.date} ${payload.time.slice(0, 5)}`;
+
   return {
     require_confirm: false,
     bookings: [
       {
-        ...booking,
-        hash: booking.id,
+        id: appointmentId,
+        code,
+        start_date_time: startDateTime,
+        end_date_time: startDateTime,
+        is_confirmed: '1',
+        hash: appointmentId,
       },
     ],
   };
@@ -314,27 +253,17 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
 }
 
 export async function fetchBookingByToken(token: string): Promise<WebsiteBookingPreview> {
-  if (USE_APPOINTMENTS_V2) {
-    const { data, error } = await supabase.rpc('get_appointment', { _token: token });
-    throwIfRpcError(error);
-    return mapAppointmentPreview((data ?? {}) as Record<string, unknown>);
-  }
-
-  const { data, error } = await supabase.rpc('get_website_booking', { _token: token });
+  const { data, error } = await supabase.rpc('get_appointment', { _token: token });
   throwIfRpcError(error);
-  return data as WebsiteBookingPreview;
+  return mapAppointmentPreview((data ?? {}) as Record<string, unknown>);
 }
 
 export async function cancelBookingByToken(token: string): Promise<WebsiteBookingPreview> {
-  if (USE_APPOINTMENTS_V2) {
-    const { error } = await supabase.rpc('cancel_appointment', { _token: token });
-    throwIfRpcError(error);
-    return fetchBookingByToken(token);
-  }
-
-  const { data, error } = await supabase.rpc('cancel_website_booking', { _token: token });
+  const { data, error } = await supabase.rpc('cancel_appointment', { _token: token });
   throwIfRpcError(error);
-  return data as WebsiteBookingPreview;
+  // cancel_appointment clears code; refetch by uuid from RPC response, not the URL token (often code).
+  const appointmentId = (data as { appointment_id?: string } | null)?.appointment_id;
+  return fetchBookingByToken(appointmentId ?? token);
 }
 
 export function formatTime(t: string): string {
@@ -375,5 +304,3 @@ export {
   isStandaloneMakeupLabel,
   subtractMinutesFromTime,
 } from './arrival-time';
-
-export { USE_APPOINTMENTS_V2 };

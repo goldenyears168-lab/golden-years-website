@@ -32,7 +32,6 @@ jobs:
         env:
           VITE_PUBLIC_SUPABASE_URL: ${{ secrets.VITE_PUBLIC_SUPABASE_URL }}
           VITE_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.VITE_PUBLIC_SUPABASE_ANON_KEY }}
-          VITE_USE_APPOINTMENTS_V2: 'true'
 
       - name: Verify build output
         run: |
