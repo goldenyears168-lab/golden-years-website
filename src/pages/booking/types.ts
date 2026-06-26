@@ -12,6 +12,7 @@ export type AdditionalField = {
 export type SelectedSlot = {
   date: string;
   time: string;
+  appointmentId?: string;
 };
 
 export type ClientData = {

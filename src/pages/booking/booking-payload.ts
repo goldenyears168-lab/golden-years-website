@@ -72,6 +72,31 @@ function parseAdditional(additional: Record<string, string> | undefined) {
   };
 }
 
+export function buildClientFields(input: {
+  serviceId: number;
+  additional: Record<string, string>;
+}): Record<string, unknown> {
+  const parsed = parseAdditional(input.additional);
+  const fields: Record<string, unknown> = {};
+
+  if (parsed.gender) fields.gender = parsed.gender;
+  if (parsed.job_title) fields.job_title = parsed.job_title;
+  if (parsed.referral) fields.referral = parsed.referral;
+  if (parsed.purpose) fields.purpose = parsed.purpose;
+  if (parsed.marketing_duration) fields.marketing_duration = parsed.marketing_duration;
+  if (parsed.customer_note) fields.customer_note = parsed.customer_note;
+  if (parsed.extra_id_photo) fields.extra_id_photo = parsed.extra_id_photo;
+  if (parsed.group_size != null) fields.group_size = parsed.group_size;
+
+  const usesMakeupField = [12, 14, 16, 17].includes(input.serviceId);
+  if (usesMakeupField && parsed.makeup_detail) {
+    const meta = SERVICE_META[input.serviceId];
+    fields.makeup_addon = mapMakeupAddon(parsed.makeup_detail ?? undefined, meta?.makeupAddon ?? '');
+  }
+
+  return fields;
+}
+
 export type BookRpcParams = {
   _service_id: number;
   _store_name: string;

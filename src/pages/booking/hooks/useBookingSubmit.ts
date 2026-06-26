@@ -63,6 +63,7 @@ export function useBookingSubmit(
           storeKey: state.storeKey as StoreKey,
           date: state.selectedSlot.date,
           time: state.selectedSlot.time,
+          appointmentId: state.selectedSlot.appointmentId,
           client,
           additional: enrichedAdditional,
         });

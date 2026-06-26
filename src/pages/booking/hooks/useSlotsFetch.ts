@@ -5,6 +5,7 @@ import type { StoreKey } from '../config';
 
 export type UseSlotsFetchResult = {
   slotsByDate: Record<string, string[]>;
+  slotIds: Record<string, Record<string, string>>;
   loading: boolean;
   error: string | null;
   setSlotsByDate: React.Dispatch<React.SetStateAction<Record<string, string[]>>>;
@@ -20,6 +21,7 @@ export function useSlotsFetch(
   allowedTimes?: string[],
 ): UseSlotsFetchResult {
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
+  const [slotIds, setSlotIds] = useState<Record<string, Record<string, string>>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Track cache key so we re-fetch when service or store changes
@@ -36,21 +38,31 @@ export function useSlotsFetch(
     setError(null);
 
     fetchSlots(serviceId, storeKey as StoreKey, dateFrom, dateTo)
-      .then(({ slotsByDate: matrix }) => {
+      .then(({ slotsByDate: matrix, slotIds: ids }) => {
         if (cancelled) return;
 
         // Apply allowedTimes filter if specified
         if (allowedTimes && allowedTimes.length > 0) {
           const filtered: Record<string, string[]> = {};
+          const filteredIds: Record<string, Record<string, string>> = {};
           for (const [date, times] of Object.entries(matrix ?? {})) {
             const matched = times.filter((t) => allowedTimes.includes(t.slice(0, 5)));
             if (matched.length > 0) {
               filtered[date] = matched;
+              if (ids[date]) {
+                filteredIds[date] = Object.fromEntries(
+                  matched
+                    .filter((time) => ids[date]?.[time])
+                    .map((time) => [time, ids[date]![time]!]),
+                );
+              }
             }
           }
           setSlotsByDate(filtered);
+          setSlotIds(filteredIds);
         } else {
           setSlotsByDate(matrix ?? {});
+          setSlotIds(ids ?? {});
         }
       })
       .catch((e) => {
@@ -76,9 +88,10 @@ export function useSlotsFetch(
 
   const reset = useCallback(() => {
     setSlotsByDate({});
+    setSlotIds({});
     setError(null);
     loadedRef.current = null;
   }, []);
 
-  return { slotsByDate, loading, error, setSlotsByDate, reset };
+  return { slotsByDate, slotIds, loading, error, setSlotsByDate, reset };
 }

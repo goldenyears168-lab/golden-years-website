@@ -70,6 +70,7 @@ export function BookingStepContent({
           <SlotsView
             dates={dateRange.dates}
             slotsByDate={slotsFetch.slotsByDate}
+            slotIds={slotsFetch.slotIds}
             loading={slotsFetch.loading}
             error={slotsFetch.error}
             isStandaloneMakeup={state.externalService?.isStandaloneMakeup}

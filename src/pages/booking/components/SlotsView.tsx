@@ -5,12 +5,14 @@ import { formatTime, getDateRange, weekdayLabel } from '../api';
 export function SlotsView({
   dates,
   slotsByDate,
+  slotIds = {},
   loading,
   error,
   isStandaloneMakeup = false,
 }: {
   dates: string[];
   slotsByDate: Record<string, string[]>;
+  slotIds?: Record<string, Record<string, string>>;
   loading: boolean;
   error: string | null;
   isStandaloneMakeup?: boolean;
@@ -78,7 +80,14 @@ export function SlotsView({
   const handleTimeClick = (time: string) => {
     if (!activeDate || selectedTime) return;
     setSelectedTime(time);
-    dispatch({ type: 'SELECT_SLOT', slot: { date: activeDate, time } });
+    dispatch({
+      type: 'SELECT_SLOT',
+      slot: {
+        date: activeDate,
+        time,
+        appointmentId: slotIds[activeDate]?.[time.slice(0, 5)],
+      },
+    });
   };
 
   if (loading) {
