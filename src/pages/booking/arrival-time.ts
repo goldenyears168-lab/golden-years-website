@@ -150,11 +150,11 @@ export function getMakeupStyleLabel(
 
 /** 加購妝髮表單選項（文案與提前量一致） */
 export const ADDON_MAKEUP_OPTIONS = [
-  `A. 女生基礎妝_加購價800元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.basic)}到店`,
-  `B. 男生基礎妝_加購價600元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.basic)}到店`,
-  `C. 女生精緻妝髮_加購價1500元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.premium)}到店`,
-  `D. 男生精緻妝髮_加購價1200元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.premium)}到店`,
-  `E. 女生訂製妝髮_加購價3000元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.custom)}到店`,
+  `A.女生基礎妝_加購價800元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.basic)}到店`,
+  `B.男生基礎妝_加購價600元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.basic)}到店`,
+  `C.女生精緻妝髮_加購價1500元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.premium)}到店`,
+  `D.男生精緻妝髮_加購價1200元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.premium)}到店`,
+  `E.女生訂製妝髮_加購價3000元 請於拍攝時間提前${formatEarlyDurationCompact(MAKEUP_EARLY_MINUTES.custom)}到店`,
 ] as const;
 
 export const STANDALONE_MAKEUP_OPTIONS = [

@@ -20,7 +20,7 @@ function jobTitleField(pos: number): AdditionalField {
   return {
     id: '2',
     name: 'data_field_2',
-    title: '您的職稱或專業領域 (若未畢業可填學校系級)',
+    title: '您的職稱或專業領域 （若未畢業可填學校系級）',
     type: 'text',
     values: null,
     default: null,
@@ -33,7 +33,7 @@ function referralField(pos: number): AdditionalField {
   return {
     id: '3',
     name: 'data_field_3',
-    title: '請問是從何知道我們的服務呢?',
+    title: '請問是從何知道我們的服務呢？',
     type: 'select',
     values:
       'Google搜尋,IG/FB,朋友介紹,家人,公司同事,之前曾經來過,認識攝影師或造型師,其他',
@@ -73,7 +73,7 @@ function noteField(pos: number): AdditionalField {
   return {
     id: '5',
     name: 'data_field_5',
-    title: '備註 (全身照、急件、請在此備註)',
+    title: '備註（全身照、急件、請在此備註）',
     type: 'textarea',
     values: null,
     default: null,
@@ -86,7 +86,7 @@ function makeupField(pos: number): AdditionalField {
   return {
     id: '4',
     name: 'data_field_4',
-    title: '化妝服務',
+    title: '化妝服務確認',
     type: 'select',
     values: ADDON_MAKEUP_OPTIONS.join(','),
     default: null,
@@ -125,10 +125,10 @@ function extraIdPhotoField(pos: number): AdditionalField {
   return {
     id: '7',
     name: 'data_field_7',
-    title: '原預約項目外是否再加購證件照（不含妝髮，+$399/張）',
+    title: '原預約項目外是否再加購證件照（電子檔含精修，無沖印實體照片）*請多留30分鐘時間',
     type: 'select',
     values:
-      '不需再加購,同一人，額外再加購一張證件照(+$399/張),不同人，也要拍證件照(限不含妝髮，+$399/張)',
+      '不需再加購,同一人，額外再加購一張證件照(+399/張),不同人，也要拍證件照(限不含妝髮，+399/張)',
     default: '不需再加購',
     is_null: '0',
     pos: String(pos),
@@ -160,10 +160,10 @@ function buildMakeupFields(opts: {
   const fields: AdditionalField[] = [
     genderField(1),
     jobTitleField(2),
-    makeupField(3),
-    purposeField(4),
-    referralField(5),
-    marketingField(6),
+    purposeField(3),
+    referralField(4),
+    marketingField(5),
+    makeupField(6),
   ];
   if (opts.group) fields.splice(2, 0, groupSizeField(3));
   if (opts.idPhoto) fields.push(extraIdPhotoField(7));
