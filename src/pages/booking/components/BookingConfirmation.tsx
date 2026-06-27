@@ -86,7 +86,7 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
       </p>
 
       <p className="text-sm text-brand-textMuted leading-relaxed">
-        若需取消或改期，請使用確認信中的取消連結；逾時請私訊官方 LINE（@614cnqns）。
+        若需取消或改期，請使用確認信中的取消連結；逾時請私訊官方 LINE（@goldenyearsphoto）。
       </p>
     </div>
   );

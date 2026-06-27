@@ -161,7 +161,7 @@ export const ctaData = {
   buttons: [
     { label: "查看方案", href: "/price-list", variant: "primary" as const },
     { label: "線上預約", href: "/booking", variant: "outline" as const },
-    { label: "LINE詢問", href: "https://line.me/R/ti/p/@614cnqns", variant: "outline" as const, external: true },
+    { label: "LINE詢問", href: "https://line.me/R/ti/p/@goldenyearsphoto", variant: "outline" as const, external: true },
   ],
 };
 

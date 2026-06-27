@@ -62,6 +62,6 @@ export const STORES: { key: StoreKey; label: string }[] = [
 
 export const DAYS_AHEAD = 14;
 
-export const LINE_OFFICIAL_URL = 'https://line.me/R/ti/p/@614cnqns';
+export const LINE_OFFICIAL_URL = 'https://line.me/R/ti/p/@goldenyearsphoto';
 
 export const STORAGE_KEY = 'gy_booking_summary';

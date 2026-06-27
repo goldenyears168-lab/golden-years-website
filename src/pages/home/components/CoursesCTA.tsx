@@ -30,7 +30,7 @@ export default function CoursesCTA() {
           <p className="text-xs text-brand-textMuted mt-4">
             企業包班、社團合作歡迎
             <a
-              href="https://line.me/R/ti/p/@614cnqns"
+              href="https://line.me/R/ti/p/@goldenyearsphoto"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-gold hover:underline mx-1"

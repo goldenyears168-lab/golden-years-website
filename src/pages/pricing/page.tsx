@@ -355,7 +355,7 @@ export default function Pricing() {
                 線上預約
               </Link>
               <a
-                href="https://line.me/R/ti/p/@614cnqns"
+                href="https://line.me/R/ti/p/@goldenyearsphoto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline border-white text-white hover:bg-white hover:text-brand-navy w-full sm:w-auto whitespace-nowrap"

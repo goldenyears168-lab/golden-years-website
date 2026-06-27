@@ -539,7 +539,7 @@ const standaloneMakeup: ServiceDetailData = {
     {
       title: '預約須知',
       content: `· 請選擇妝髮開始時間，非拍攝時間
-· 如需取消或改期，請私訊官方 LINE（@614cnqns）
+· 如需取消或改期，請私訊官方 LINE（@goldenyearsphoto）
 · 收到預約確認信才代表預約成功`,
     },
   ],

@@ -372,7 +372,7 @@ function ComparisonSection() {
 
         <p className="text-center text-xs text-brand-textMuted mt-6">
           詳細方案說明請見下方，或
-          <a href="https://line.me/R/ti/p/@614cnqns" target="_blank" rel="noopener noreferrer" className="text-brand-gold hover:underline">
+          <a href="https://line.me/R/ti/p/@goldenyearsphoto" target="_blank" rel="noopener noreferrer" className="text-brand-gold hover:underline">
             私訊 LINE 官方帳號
           </a>
           詢問
@@ -674,7 +674,7 @@ function CTASection() {
             線上預約
           </Link>
           <a
-            href="https://line.me/R/ti/p/@614cnqns"
+            href="https://line.me/R/ti/p/@goldenyearsphoto"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/70 text-sm hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors whitespace-nowrap"

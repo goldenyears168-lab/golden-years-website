@@ -41,7 +41,7 @@ export default function Footer() {
                 label: "Facebook",
               },
               {
-                href: "https://line.me/R/ti/p/@614cnqns",
+                href: "https://line.me/R/ti/p/@goldenyearsphoto",
                 icon: "ri-line-fill",
                 label: "LINE",
               },
