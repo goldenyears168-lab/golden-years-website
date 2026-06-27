@@ -14,8 +14,6 @@
     <meta name="geo.placename" content="Taipei" />
     <link rel="canonical" href="https://goldenyearsphoto.com/" />
     <meta http-equiv="last-modified" content="2026-05-23" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://photo.goldenyearsphoto.com">
     <link rel="dns-prefetch" href="https://photo.goldenyearsphoto.com">
     <!-- Critical CSS inline：防止 FOUT 與 CLS，首屏在 CSS 載入前就能正確渲染 -->
@@ -45,19 +43,14 @@
       .container-brand { width: 100%; max-width: 1152px; margin: 0 auto; padding: 0 16px; }
       @media (min-width: 768px) { .container-brand { padding: 0 32px; } }
     </style>
-    <!-- LCP：首頁 Hero 第一幀（與 src/config/images.ts home.hero[0] 同步） -->
-    <link rel="preload" as="image" href="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp" imagesrcset="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=640 640w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=960 960w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=1280 1280w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=1920 1920w" imagesizes="100vw" fetchpriority="high" />
+    <!-- LCP：首頁 Hero 第一幀，使用 AVIF（與 React HeroSection 的 source[type=avif] 同步） -->
+    <link rel="preload" as="image" href="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif" imagesrcset="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=640 640w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=960 960w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=1280 1280w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=1920 1920w" imagesizes="100vw" fetchpriority="high" />
+    <!-- Logo preload：消除 Header logo 的 DNS+TCP 延遲 -->
+    <link rel="preload" as="image" href="https://photo.goldenyearsphoto.com/brand/logo-header.webp" fetchpriority="high" />
 
-    <!-- 首屏關鍵字體：只載 Noto Sans TC + Inter，最小化首屏阻塞 -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap"></noscript>
-
-    <!-- 次要字體：Playfair Display + Noto Serif SC，延後到 load 後載入 -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500&display=swap"></noscript>
-    <!-- Icon fonts: async load -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"></noscript>
+    <!-- 字型從同域 Cloudflare 提供，無 Google Fonts 依賴 -->
+    <link rel="preload" as="font" href="/fonts/inter-latin-400-normal.woff2" crossorigin type="font/woff2">
+    <link rel="preload" as="font" href="/fonts/inter-latin-500-normal.woff2" crossorigin type="font/woff2">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -131,16 +124,20 @@
     <!-- 首屏靜態 prerender：讓瀏覽器在解析 HTML 時就發現 LCP 圖片與內容，React 掛載後會覆蓋 -->
     <div id="root">
       <div style="position:fixed;inset:0;width:100%;height:100vh;overflow:hidden;z-index:0;">
-        <img
-          src="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp"
-          alt="好時有影台北專業形象照攝影作品"
-          style="width:100%;height:100%;object-fit:cover;"
-          fetchpriority="high"
-          loading="eager"
-          decoding="async"
-          width="1920"
-          height="1280"
-        />
+        <picture>
+          <source type="image/avif" srcset="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=640 640w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=960 960w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=1280 1280w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?format=avif&w=1920 1920w" sizes="100vw" />
+          <source type="image/webp" srcset="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=640 640w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=960 960w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=1280 1280w, https://photo.goldenyearsphoto.com/home/hero/slide-003.webp?w=1920 1920w" sizes="100vw" />
+          <img
+            src="https://photo.goldenyearsphoto.com/home/hero/slide-003.webp"
+            alt="好時有影台北專業形象照攝影作品"
+            style="width:100%;height:100%;object-fit:cover;"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            width="1920"
+            height="1280"
+          />
+        </picture>
       </div>
       <div style="position:fixed;inset:0;width:100%;height:100vh;z-index:1;background:linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.5));"></div>
       <div style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:0 16px;text-align:center;">

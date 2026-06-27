@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBooking } from '../context/useBooking';
 import { STORES, STORAGE_KEY, type StoreKey } from '../config';
 import { submitBooking, calculateArrivalTime } from '../api';
@@ -14,6 +15,7 @@ export function useBookingSubmit(
   setSlotsByDate: React.Dispatch<React.SetStateAction<Record<string, string[]>>>,
 ): UseBookingSubmitResult {
   const { state, dispatch } = useBooking();
+  const navigate = useNavigate();
   const fieldsRef = useRef(fields);
   fieldsRef.current = fields;
   const setSlotsRef = useRef(setSlotsByDate);
@@ -59,7 +61,7 @@ export function useBookingSubmit(
 
       try {
         const result = await submitBooking({
-          serviceId: state.selectedVariant.simplybookId,
+          service: state.selectedVariant.service,
           storeKey: state.storeKey as StoreKey,
           date: state.selectedSlot.date,
           time: state.selectedSlot.time,
@@ -104,9 +106,7 @@ export function useBookingSubmit(
         };
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(summary));
-        if (window.REACT_APP_NAVIGATE) {
-          window.REACT_APP_NAVIGATE('/booking/thank-you');
-        }
+        navigate(`/booking/thank-you?code=${encodeURIComponent(booking.code)}`);
 
         setSlotsRef.current((prev) => {
           const day = prev[state.selectedSlot!.date] ?? [];
@@ -135,6 +135,7 @@ export function useBookingSubmit(
       state.selectedSlot,
       state.externalService,
       dispatch,
+      navigate,
     ],
   );
 

@@ -9,9 +9,21 @@ function asyncCssPlugin() {
   return {
     name: "async-css",
     transformIndexHtml(html: string) {
-      return html.replace(
+      // Protect existing <noscript> blocks from being double-processed
+      const noscriptBlocks: string[] = [];
+      const withPlaceholders = html.replace(/<noscript>[\s\S]*?<\/noscript>/gi, (match) => {
+        noscriptBlocks.push(match);
+        return `<!--__NOSCRIPT_${noscriptBlocks.length - 1}__-->`;
+      });
+
+      const transformed = withPlaceholders.replace(
         /<link rel="stylesheet"([^>]*)>/g,
         '<link rel="stylesheet"$1 media="print" onload="this.media=\'all\'" /><noscript><link rel="stylesheet"$1 /></noscript>'
+      );
+
+      return transformed.replace(
+        /<!--__NOSCRIPT_(\d+)__-->/g,
+        (_: string, i: string) => noscriptBlocks[parseInt(i)]
       );
     },
   };

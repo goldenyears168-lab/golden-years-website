@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { fetchAdditionalFields } from '../api';
 import { BookingError, BookingErrorMessages } from '../domain/errors';
+import type { AppointmentService } from '../service-mapping';
 import type { AdditionalField } from '../types';
 
 export type UseFieldsFetchResult = {
@@ -11,19 +12,19 @@ export type UseFieldsFetchResult = {
   reset: () => void;
 };
 
-export function useFieldsFetch(serviceId: number | null, enabled: boolean): UseFieldsFetchResult {
+export function useFieldsFetch(service: AppointmentService | null, enabled: boolean): UseFieldsFetchResult {
   const [fields, setFields] = useState<AdditionalField[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!enabled || !serviceId) return;
+    if (!enabled || !service) return;
 
     let cancelled = false;
     setLoading(true);
     setError(null);
 
-    fetchAdditionalFields(serviceId)
+    fetchAdditionalFields(service)
       .then((f) => {
         if (!cancelled) setFields(f);
       })
@@ -43,7 +44,7 @@ export function useFieldsFetch(serviceId: number | null, enabled: boolean): UseF
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId]);
+  }, [enabled, service]);
 
   const reset = useCallback(() => {
     setFields([]);

@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Logo — original colour, no invert */}
           <Link to="/" className="mb-5">
             <img
-              src="https://storage.readdy-site.link/project_files/837246a8-cef0-4cee-9ec0-8c040e316fc2/de8fcc45-8ee7-4674-8d6b-186e029f15ce_logo.jpg?v=93ac2161747426618b1e90281be62c65"
+              src="https://photo.goldenyearsphoto.com/brand/logo-header.webp"
               alt="好時有影"
               className="h-14 md:h-16 w-auto object-contain"
               width="160"

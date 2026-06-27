@@ -1,5 +1,5 @@
 import { useBooking } from '../context/useBooking';
-import { DAYS_AHEAD, SERVICES } from '../config';
+import { DAYS_AHEAD } from '../config';
 import { getDetailKey, SERVICE_DETAILS } from '../data/service-details';
 import { ServiceStep } from './ServiceStep';
 import { StoreStep } from './StoreStep';
@@ -33,8 +33,8 @@ export function BookingStepContent({
     if (!state.externalService || !state.selectedVariant) return null;
     if (state.externalService.isStandaloneMakeup) return 'standalone-makeup';
     const variantType: 'basic' | 'makeup' =
-      state.selectedVariant.simplybookId ===
-      state.externalService.variants.basic.simplybookId
+      state.selectedVariant.service ===
+      state.externalService.variants.basic.service
         ? 'basic'
         : 'makeup';
     return getDetailKey(state.externalService.id, variantType);

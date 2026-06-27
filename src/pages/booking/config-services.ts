@@ -1,8 +1,9 @@
+import type { AppointmentService } from './service-mapping';
 import type { StoreKey } from './config';
 
 export type ServiceVariant = {
   label: string;
-  simplybookId: number;
+  service: AppointmentService;
 };
 
 export type ExternalService = {
@@ -37,8 +38,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '職涯與商務',
     categoryIcon: 'ri-briefcase-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -52,8 +53,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '職涯與商務',
     categoryIcon: 'ri-briefcase-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髦',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -69,8 +70,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -84,8 +85,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -99,8 +100,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -114,8 +115,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 5 },
-      makeup: { label: '加購妝髮', simplybookId: 14 },
+      basic:  { label: '僅攝影服務', service: 'group_photo' },
+      makeup: { label: '加購妝髮',   service: 'group_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 1199,
@@ -129,8 +130,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 5 },
-      makeup: { label: '加購妝髮', simplybookId: 14 },
+      basic:  { label: '僅攝影服務', service: 'group_photo' },
+      makeup: { label: '加購妝髮',   service: 'group_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 1199,
@@ -144,8 +145,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 5 },
-      makeup: { label: '加購妝髮', simplybookId: 14 },
+      basic:  { label: '僅攝影服務', service: 'group_photo' },
+      makeup: { label: '加購妝髮',   service: 'group_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 1199,
@@ -159,8 +160,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 4 },
-      makeup: { label: '加購妝髮', simplybookId: 12 },
+      basic:  { label: '僅攝影服務', service: 'portrait' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,
@@ -174,8 +175,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '生命里程碑',
     categoryIcon: 'ri-heart-3-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 5 },
-      makeup: { label: '加購妝髮', simplybookId: 14 },
+      basic:  { label: '僅攝影服務', service: 'group_photo' },
+      makeup: { label: '加購妝髮',   service: 'group_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 1199,
@@ -191,8 +192,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '韓式證件照',
     categoryIcon: 'ri-id-card-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 3 },
-      makeup: { label: '加購妝髮', simplybookId: 16 },
+      basic:  { label: '僅攝影服務', service: 'id_photo' },
+      makeup: { label: '加購妝髮',   service: 'id_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 399,
@@ -206,8 +207,8 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '韓式證件照',
     categoryIcon: 'ri-id-card-line',
     variants: {
-      basic: { label: '僅攝影服務', simplybookId: 3 },
-      makeup: { label: '加購妝髮', simplybookId: 16 },
+      basic:  { label: '僅攝影服務', service: 'id_photo' },
+      makeup: { label: '加購妝髮',   service: 'id_photo_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 399,
@@ -223,7 +224,7 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryLabel: '妝髮服務',
     categoryIcon: 'ri-scissors-cut-line',
     variants: {
-      basic: { label: '預約單妝髮', simplybookId: 17 },
+      basic: { label: '預約單妝髮', service: 'makeup_only' },
     },
     isStandaloneMakeup: true,
     isLineRedirect: false,

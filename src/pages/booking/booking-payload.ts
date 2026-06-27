@@ -1,19 +1,27 @@
 import type { StoreKey } from './config';
+import type { AppointmentService } from './service-mapping';
 
 export const STORE_LABELS: Record<StoreKey, string> = {
   zhongshan: '中山店',
   gongguan: '公館店',
 };
 
-const SERVICE_META: Record<number, { shootType: string; makeupAddon: string }> = {
-  3: { shootType: '證件照', makeupAddon: '不需加購' },
-  4: { shootType: '形象照', makeupAddon: '不需加購' },
-  5: { shootType: '合照', makeupAddon: '不需加購' },
-  12: { shootType: '形象照', makeupAddon: '加購妝髮' },
-  14: { shootType: '合照', makeupAddon: '加購妝髮' },
-  16: { shootType: '證件照', makeupAddon: '加購妝髮' },
-  17: { shootType: '單妝髮', makeupAddon: '加購妝髮' },
+const SERVICE_META: Record<AppointmentService, { shootType: string; makeupAddon: string }> = {
+  id_photo:           { shootType: '證件照', makeupAddon: '不需加購' },
+  portrait:           { shootType: '形象照', makeupAddon: '不需加購' },
+  group_photo:        { shootType: '合照',   makeupAddon: '不需加購' },
+  portrait_makeup:    { shootType: '形象照', makeupAddon: '加購妝髮' },
+  group_photo_makeup: { shootType: '合照',   makeupAddon: '加購妝髮' },
+  id_photo_makeup:    { shootType: '證件照', makeupAddon: '加購妝髮' },
+  makeup_only:        { shootType: '單妝髮', makeupAddon: '加購妝髮' },
 };
+
+const MAKEUP_SERVICES = new Set<AppointmentService>([
+  'id_photo_makeup',
+  'portrait_makeup',
+  'group_photo_makeup',
+  'makeup_only',
+]);
 
 /** 對齊 haoshi-erp/src/shared/lib/makeup/catalog.ts WEBSITE_ADDON_TO_PLAN_ID + tier */
 export type MakeupPlanTier = 'basic' | 'standard' | 'premium';
@@ -22,7 +30,7 @@ const ADDON_TO_MAKEUP_PLAN_TIER: Record<string, MakeupPlanTier> = {
   女生基礎妝: 'basic',
   男生基礎妝: 'basic',
   女生精緻妝髮: 'standard',
-  男生精緻妝髮: 'standard',
+  男生精緻妝髦: 'standard',
   女生訂製妝髮: 'premium',
 };
 
@@ -31,17 +39,17 @@ const MAKEUP_ADDON_MAP: Record<string, string> = {
   'A.女生基礎妝_加購價800元 請於拍攝時間提前40分鐘到店': '女生基礎妝',
   'B.男生基礎妝_加購價600元 請於拍攝時間提前40分鐘到店': '男生基礎妝',
   'C.女生精緻妝髮_加購價1500元 請於拍攝時間提前1小時10分鐘到店': '女生精緻妝髮',
-  'D.男生精緻妝髮_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髮',
+  'D.男生精緻妝髦_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髦',
   'E.女生訂製妝髮_加購價3000元 請於拍攝時間提前1小時40分鐘到店': '女生訂製妝髮',
   'A. 女生基礎妝_加購價800元 請於拍攝時間提前40分鐘到店': '女生基礎妝',
   'B. 男生基礎妝_加購價600元 請於拍攝時間提前40分鐘到店': '男生基礎妝',
   'C. 女生精緻妝髮_加購價1500元 請於拍攝時間提前1小時10分鐘到店': '女生精緻妝髮',
-  'D. 男生精緻妝髮_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髮',
+  'D. 男生精緻妝髦_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髦',
   'E. 女生訂製妝髮_加購價3000元 請於拍攝時間提前1小時40分鐘到店': '女生訂製妝髮',
   'A. 女生基礎妝 $800（約 30 分鐘）': '女生基礎妝',
   'B. 男生基礎妝 $600（約 30 分鐘）': '男生基礎妝',
   'C. 女生精緻妝髮 $1,500（約 1 小時）': '女生精緻妝髮',
-  'D. 男生精緻妝髮 $1,200（約 1 小時）': '男生精緻妝髮',
+  'D. 男生精緻妝髦 $1,200（約 1 小時）': '男生精緻妝髦',
   'E. 女生訂製妝髮 $3,000（約 1.5 小時）': '女生訂製妝髮',
 };
 
@@ -60,7 +68,7 @@ function mapMakeupAddon(raw: string | undefined, base: string): string {
   if (raw.includes('女生基礎妝')) return '女生基礎妝';
   if (raw.includes('男生基礎妝')) return '男生基礎妝';
   if (raw.includes('女生精緻妝髮')) return '女生精緻妝髮';
-  if (raw.includes('男生精緻妝髮')) return '男生精緻妝髮';
+  if (raw.includes('男生精緻妝髦')) return '男生精緻妝髦';
   if (raw.includes('女生訂製妝髮')) return '女生訂製妝髮';
   return raw.trim();
 }
@@ -89,7 +97,7 @@ function parseAdditional(additional: Record<string, string> | undefined) {
 }
 
 export function buildClientFields(input: {
-  serviceId: number;
+  service: AppointmentService;
   additional: Record<string, string>;
 }): Record<string, unknown> {
   const parsed = parseAdditional(input.additional);
@@ -104,76 +112,13 @@ export function buildClientFields(input: {
   if (parsed.extra_id_photo) fields.extra_id_photo = parsed.extra_id_photo;
   if (parsed.group_size != null) fields.group_size = parsed.group_size;
 
-  const usesMakeupField = [12, 14, 16, 17].includes(input.serviceId);
-  if (usesMakeupField && parsed.makeup_detail) {
-    const meta = SERVICE_META[input.serviceId];
-    const addon = mapMakeupAddon(parsed.makeup_detail ?? undefined, meta?.makeupAddon ?? '');
+  if (MAKEUP_SERVICES.has(input.service) && parsed.makeup_detail) {
+    const meta = SERVICE_META[input.service];
+    const addon = mapMakeupAddon(parsed.makeup_detail, meta.makeupAddon);
     fields.makeup_addon = addon;
     const tier = mapMakeupPlanTier(addon);
     if (tier) fields.makeup_plan = tier;
   }
 
   return fields;
-}
-
-export type BookRpcParams = {
-  _service_id: number;
-  _store_name: string;
-  _slot_date: string;
-  _slot_time: string;
-  _client_name: string;
-  _client_email: string;
-  _client_phone: string;
-  _shoot_type: string;
-  _makeup_addon: string;
-  _gender: string | null;
-  _job_title: string | null;
-  _referral: string | null;
-  _purpose: string | null;
-  _marketing_duration: string | null;
-  _customer_note: string | null;
-  _extra_id_photo: string | null;
-  _group_size: number | null;
-  _raw_data: Record<string, unknown>;
-};
-
-export function buildBookRpcParams(input: {
-  serviceId: number;
-  storeKey: StoreKey;
-  date: string;
-  time: string;
-  client: { name: string; email: string; phone: string };
-  additional: Record<string, string>;
-}): BookRpcParams {
-  const meta = SERVICE_META[input.serviceId];
-  if (!meta) {
-    throw new Error('無效的服務項目');
-  }
-
-  const parsed = parseAdditional(input.additional);
-  const usesMakeupField = [12, 14, 16, 17].includes(input.serviceId);
-  const makeupAddon = usesMakeupField
-    ? mapMakeupAddon(parsed.makeup_detail ?? undefined, meta.makeupAddon)
-    : meta.makeupAddon;
-
-  return {
-    _service_id: input.serviceId,
-    _store_name: STORE_LABELS[input.storeKey],
-    _slot_date: input.date,
-    _slot_time: input.time.trim().slice(0, 5),
-    _client_name: input.client.name,
-    _client_email: input.client.email,
-    _client_phone: input.client.phone,
-    _shoot_type: meta.shootType,
-    _makeup_addon: makeupAddon,
-    _gender: parsed.gender,
-    _job_title: parsed.job_title,
-    _referral: parsed.referral,
-    _purpose: parsed.purpose,
-    _marketing_duration: parsed.marketing_duration,
-    _customer_note: parsed.customer_note,
-    _extra_id_photo: parsed.extra_id_photo,
-    _group_size: parsed.group_size,
-    _raw_data: { client: input.client, additional: input.additional, source: 'website' },
-  };
 }

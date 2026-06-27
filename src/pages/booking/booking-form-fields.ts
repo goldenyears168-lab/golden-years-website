@@ -1,4 +1,5 @@
 import type { AdditionalField } from './types';
+import type { AppointmentService } from './service-mapping';
 import { ADDON_MAKEUP_OPTIONS, STANDALONE_MAKEUP_OPTIONS } from './arrival-time';
 
 /** 官網預約問卷（原 SimplyBook additional fields，改為靜態設定） */
@@ -180,16 +181,16 @@ function buildStandaloneMakeupFields(): AdditionalField[] {
   ]);
 }
 
-const FIELDS_BY_SERVICE: Record<number, AdditionalField[]> = {
-  3: buildPhotoFields({ idPhoto: true }),
-  4: buildPhotoFields({ idPhoto: true }),
-  5: buildPhotoFields({ group: true }),
-  12: buildMakeupFields({}),
-  14: buildMakeupFields({ group: true }),
-  16: buildMakeupFields({ idPhoto: true }),
-  17: buildStandaloneMakeupFields(),
+const FIELDS_BY_SERVICE: Record<AppointmentService, AdditionalField[]> = {
+  id_photo:           buildPhotoFields({ idPhoto: true }),
+  portrait:           buildPhotoFields({ idPhoto: true }),
+  group_photo:        buildPhotoFields({ group: true }),
+  portrait_makeup:    buildMakeupFields({}),
+  group_photo_makeup: buildMakeupFields({ group: true }),
+  id_photo_makeup:    buildMakeupFields({ idPhoto: true }),
+  makeup_only:        buildStandaloneMakeupFields(),
 };
 
-export function getBookingFormFields(serviceId: number): AdditionalField[] {
-  return FIELDS_BY_SERVICE[serviceId] ?? [];
+export function getBookingFormFields(service: AppointmentService): AdditionalField[] {
+  return FIELDS_BY_SERVICE[service] ?? [];
 }

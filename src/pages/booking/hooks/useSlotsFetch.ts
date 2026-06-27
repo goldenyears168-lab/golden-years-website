@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { fetchSlots } from '../api';
 import { BookingError, BookingErrorMessages } from '../domain/errors';
+import type { AppointmentService } from '../service-mapping';
 import type { StoreKey } from '../config';
 
 export type UseSlotsFetchResult = {
@@ -13,7 +14,7 @@ export type UseSlotsFetchResult = {
 };
 
 export function useSlotsFetch(
-  serviceId: number | null,
+  service: AppointmentService | null,
   storeKey: string | null,
   dateFrom: string,
   dateTo: string,
@@ -24,24 +25,22 @@ export function useSlotsFetch(
   const [slotIds, setSlotIds] = useState<Record<string, Record<string, string>>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // Track cache key so we re-fetch when service or store changes
   const loadedRef = useRef<string | null>(null);
 
-  const cacheKey = `${serviceId}-${storeKey}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
+  const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
 
   useEffect(() => {
-    if (!enabled || !serviceId || !storeKey) return;
+    if (!enabled || !service || !storeKey) return;
     if (loadedRef.current === cacheKey) return;
 
     let cancelled = false;
     setLoading(true);
     setError(null);
 
-    fetchSlots(serviceId, storeKey as StoreKey, dateFrom, dateTo)
+    fetchSlots(service, storeKey as StoreKey, dateFrom, dateTo)
       .then(({ slotsByDate: matrix, slotIds: ids }) => {
         if (cancelled) return;
 
-        // Apply allowedTimes filter if specified
         if (allowedTimes && allowedTimes.length > 0) {
           const filtered: Record<string, string[]> = {};
           const filteredIds: Record<string, Record<string, string>> = {};
@@ -84,7 +83,7 @@ export function useSlotsFetch(
     return () => {
       cancelled = true;
     };
-  }, [enabled, serviceId, storeKey, dateFrom, dateTo, cacheKey, allowedTimes]);
+  }, [enabled, service, storeKey, dateFrom, dateTo, cacheKey, allowedTimes]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});

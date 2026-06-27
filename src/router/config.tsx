@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 import { PageSkeleton } from "@/components/base/Skeleton";
+import Home from "@/pages/home/page";
 
 // ── lazy-loaded page components ──
-const Home = lazy(() => import("@/pages/home/page"));
 const About = lazy(() => import("@/pages/about/page"));
 const Pricing = lazy(() => import("@/pages/pricing/page"));
 const PhotographyServices = lazy(() => import("@/pages/photography/page"));
@@ -20,7 +20,7 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <Suspense fallback={<PageSkeleton />}>
+      <Suspense fallback={null}>
         <Home />
       </Suspense>
     ),

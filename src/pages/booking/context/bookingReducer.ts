@@ -51,7 +51,7 @@ export function bookingReducer(
     case 'SELECT_SERVICE': {
       const changed =
         state.externalService?.id !== action.service.id ||
-        state.selectedVariant?.simplybookId !== action.variant.simplybookId;
+        state.selectedVariant?.service !== action.variant.service;
       return {
         ...state,
         externalService: action.service,

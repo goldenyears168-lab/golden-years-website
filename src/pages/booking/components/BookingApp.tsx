@@ -19,7 +19,7 @@ export function BookingApp() {
   const dateRange = useMemo(() => getDateRange(DAYS_AHEAD), []);
 
   const slotsFetch = useSlotsFetch(
-    state.selectedVariant?.simplybookId ?? null,
+    state.selectedVariant?.service ?? null,
     state.storeKey,
     dateRange.from,
     dateRange.to,
@@ -28,7 +28,7 @@ export function BookingApp() {
   );
 
   const fieldsFetch = useFieldsFetch(
-    state.selectedVariant?.simplybookId ?? null,
+    state.selectedVariant?.service ?? null,
     state.step === 4,
   );
 

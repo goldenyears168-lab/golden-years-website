@@ -1,8 +1,8 @@
-import { supabase, SUPABASE_URL } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { BookingError, BookingErrorCode } from './domain/errors';
 import { getBookingFormFields } from './booking-form-fields';
 import { buildClientFields, STORE_LABELS } from './booking-payload';
-import { displayFromServiceEnum, serviceIdToEnum } from './service-mapping';
+import { displayFromServiceEnum, type AppointmentService } from './service-mapping';
 import type { AdditionalField, BookingResult } from './types';
 import type { StoreKey } from './config';
 
@@ -32,34 +32,6 @@ function mapRpcError(message: string): string {
 function throwIfRpcError(error: { message: string } | null): void {
   if (!error) return;
   throw new BookingError(mapRpcError(error.message), BookingErrorCode.API_ERROR);
-}
-
-export async function healthCheck(): Promise<{
-  ok: boolean;
-  backend?: string;
-  supabaseConfigured?: boolean;
-  diagnostics?: string;
-}> {
-  const configured = Boolean(SUPABASE_URL && import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY);
-  if (!configured) {
-    return { ok: false, supabaseConfigured: false, diagnostics: 'Supabase 未設定' };
-  }
-
-  const { error } = await supabase.rpc('list_available_slots', {
-    p_service: 'portrait',
-    p_store: '中山店',
-    p_date_from: '2099-01-01',
-    p_date_to: '2099-01-01',
-  });
-  if (error) {
-    return {
-      ok: false,
-      backend: 'supabase',
-      supabaseConfigured: true,
-      diagnostics: error.message,
-    };
-  }
-  return { ok: true, backend: 'supabase', supabaseConfigured: true };
 }
 
 export type SlotsResponse = {
@@ -126,16 +98,11 @@ export function getDateRange(days: number): { from: string; to: string; dates: s
 }
 
 export async function fetchSlots(
-  serviceId: number,
+  service: AppointmentService,
   storeKey: StoreKey,
   dateFrom: string,
   dateTo: string,
 ): Promise<SlotsResponse> {
-  const service = serviceIdToEnum(serviceId);
-  if (!service) {
-    throw new BookingError('無效的服務項目', BookingErrorCode.API_ERROR);
-  }
-
   const { data, error } = await supabase.rpc('list_available_slots', {
     p_service: service,
     p_store: STORE_LABELS[storeKey],
@@ -147,12 +114,12 @@ export async function fetchSlots(
   return parseSlotRpcData(data);
 }
 
-export async function fetchAdditionalFields(serviceId: number): Promise<AdditionalField[]> {
-  return getBookingFormFields(serviceId);
+export async function fetchAdditionalFields(service: AppointmentService): Promise<AdditionalField[]> {
+  return getBookingFormFields(service);
 }
 
 export type BookPayload = {
-  serviceId: number;
+  service: AppointmentService;
   storeKey: StoreKey;
   date: string;
   time: string;
@@ -208,28 +175,18 @@ export type WebsiteBookingPreview = {
   shoot_datetime: string;
   shoot_type: string;
   makeup_addon: string | null;
-  service_id: number;
+  service: AppointmentService;
   status: string;
   can_cancel: boolean;
   cancel_block_reason: string | null;
 };
 
 function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPreview {
-  const service = String(data.service ?? '');
+  const service = String(data.service ?? '') as AppointmentService;
   const { shootType, makeupAddon } = displayFromServiceEnum(service);
   const clientFields = (data.client_fields ?? {}) as Record<string, unknown>;
   const makeupFromFields =
     typeof clientFields.makeup_addon === 'string' ? clientFields.makeup_addon : null;
-
-  const serviceIdMap: Record<string, number> = {
-    id_photo: 3,
-    portrait: 4,
-    group_photo: 5,
-    id_photo_makeup: 16,
-    portrait_makeup: 12,
-    group_photo_makeup: 14,
-    makeup_only: 17,
-  };
 
   const startsAt = String(data.shoot_datetime ?? data.starts_at ?? '');
   const status = String(data.status ?? '');
@@ -244,7 +201,7 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
     shoot_type: shootType,
     makeup_addon:
       makeupFromFields ?? (makeupAddon !== '不需加購' ? makeupAddon : null),
-    service_id: serviceIdMap[service] ?? 0,
+    service,
     status: isCancelled ? 'cancelled' : status,
     can_cancel: Boolean(data.can_cancel),
     cancel_block_reason:
@@ -261,7 +218,6 @@ export async function fetchBookingByToken(token: string): Promise<WebsiteBooking
 export async function cancelBookingByToken(token: string): Promise<WebsiteBookingPreview> {
   const { data, error } = await supabase.rpc('cancel_appointment', { _token: token });
   throwIfRpcError(error);
-  // cancel_appointment clears code; refetch by uuid from RPC response, not the URL token (often code).
   const appointmentId = (data as { appointment_id?: string } | null)?.appointment_id;
   return fetchBookingByToken(appointmentId ?? token);
 }
