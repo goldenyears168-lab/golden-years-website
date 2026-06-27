@@ -15,6 +15,18 @@ const SERVICE_META: Record<number, { shootType: string; makeupAddon: string }> =
   17: { shootType: '單妝髮', makeupAddon: '加購妝髮' },
 };
 
+/** 對齊 haoshi-erp/src/shared/lib/makeup/catalog.ts WEBSITE_ADDON_TO_PLAN_ID + tier */
+export type MakeupPlanTier = 'basic' | 'standard' | 'premium';
+
+const ADDON_TO_MAKEUP_PLAN_TIER: Record<string, MakeupPlanTier> = {
+  女生基礎妝: 'basic',
+  男生基礎妝: 'basic',
+  女生精緻妝髮: 'standard',
+  男生精緻妝髮: 'standard',
+  女生訂製妝髮: 'premium',
+};
+
+/** SimplyBook / 表單完整選項文案 → 官網短標籤（display） */
 const MAKEUP_ADDON_MAP: Record<string, string> = {
   'A.女生基礎妝_加購價800元 請於拍攝時間提前40分鐘到店': '女生基礎妝',
   'B.男生基礎妝_加購價600元 請於拍攝時間提前40分鐘到店': '男生基礎妝',
@@ -51,6 +63,10 @@ function mapMakeupAddon(raw: string | undefined, base: string): string {
   if (raw.includes('男生精緻妝髮')) return '男生精緻妝髮';
   if (raw.includes('女生訂製妝髮')) return '女生訂製妝髮';
   return raw.trim();
+}
+
+function mapMakeupPlanTier(addon: string): MakeupPlanTier | null {
+  return ADDON_TO_MAKEUP_PLAN_TIER[addon] ?? null;
 }
 
 function parseAdditional(additional: Record<string, string> | undefined) {
@@ -91,7 +107,10 @@ export function buildClientFields(input: {
   const usesMakeupField = [12, 14, 16, 17].includes(input.serviceId);
   if (usesMakeupField && parsed.makeup_detail) {
     const meta = SERVICE_META[input.serviceId];
-    fields.makeup_addon = mapMakeupAddon(parsed.makeup_detail ?? undefined, meta?.makeupAddon ?? '');
+    const addon = mapMakeupAddon(parsed.makeup_detail ?? undefined, meta?.makeupAddon ?? '');
+    fields.makeup_addon = addon;
+    const tier = mapMakeupPlanTier(addon);
+    if (tier) fields.makeup_plan = tier;
   }
 
   return fields;

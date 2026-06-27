@@ -12,6 +12,21 @@ export const MAKEUP_EARLY_MINUTES = {
   custom: 100,
 } as const;
 
+/** redesign enum tier → 提前分鐘（basic / standard / premium） */
+export type MakeupPlanTier = 'basic' | 'standard' | 'premium';
+
+export const MAKEUP_TIER_EARLY_MINUTES: Record<MakeupPlanTier, number> = {
+  basic: 40,
+  standard: 70,
+  premium: 100,
+};
+
+export const MAKEUP_TIER_DURATION_MINUTES: Record<MakeupPlanTier, number> = {
+  basic: 30,
+  standard: 60,
+  premium: 90,
+};
+
 export const PHOTO_ONLY_EARLY_MINUTES = 5;
 export const STANDALONE_MAKEUP_EARLY_MINUTES = 5;
 
@@ -46,6 +61,55 @@ export function isStandaloneMakeupLabel(label: string): boolean {
   return label.includes('單妝髮');
 }
 
+export function parseMakeupPlanTier(value: string | null | undefined): MakeupPlanTier | null {
+  const v = value?.trim();
+  if (v === 'basic' || v === 'standard' || v === 'premium') return v;
+  return null;
+}
+
+/** 優先讀 client_fields.makeup_plan enum，fallback 中文字串（過渡期） */
+export function detectMakeupTier(additional: AdditionalInput): MakeupPlanTier | null {
+  if (!additional) return null;
+
+  const values: string[] = [];
+  if (Array.isArray(additional)) {
+    for (const item of additional) {
+      values.push(item.value);
+      if (item.title === 'makeup_plan') {
+        const tier = parseMakeupPlanTier(item.value);
+        if (tier) return tier;
+      }
+    }
+  } else {
+    const enumTier = parseMakeupPlanTier(additional.makeup_plan);
+    if (enumTier) return enumTier;
+    values.push(...Object.values(additional));
+  }
+
+  for (const v of values) {
+    if (v.includes('訂製')) return 'premium';
+    if (v.includes('精緻') || v.includes('韓系')) return 'standard';
+    if (v.includes('基礎') || v.includes('日常')) return 'basic';
+  }
+  return null;
+}
+
+export function getMakeupEarlyMinutesForTier(tier: MakeupPlanTier | null): number {
+  if (!tier) return DEFAULT_MAKEUP_EARLY_MINUTES;
+  return MAKEUP_TIER_EARLY_MINUTES[tier];
+}
+
+export function resolveMakeupEarlyMinutes(additional: AdditionalInput): number {
+  return getMakeupEarlyMinutesForTier(detectMakeupTier(additional));
+}
+
+export function resolveMakeupDurationMinutes(additional: AdditionalInput): number {
+  const tier = detectMakeupTier(additional);
+  if (!tier) return 30;
+  return MAKEUP_TIER_DURATION_MINUTES[tier];
+}
+
+/** @deprecated 過渡期：優先使用 detectMakeupTier / resolveMakeupEarlyMinutes */
 export function detectMakeupStyle(additional: AdditionalInput): string | null {
   const values: string[] = [];
   if (!additional) return null;
@@ -72,11 +136,7 @@ export function getMakeupEarlyMinutes(style: string | null): number {
 
 /** 單妝髮預約時段長度（分鐘），用於排程重疊計算 */
 export function getMakeupDurationMinutes(additional: AdditionalInput): number {
-  const style = detectMakeupStyle(additional);
-  if (!style) return 30;
-  if (style.includes('訂製')) return 90;
-  if (style.includes('精緻') || style.includes('韓系')) return 60;
-  return 30;
+  return resolveMakeupDurationMinutes(additional);
 }
 
 export function subtractMinutesFromTime(time: string, minutes: number): string {
@@ -113,7 +173,7 @@ export function calculateArrivalTime(
   if (isStandaloneMakeupLabel(variantLabel)) {
     earlyMinutes = STANDALONE_MAKEUP_EARLY_MINUTES;
   } else if (variantLabel.includes('妝髮')) {
-    earlyMinutes = getMakeupEarlyMinutes(detectMakeupStyle(additional));
+    earlyMinutes = resolveMakeupEarlyMinutes(additional);
   } else {
     earlyMinutes = PHOTO_ONLY_EARLY_MINUTES;
   }
@@ -125,24 +185,24 @@ export function getMakeupStyleLabel(
   additional: AdditionalInput,
   options?: { standalone?: boolean },
 ): string | null {
-  const style = detectMakeupStyle(additional);
-  if (!style) return null;
+  const tier = detectMakeupTier(additional);
+  if (!tier) return null;
 
   if (options?.standalone) {
-    if (style.includes('訂製')) return '訂製造型方案（約 1.5 小時）';
-    if (style.includes('精緻') || style.includes('韓系')) return '精緻韓系妝髮（約 1 小時）';
-    if (style.includes('基礎') || style.includes('日常')) return '基礎日常妝髮（約 30 分鐘）';
+    if (tier === 'premium') return '訂製造型方案（約 1.5 小時）';
+    if (tier === 'standard') return '精緻韓系妝髮（約 1 小時）';
+    if (tier === 'basic') return '基礎日常妝髮（約 30 分鐘）';
     return null;
   }
 
-  const minutes = getMakeupEarlyMinutes(style);
-  if (style.includes('訂製')) {
+  const minutes = getMakeupEarlyMinutesForTier(tier);
+  if (tier === 'premium') {
     return `訂製造型方案（提前 ${formatEarlyDuration(minutes)}）`;
   }
-  if (style.includes('精緻') || style.includes('韓系')) {
+  if (tier === 'standard') {
     return `精緻韓系妝髮（提前 ${formatEarlyDuration(minutes)}）`;
   }
-  if (style.includes('基礎') || style.includes('日常')) {
+  if (tier === 'basic') {
     return `基礎日常妝髮（提前 ${formatEarlyDuration(minutes)}）`;
   }
   return null;

@@ -298,9 +298,11 @@ export {
   STANDALONE_MAKEUP_OPTIONS,
   calculateArrivalTime,
   detectMakeupStyle,
+  detectMakeupTier,
   getMakeupDurationMinutes,
   getMakeupEarlyMinutes,
   getMakeupStyleLabel,
   isStandaloneMakeupLabel,
+  resolveMakeupEarlyMinutes,
   subtractMinutesFromTime,
 } from './arrival-time';
