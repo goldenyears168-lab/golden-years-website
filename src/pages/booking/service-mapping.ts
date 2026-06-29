@@ -16,10 +16,10 @@ const SERVICE_DISPLAY: Record<
   id_photo:          { shootType: '證件照', makeupAddon: '不需加購' },
   portrait:          { shootType: '形象照', makeupAddon: '不需加購' },
   group_photo:       { shootType: '合照',   makeupAddon: '不需加購' },
-  id_photo_makeup:   { shootType: '證件照', makeupAddon: '加購妝髮' },
-  portrait_makeup:   { shootType: '形象照', makeupAddon: '加購妝髮' },
-  group_photo_makeup:{ shootType: '合照',   makeupAddon: '加購妝髮' },
-  makeup_only:       { shootType: '單妝髮', makeupAddon: '加購妝髮' },
+  id_photo_makeup:   { shootType: '證件照', makeupAddon: '' },
+  portrait_makeup:   { shootType: '形象照', makeupAddon: '' },
+  group_photo_makeup:{ shootType: '合照',   makeupAddon: '' },
+  makeup_only:       { shootType: '單妝髮', makeupAddon: '' },
 };
 
 export function displayFromServiceEnum(service: string): {

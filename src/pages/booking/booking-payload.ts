@@ -6,16 +6,6 @@ export const STORE_LABELS: Record<StoreKey, string> = {
   gongguan: '公館店',
 };
 
-const SERVICE_META: Record<AppointmentService, { shootType: string; makeupAddon: string }> = {
-  id_photo:           { shootType: '證件照', makeupAddon: '不需加購' },
-  portrait:           { shootType: '形象照', makeupAddon: '不需加購' },
-  group_photo:        { shootType: '合照',   makeupAddon: '不需加購' },
-  portrait_makeup:    { shootType: '形象照', makeupAddon: '加購妝髮' },
-  group_photo_makeup: { shootType: '合照',   makeupAddon: '加購妝髮' },
-  id_photo_makeup:    { shootType: '證件照', makeupAddon: '加購妝髮' },
-  makeup_only:        { shootType: '單妝髮', makeupAddon: '加購妝髮' },
-};
-
 const MAKEUP_SERVICES = new Set<AppointmentService>([
   'id_photo_makeup',
   'portrait_makeup',
@@ -58,8 +48,8 @@ const BUY_MORE_MAP: Record<string, string> = {
   '不需再加購': '',
 };
 
-function mapMakeupLabel(raw: string | undefined, fallback: string): string {
-  if (!raw?.trim()) return fallback;
+function mapMakeupLabel(raw: string | undefined): string | null {
+  if (!raw?.trim()) return null;
   const mapped = MAKEUP_LABEL_MAP[raw.trim()];
   if (mapped) return mapped;
   if (raw.includes('女生基礎妝')) return '女生基礎妝';
@@ -67,7 +57,9 @@ function mapMakeupLabel(raw: string | undefined, fallback: string): string {
   if (raw.includes('女生精緻妝髮')) return '女生精緻妝髮';
   if (raw.includes('男生精緻妝髦')) return '男生精緻妝髮';
   if (raw.includes('女生訂製妝髮')) return '女生訂製妝髮';
-  return raw.trim();
+  const trimmed = raw.trim();
+  if (BILLABLE_MAKEUP_PLANS.has(trimmed)) return trimmed;
+  return null;
 }
 
 function parseAdditional(additional: Record<string, string> | undefined) {
@@ -119,9 +111,8 @@ export function buildBookSlotParams(input: {
   if (parsed.group_size != null) params.p_group_size = parsed.group_size;
 
   if (MAKEUP_SERVICES.has(input.service) && parsed.makeup_detail) {
-    const meta = SERVICE_META[input.service];
-    const plan = mapMakeupLabel(parsed.makeup_detail, meta.makeupAddon);
-    if (BILLABLE_MAKEUP_PLANS.has(plan)) {
+    const plan = mapMakeupLabel(parsed.makeup_detail);
+    if (plan && BILLABLE_MAKEUP_PLANS.has(plan)) {
       params.p_makeup_plan = plan;
     }
   }

@@ -191,7 +191,7 @@ export type WebsiteBookingPreview = {
 
 function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPreview {
   const service = String(data.service ?? '') as AppointmentService;
-  const { shootType, makeupAddon } = displayFromServiceEnum(service);
+  const { shootType } = displayFromServiceEnum(service);
   const makeupPlan =
     typeof data.makeup_plan === 'string' && data.makeup_plan.trim()
       ? data.makeup_plan.trim()
@@ -208,7 +208,7 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
     store_name: String(data.store_name ?? data.store ?? ''),
     shoot_datetime: startsAt,
     shoot_type: shootType,
-    makeup_plan: makeupPlan ?? (makeupAddon !== '不需加購' && makeupAddon !== '加購妝髮' ? makeupAddon : null),
+    makeup_plan: makeupPlan,
     service,
     status: isCancelled ? 'cancelled' : status,
     can_cancel: Boolean(data.can_cancel),
