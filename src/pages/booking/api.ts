@@ -8,6 +8,13 @@ import type { StoreKey } from './config';
 
 function mapRpcError(message: string): string {
   if (
+    message.includes('violates foreign key constraint') ||
+    message.includes('appointments_session_id_fkey')
+  ) {
+    return '取消預約時發生系統錯誤，請私訊官方 LINE 協助，或稍後再試。';
+  }
+
+  if (
     message.includes('slot_not_available') ||
     message.includes('已有預約') ||
     message.includes('未開放') ||
@@ -16,7 +23,8 @@ function mapRpcError(message: string): string {
     message.includes('找不到') ||
     message.includes('slot_not_found') ||
     message.includes('無法取消') ||
-    message.includes('請最晚於')
+    message.includes('請最晚於') ||
+    message.includes('已進入製作流程')
   ) {
     if (message.includes('slot_not_available')) {
       return '此時段剛被預訂，請重新選擇';
@@ -216,10 +224,24 @@ export async function fetchBookingByToken(token: string): Promise<WebsiteBooking
 }
 
 export async function cancelBookingByToken(token: string): Promise<WebsiteBookingPreview> {
-  const { data, error } = await supabase.rpc('cancel_appointment', { _token: token });
+  const previous = await fetchBookingByToken(token);
+  const { error } = await supabase.rpc('cancel_appointment', { _token: token });
   throwIfRpcError(error);
-  const appointmentId = (data as { appointment_id?: string } | null)?.appointment_id;
-  return fetchBookingByToken(appointmentId ?? token);
+
+  try {
+    const refreshed = await fetchBookingByToken(token);
+    return {
+      ...refreshed,
+      code: refreshed.code || previous.code,
+    };
+  } catch {
+    return {
+      ...previous,
+      status: 'cancelled',
+      can_cancel: false,
+      cancel_block_reason: '此預約已取消',
+    };
+  }
 }
 
 export function formatTime(t: string): string {
