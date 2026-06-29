@@ -132,8 +132,8 @@ export default function BookingCancelPage() {
                   </li>
                   <li>
                     {booking.shoot_type}
-                    {booking.makeup_addon && booking.makeup_addon !== '不需加購'
-                      ? ` · ${booking.makeup_addon}`
+                    {booking.makeup_plan
+                      ? ` · ${booking.makeup_plan}`
                       : ''}
                   </li>
                   <li>{booking.store_name}</li>

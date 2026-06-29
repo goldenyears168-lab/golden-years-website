@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import { BookingError, BookingErrorCode } from './domain/errors';
 import { getBookingFormFields } from './booking-form-fields';
-import { buildClientFields, STORE_LABELS } from './booking-payload';
+import { buildBookSlotParams, STORE_LABELS } from './booking-payload';
 import { displayFromServiceEnum, type AppointmentService } from './service-mapping';
 import type { AdditionalField, BookingResult } from './types';
 import type { StoreKey } from './config';
@@ -144,13 +144,13 @@ export async function submitBooking(payload: BookPayload): Promise<BookingResult
     );
   }
 
-  const clientFields = buildClientFields(payload);
+  const columns = buildBookSlotParams(payload);
   const { data, error } = await supabase.rpc('book_slot', {
     p_appointment_id: payload.appointmentId,
     p_client_name: payload.client.name,
     p_client_email: payload.client.email,
     p_client_phone: payload.client.phone,
-    p_client_fields: clientFields,
+    ...columns,
   });
 
   throwIfRpcError(error);
@@ -182,7 +182,7 @@ export type WebsiteBookingPreview = {
   store_name: string;
   shoot_datetime: string;
   shoot_type: string;
-  makeup_addon: string | null;
+  makeup_plan: string | null;
   service: AppointmentService;
   status: string;
   can_cancel: boolean;
@@ -192,9 +192,10 @@ export type WebsiteBookingPreview = {
 function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPreview {
   const service = String(data.service ?? '') as AppointmentService;
   const { shootType, makeupAddon } = displayFromServiceEnum(service);
-  const clientFields = (data.client_fields ?? {}) as Record<string, unknown>;
-  const makeupFromFields =
-    typeof clientFields.makeup_addon === 'string' ? clientFields.makeup_addon : null;
+  const makeupPlan =
+    typeof data.makeup_plan === 'string' && data.makeup_plan.trim()
+      ? data.makeup_plan.trim()
+      : null;
 
   const startsAt = String(data.shoot_datetime ?? data.starts_at ?? '');
   const status = String(data.status ?? '');
@@ -207,8 +208,7 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
     store_name: String(data.store_name ?? data.store ?? ''),
     shoot_datetime: startsAt,
     shoot_type: shootType,
-    makeup_addon:
-      makeupFromFields ?? (makeupAddon !== '不需加購' ? makeupAddon : null),
+    makeup_plan: makeupPlan ?? (makeupAddon !== '不需加購' && makeupAddon !== '加購妝髮' ? makeupAddon : null),
     service,
     status: isCancelled ? 'cancelled' : status,
     can_cancel: Boolean(data.can_cancel),

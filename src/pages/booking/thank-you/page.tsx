@@ -22,7 +22,7 @@ function previewToSummary(p: WebsiteBookingPreview): BookingSummary {
       is_confirmed: '1',
       hash: p.id,
     },
-    serviceLabel: p.makeup_addon ? `${p.shoot_type} · ${p.makeup_addon}` : p.shoot_type,
+    serviceLabel: p.makeup_plan ? `${p.shoot_type} · ${p.makeup_plan}` : p.shoot_type,
     storeLabel: p.store_name,
     client: { name: '', email: '', phone: '' },
     additionalAnswers: [],
