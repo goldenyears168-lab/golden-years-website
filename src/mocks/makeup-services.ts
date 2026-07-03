@@ -1,4 +1,10 @@
 import { hairMakeup as img } from "@/config/images";
+import {
+  MAKEUP_PLANS,
+  formatPlanDuration,
+  formatPlanPrice,
+  makeupPlansSummaryLine,
+} from "@/shared/makeup-plans";
 
 export const makeupPageData = {
   hero: {
@@ -41,11 +47,11 @@ export const makeupPageData = {
   plans: [
     {
       id: "makeup-a",
-      label: "A",
-      title: "女生 基礎日常妝",
-      tagline: "適合無化妝習慣者，提亮氣色",
-      price: "NT$ 800",
-      duration: "30 min",
+      label: MAKEUP_PLANS[0].label,
+      title: MAKEUP_PLANS[0].id,
+      tagline: MAKEUP_PLANS[0].tagline,
+      price: formatPlanPrice(MAKEUP_PLANS[0].price),
+      duration: formatPlanDuration(MAKEUP_PLANS[0].durationMin),
       arrivalNote: "須於拍攝時間前 40 分鐘到店",
       image: img.plans[0],
       includes: ["簡易清潔", "膚色修飾", "修容、腮紅", "內眼線、畫眉、唇彩"],
@@ -56,11 +62,11 @@ export const makeupPageData = {
     },
     {
       id: "makeup-b",
-      label: "B",
-      title: "男生 基礎妝",
-      tagline: "適合所有男性，乾淨俐落",
-      price: "NT$ 600",
-      duration: "30 min",
+      label: MAKEUP_PLANS[1].label,
+      title: MAKEUP_PLANS[1].id,
+      tagline: MAKEUP_PLANS[1].tagline,
+      price: formatPlanPrice(MAKEUP_PLANS[1].price),
+      duration: formatPlanDuration(MAKEUP_PLANS[1].durationMin),
       arrivalNote: "須於拍攝時間前 40 分鐘到店",
       image: img.plans[1],
       includes: ["簡易清潔", "膚色修飾、修容", "眉型、護唇膏"],
@@ -68,11 +74,11 @@ export const makeupPageData = {
     },
     {
       id: "makeup-c",
-      label: "C",
-      title: "女生 韓系精緻妝髮",
-      tagline: "適合約會、面試、重要場合，妝感精緻",
-      price: "NT$ 1,500",
-      duration: "1 hr",
+      label: MAKEUP_PLANS[2].label,
+      title: MAKEUP_PLANS[2].id,
+      tagline: MAKEUP_PLANS[2].tagline,
+      price: formatPlanPrice(MAKEUP_PLANS[2].price),
+      duration: formatPlanDuration(MAKEUP_PLANS[2].durationMin),
       popular: true,
       arrivalNote: "須於拍攝時間前 1 小時 10 分鐘到店",
       image: img.plans[2],
@@ -87,11 +93,11 @@ export const makeupPageData = {
     },
     {
       id: "makeup-d",
-      label: "D",
-      title: "男生 韓系精緻妝髮",
-      tagline: "體驗精緻底妝與髮型設計",
-      price: "NT$ 1,200",
-      duration: "1 hr",
+      label: MAKEUP_PLANS[3].label,
+      title: MAKEUP_PLANS[3].id,
+      tagline: MAKEUP_PLANS[3].tagline,
+      price: formatPlanPrice(MAKEUP_PLANS[3].price),
+      duration: formatPlanDuration(MAKEUP_PLANS[3].durationMin),
       arrivalNote: "須於拍攝時間前 1 小時 10 分鐘到店",
       image: img.plans[3],
       includes: [
@@ -104,11 +110,11 @@ export const makeupPageData = {
     },
     {
       id: "makeup-e",
-      label: "E",
-      title: "女生 訂製妝髮專案",
-      tagline: "客製造型，適合重要宴會",
-      price: "NT$ 3,000",
-      duration: "1.5 hr",
+      label: MAKEUP_PLANS[4].label,
+      title: MAKEUP_PLANS[4].id,
+      tagline: MAKEUP_PLANS[4].tagline,
+      price: formatPlanPrice(MAKEUP_PLANS[4].price),
+      duration: formatPlanDuration(MAKEUP_PLANS[4].durationMin),
       arrivalNote: "須於拍攝時間前 1 小時 40 分鐘到店",
       image: img.plans[4],
       includes: [
@@ -128,7 +134,7 @@ export const makeupPageData = {
       qa: [
         {
           q: "妝髮服務需要額外加價嗎？收費標準為何？",
-          a: "本工作室妝髮為加購項目，提供多種專業方案滿足不同需求。女性方案：A. 基礎日常妝 $800 (30min)；C. 韓系精緻妝髮 $1,500 (1hr) 【最推薦】；E. 訂製妝髮專案 $3,000 (1.5hr)。男性方案：B. 基礎妝 $600 (30min)；D. 韓系精緻妝髮 $1,200 (1hr)。",
+          a: `本工作室妝髮為加購項目，提供五種專業方案：${makeupPlansSummaryLine()}。方案 C（女生精緻妝髮）為最推薦。`,
         },
         {
           q: "女生 A 方案和 C 方案有什麼差別？我該怎麼選？",

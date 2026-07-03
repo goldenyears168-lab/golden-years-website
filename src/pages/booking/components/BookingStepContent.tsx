@@ -63,9 +63,9 @@ export function BookingStepContent({
             <h2 className="text-lg font-semibold text-brand-navy mb-1">
               選擇日期與時段
             </h2>
-            <p className="text-sm text-brand-textMuted">
-              {dateRange.from} ～ {dateRange.to}（近 {DAYS_AHEAD} 天）
-            </p>
+        <p className="text-sm text-brand-textMuted mb-3">
+          近 {DAYS_AHEAD} 天內（{dateRange.from} ～ {dateRange.to}）
+        </p>
           </div>
           <SlotsView
             dates={dateRange.dates}

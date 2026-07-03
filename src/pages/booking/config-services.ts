@@ -54,7 +54,7 @@ export const EXTERNAL_SERVICES: ExternalService[] = [
     categoryIcon: 'ri-briefcase-line',
     variants: {
       basic:  { label: '僅攝影服務', service: 'portrait' },
-      makeup: { label: '加購妝髦',   service: 'portrait_makeup' },
+      makeup: { label: '加購妝髮',   service: 'portrait_makeup' },
     },
     isLineRedirect: false,
     priceFrom: 999,

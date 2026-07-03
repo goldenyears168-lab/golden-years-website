@@ -1,43 +1,11 @@
 import type { StoreKey } from './config';
 import type { AppointmentService } from './service-mapping';
+import { displayFromServiceEnum } from './service-mapping';
+import { BILLABLE_MAKEUP_PLANS, normalizeMakeupPlan } from '@/shared/makeup-plans';
 
 export const STORE_LABELS: Record<StoreKey, string> = {
   zhongshan: '中山店',
   gongguan: '公館店',
-};
-
-const MAKEUP_SERVICES = new Set<AppointmentService>([
-  'id_photo_makeup',
-  'portrait_makeup',
-  'group_photo_makeup',
-  'makeup_only',
-]);
-
-const BILLABLE_MAKEUP_PLANS = new Set([
-  '女生基礎妝',
-  '男生基礎妝',
-  '女生精緻妝髮',
-  '男生精緻妝髮',
-  '女生訂製妝髮',
-]);
-
-/** SimplyBook / 表單完整選項文案 → 短標籤（= DB makeup_plan） */
-const MAKEUP_LABEL_MAP: Record<string, string> = {
-  'A.女生基礎妝_加購價800元 請於拍攝時間提前40分鐘到店': '女生基礎妝',
-  'B.男生基礎妝_加購價600元 請於拍攝時間提前40分鐘到店': '男生基礎妝',
-  'C.女生精緻妝髮_加購價1500元 請於拍攝時間提前1小時10分鐘到店': '女生精緻妝髮',
-  'D.男生精緻妝髦_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髮',
-  'E.女生訂製妝髮_加購價3000元 請於拍攝時間提前1小時40分鐘到店': '女生訂製妝髮',
-  'A. 女生基礎妝_加購價800元 請於拍攝時間提前40分鐘到店': '女生基礎妝',
-  'B. 男生基礎妝_加購價600元 請於拍攝時間提前40分鐘到店': '男生基礎妝',
-  'C. 女生精緻妝髮_加購價1500元 請於拍攝時間提前1小時10分鐘到店': '女生精緻妝髮',
-  'D. 男生精緻妝髦_加購價1200元 請於拍攝時間提前1小時10分鐘到店': '男生精緻妝髮',
-  'E. 女生訂製妝髮_加購價3000元 請於拍攝時間提前1小時40分鐘到店': '女生訂製妝髮',
-  'A. 女生基礎妝 $800（約 30 分鐘）': '女生基礎妝',
-  'B. 男生基礎妝 $600（約 30 分鐘）': '男生基礎妝',
-  'C. 女生精緻妝髮 $1,500（約 1 小時）': '女生精緻妝髮',
-  'D. 男生精緻妝髦 $1,200（約 1 小時）': '男生精緻妝髮',
-  'E. 女生訂製妝髮 $3,000（約 1.5 小時）': '女生訂製妝髮',
 };
 
 const BUY_MORE_MAP: Record<string, string> = {
@@ -49,17 +17,7 @@ const BUY_MORE_MAP: Record<string, string> = {
 };
 
 function mapMakeupLabel(raw: string | undefined): string | null {
-  if (!raw?.trim()) return null;
-  const mapped = MAKEUP_LABEL_MAP[raw.trim()];
-  if (mapped) return mapped;
-  if (raw.includes('女生基礎妝')) return '女生基礎妝';
-  if (raw.includes('男生基礎妝')) return '男生基礎妝';
-  if (raw.includes('女生精緻妝髮')) return '女生精緻妝髮';
-  if (raw.includes('男生精緻妝髦')) return '男生精緻妝髮';
-  if (raw.includes('女生訂製妝髮')) return '女生訂製妝髮';
-  const trimmed = raw.trim();
-  if (BILLABLE_MAKEUP_PLANS.has(trimmed)) return trimmed;
-  return null;
+  return normalizeMakeupPlan(raw);
 }
 
 function parseAdditional(additional: Record<string, string> | undefined) {
@@ -91,15 +49,22 @@ export type BookSlotColumnParams = {
   p_extra_id_photo?: string | null;
   p_group_size?: number | null;
   p_makeup_plan?: string | null;
+  p_shoot_type?: string | null;
 };
 
-/** v1.9：canonical book_slot 具名 column 參數 */
+export const MAKEUP_PLAN_REQUIRED_MSG = '請選擇妝髮方案';
+export const MAKEUP_PLAN_INVALID_MSG = '妝髮方案無法辨識，請重新選擇';
+
+/** Plan A：shoot_type + makeup_plan SSOT；純拍攝可傳 NULL plan（無妝髮） */
 export function buildBookSlotParams(input: {
   service: AppointmentService;
   additional: Record<string, string>;
 }): BookSlotColumnParams {
   const parsed = parseAdditional(input.additional);
-  const params: BookSlotColumnParams = {};
+  const { shootType } = displayFromServiceEnum(input.service);
+  const params: BookSlotColumnParams = {
+    p_shoot_type: shootType,
+  };
 
   if (parsed.gender) params.p_gender = parsed.gender;
   if (parsed.job_title) params.p_job_title = parsed.job_title;
@@ -110,10 +75,25 @@ export function buildBookSlotParams(input: {
   if (parsed.extra_id_photo) params.p_extra_id_photo = parsed.extra_id_photo;
   if (parsed.group_size != null) params.p_group_size = parsed.group_size;
 
-  if (MAKEUP_SERVICES.has(input.service) && parsed.makeup_detail) {
+  if (shootType === '單妝髮') {
+    if (!parsed.makeup_detail?.trim()) {
+      throw new Error(MAKEUP_PLAN_REQUIRED_MSG);
+    }
+    const plan = mapMakeupLabel(parsed.makeup_detail);
+    if (!plan || !BILLABLE_MAKEUP_PLANS.has(plan)) {
+      throw new Error(MAKEUP_PLAN_INVALID_MSG);
+    }
+    params.p_makeup_plan = plan;
+    return params;
+  }
+
+  // 拍攝類：有選妝髮才寫 plan；空 / 無妝髮 → NULL
+  if (parsed.makeup_detail?.trim()) {
     const plan = mapMakeupLabel(parsed.makeup_detail);
     if (plan && BILLABLE_MAKEUP_PLANS.has(plan)) {
       params.p_makeup_plan = plan;
+    } else if (plan) {
+      throw new Error(MAKEUP_PLAN_INVALID_MSG);
     }
   }
 
@@ -135,6 +115,5 @@ export function buildClientFields(input: {
   if (params.p_appointment_note) fields.customer_note = params.p_appointment_note;
   if (params.p_extra_id_photo) fields.extra_id_photo = params.p_extra_id_photo;
   if (params.p_group_size != null) fields.group_size = params.p_group_size;
-  if (params.p_makeup_plan) fields.makeup_addon = params.p_makeup_plan;
   return fields;
 }

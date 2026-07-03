@@ -5,6 +5,8 @@
  * 僅攝影、單妝髮：提前 5 分鐘
  */
 
+import { getMakeupPlan, normalizeMakeupPlan } from '@/shared/makeup-plans';
+
 /** 加購妝髮：拍攝時間前需提前到店的分鐘數 */
 export const MAKEUP_EARLY_MINUTES = {
   basic: 40,
@@ -181,31 +183,37 @@ export function calculateArrivalTime(
   return subtractMinutesFromTime(timePart, earlyMinutes);
 }
 
+export function detectMakeupPlanFromAdditional(additional: AdditionalInput): ReturnType<typeof normalizeMakeupPlan> {
+  if (!additional) return null;
+
+  const values: string[] = [];
+  if (Array.isArray(additional)) {
+    for (const item of additional) {
+      values.push(item.value);
+    }
+  } else {
+    values.push(...Object.values(additional));
+  }
+
+  for (const v of values) {
+    const plan = normalizeMakeupPlan(v);
+    if (plan) return plan;
+  }
+  return null;
+}
+
 export function getMakeupStyleLabel(
   additional: AdditionalInput,
   options?: { standalone?: boolean },
 ): string | null {
-  const tier = detectMakeupTier(additional);
-  if (!tier) return null;
+  const planId = detectMakeupPlanFromAdditional(additional);
+  if (!planId) return null;
 
+  const plan = getMakeupPlan(planId);
   if (options?.standalone) {
-    if (tier === 'premium') return '訂製造型方案（約 1.5 小時）';
-    if (tier === 'standard') return '精緻韓系妝髮（約 1 小時）';
-    if (tier === 'basic') return '基礎日常妝髮（約 30 分鐘）';
-    return null;
+    return `${planId}（約 ${formatEarlyDuration(plan.durationMin)}）`;
   }
-
-  const minutes = getMakeupEarlyMinutesForTier(tier);
-  if (tier === 'premium') {
-    return `訂製造型方案（提前 ${formatEarlyDuration(minutes)}）`;
-  }
-  if (tier === 'standard') {
-    return `精緻韓系妝髮（提前 ${formatEarlyDuration(minutes)}）`;
-  }
-  if (tier === 'basic') {
-    return `基礎日常妝髮（提前 ${formatEarlyDuration(minutes)}）`;
-  }
-  return null;
+  return `${planId}（提前 ${formatEarlyDuration(plan.earlyMin)}）`;
 }
 
 /** 加購妝髮表單選項（文案與提前量一致） */

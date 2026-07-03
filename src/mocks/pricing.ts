@@ -1,4 +1,5 @@
 import { pricing as img } from "@/config/images";
+import { MAKEUP_PLANS, formatPlanPrice } from "@/shared/makeup-plans";
 
 export const pricingCategories = [
   {
@@ -128,48 +129,22 @@ export const pricingCategories = [
   },
 ];
 
-export const makeupPricing = [
-  {
-    id: "makeup-a",
-    title: "女生 基礎日常妝",
-    duration: "30min",
-    price: "NT$ 800",
-    image: img.makeup[0],
-    slug: "makeup-basic-female",
-  },
-  {
-    id: "makeup-b",
-    title: "男生 基礎日常妝",
-    duration: "30min",
-    price: "NT$ 600",
-    image: img.makeup[1],
-    slug: "makeup-basic-male",
-  },
-  {
-    id: "makeup-c",
-    title: "女生 精緻妝髮",
-    duration: "60min",
-    price: "NT$ 1,500",
-    image: img.makeup[2],
-    slug: "makeup-premium-female",
-  },
-  {
-    id: "makeup-d",
-    title: "男生 精緻妝髮",
-    duration: "60min",
-    price: "NT$ 1,200",
-    image: img.makeup[3],
-    slug: "makeup-premium-male",
-  },
-  {
-    id: "makeup-e",
-    title: "女生 訂製妝髮",
-    duration: "90min",
-    price: "NT$ 3,000",
-    image: img.makeup[4],
-    slug: "makeup-custom-female",
-  },
-];
+const MAKEUP_SLUGS = [
+  "makeup-basic-female",
+  "makeup-basic-male",
+  "makeup-premium-female",
+  "makeup-premium-male",
+  "makeup-custom-female",
+] as const;
+
+export const makeupPricing = MAKEUP_PLANS.map((plan, i) => ({
+  id: `makeup-${plan.label.toLowerCase()}`,
+  title: plan.id,
+  duration: `${plan.durationMin}min`,
+  price: formatPlanPrice(plan.price),
+  image: img.makeup[i],
+  slug: MAKEUP_SLUGS[i],
+}));
 
 export const workshopPricing = {
   title: "攝影工作坊",

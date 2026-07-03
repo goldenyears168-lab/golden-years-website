@@ -87,7 +87,7 @@ function makeupField(pos: number): AdditionalField {
   return {
     id: '4',
     name: 'data_field_4',
-    title: '化妝服務確認',
+    title: '妝髮方案',
     type: 'select',
     values: ADDON_MAKEUP_OPTIONS.join(','),
     default: null,

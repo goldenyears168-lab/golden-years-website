@@ -1,10 +1,19 @@
+import { MAKEUP_PLANS, makeupPlansSummaryLine } from "@/shared/makeup-plans";
+
+const makeupPriceExamples = [
+  `${MAKEUP_PLANS[0].id} NT$ ${MAKEUP_PLANS[0].price}（30min）`,
+  `${MAKEUP_PLANS[2].id} NT$ ${MAKEUP_PLANS[2].price}（1hr）為最推薦方案`,
+  `${MAKEUP_PLANS[1].id} NT$ ${MAKEUP_PLANS[1].price}`,
+  `${MAKEUP_PLANS[3].id} NT$ ${MAKEUP_PLANS[3].price}`,
+].join("，");
+
 export const pricingFAQ = [
   {
     category: "證件照價格",
     qa: [
       {
         q: "韓式證件照多少錢？有包含妝髮嗎？",
-        a: "韓式證件照拍攝價格為 NT$ 399，包含專業棚拍、精緻修圖與高畫質電子檔交付。妝髮服務為加購項目：女生基礎日常妝 NT$ 800（30min），女生韓系精緻妝髮 NT$ 1,500（1hr）為最推薦方案，男生基礎妝 NT$ 600，男生韓系精緻妝髮 NT$ 1,200。",
+        a: `韓式證件照拍攝價格為 NT$ 399，包含專業棚拍、精緻修圖與高畫質電子檔交付。妝髮服務為加購項目：${makeupPriceExamples}。`,
       },
       {
         q: "形象照和個人寫真的價格差別在哪裡？",
@@ -17,7 +26,7 @@ export const pricingFAQ = [
     qa: [
       {
         q: "妝髮服務怎麼收費？最推薦哪個方案？",
-        a: "妝髮為加購項目，共有五種方案：A. 女生基礎日常妝 NT$ 800（30min）；B. 男生基礎妝 NT$ 600（30min）；C. 女生韓系精緻妝髮 NT$ 1,500（1hr）【最推薦】；D. 男生韓系精緻妝髮 NT$ 1,200（1hr）；E. 女生訂製妝髮專案 NT$ 3,000（1.5hr）。方案 C 含輕透底妝、精緻眼妝與韓系波浪髮型，適合形象照與重要場合。",
+        a: `妝髮為加購項目，共有五種方案：${makeupPlansSummaryLine()}。方案 C（女生精緻妝髮）含輕透底妝、精緻眼妝與韓系波浪髮型，適合形象照與重要場合。`,
       },
     ],
   },

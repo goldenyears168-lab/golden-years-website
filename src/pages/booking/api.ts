@@ -1,7 +1,12 @@
 import { supabase } from '@/lib/supabase';
 import { BookingError, BookingErrorCode } from './domain/errors';
 import { getBookingFormFields } from './booking-form-fields';
-import { buildBookSlotParams, STORE_LABELS } from './booking-payload';
+import {
+  buildBookSlotParams,
+  MAKEUP_PLAN_INVALID_MSG,
+  MAKEUP_PLAN_REQUIRED_MSG,
+  STORE_LABELS,
+} from './booking-payload';
 import { displayFromServiceEnum, type AppointmentService } from './service-mapping';
 import type { AdditionalField, BookingResult } from './types';
 import type { StoreKey } from './config';
@@ -24,13 +29,22 @@ function mapRpcError(message: string): string {
     message.includes('slot_not_found') ||
     message.includes('無法取消') ||
     message.includes('請最晚於') ||
-    message.includes('已進入製作流程')
+    message.includes('請至少提前') ||
+    message.includes('已進入製作流程') ||
+    message.includes('slot_kind_mismatch') ||
+    message.includes('makeup_plan_required') ||
+    message.includes('makeup_plan_forbidden') ||
+    message.includes('makeup_plan_invalid') ||
+    message.includes('妝髮服務須選擇')
   ) {
     if (message.includes('slot_not_available')) {
       return '此時段剛被預訂，請重新選擇';
     }
     if (message.includes('slot_not_found')) {
       return '找不到此時段，請重新整理後再試';
+    }
+    if (message.includes('slot_kind_mismatch')) {
+      return '此時段與所選妝髮方案不符，請改選其他時段或調整妝髮方案';
     }
     return message;
   }
@@ -144,7 +158,17 @@ export async function submitBooking(payload: BookPayload): Promise<BookingResult
     );
   }
 
-  const columns = buildBookSlotParams(payload);
+  let columns;
+  try {
+    columns = buildBookSlotParams(payload);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : '';
+    if (msg === MAKEUP_PLAN_REQUIRED_MSG || msg === MAKEUP_PLAN_INVALID_MSG) {
+      throw new BookingError(msg, BookingErrorCode.VALIDATION_ERROR);
+    }
+    throw e;
+  }
+
   const { data, error } = await supabase.rpc('book_slot', {
     p_appointment_id: payload.appointmentId,
     p_client_name: payload.client.name,

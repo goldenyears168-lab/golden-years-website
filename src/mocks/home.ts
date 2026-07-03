@@ -1,4 +1,5 @@
 import { home as img } from "@/config/images";
+import { MAKEUP_PLANS, formatPlanPrice } from "@/shared/makeup-plans";
 
 export const heroData = {
   title: "台北專業形象照｜為履歷、畢業、證件定格人生好時",
@@ -66,38 +67,20 @@ export const photoServices = [
   },
 ];
 
-export const makeupServices = [
-  {
-    title: "女生 基礎日常妝",
-    duration: "30min",
-    price: "NT$ 800",
-    description: "自然清新的日常妝容，展現原生美貌",
-  },
-  {
-    title: "男生 基礎日常妝",
-    duration: "30min",
-    price: "NT$ 600",
-    description: "清爽乾淨的男士妝容，提升精神氣色",
-  },
-  {
-    title: "女生 精緻妝髮",
-    duration: "60min",
-    price: "NT$ 1,500",
-    description: "精緻妝容搭配造型髮型，完美上鏡",
-  },
-  {
-    title: "男生 精緻妝髮",
-    duration: "60min",
-    price: "NT$ 1,200",
-    description: "男士精緻妝容與髮型，呈現最佳狀態",
-  },
-  {
-    title: "女生 訂製妝髮",
-    duration: "90min",
-    price: "NT$ 3,000",
-    description: "客製化妝髮造型，為特殊場合量身打造",
-  },
-];
+const MAKEUP_DESCRIPTIONS = [
+  "自然清新的日常妝容，展現原生美貌",
+  "清爽乾淨的男士妝容，提升精神氣色",
+  "精緻妝容搭配造型髮型，完美上鏡",
+  "男士精緻妝容與髮型，呈現最佳狀態",
+  "客製化妝髮造型，為特殊場合量身打造",
+] as const;
+
+export const makeupServices = MAKEUP_PLANS.map((plan, i) => ({
+  title: plan.id,
+  duration: `${plan.durationMin}min`,
+  price: formatPlanPrice(plan.price),
+  description: MAKEUP_DESCRIPTIONS[i],
+}));
 
 export const trustData = {
   customerCount: "超過兩萬位顧客",

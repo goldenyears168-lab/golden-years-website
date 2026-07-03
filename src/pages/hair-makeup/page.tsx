@@ -10,6 +10,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FAQItem from "./components/FAQItem";
 import { hairMakeup as makeupImg } from "@/config/images";
 import FAQSchema from "@/components/base/FAQSchema";
+import { MAKEUP_PLANS, formatPlanDuration, formatPlanPrice } from "@/shared/makeup-plans";
 
 // 妝髮頁 FAQ 結構化資料
 const flatFAQ = makeupPageData.faq.flatMap((cat) => cat.qa);
@@ -19,7 +20,7 @@ export default function MakeupServices() {
     <>
       <PageSEO
         title="妝髮造型服務 | 好時有影 Golden Years | 韓式妝髮、證件照妝容、台北"
-        description="好時有影專業妝髮造型服務，羽彤老師帶領的造型團隊。提供基礎妝容、精緻妝髮、訂製造型方案，搭配攝影服務一站完成。適合證件照、形象照、婚紗等場合。台北公館妝髮工作室。"
+        description="好時有影專業妝髮造型服務，羽彤老師帶領的造型團隊。提供女生基礎妝、男生精緻妝髮、女生訂製妝髮等方案，搭配攝影服務一站完成。適合證件照、形象照、婚紗等場合。台北公館妝髮工作室。"
         keywords="妝髮造型,韓式妝髮,證件照妝容,台北化妝師,婚紗妝髮,新娘秘書,男生妝髮,女生妝髮,專業妝髮,台北妝髮工作室"
       />
       <FAQSchema questions={flatFAQ} pageName="hair-makeup" />
@@ -148,69 +149,41 @@ function QuoteSection() {
 function ComparisonSection() {
   const [ref, visible] = useScrollReveal<HTMLDivElement>();
 
-  const compareCards = [
-    {
-      label: "A",
-      title: "女生基礎妝",
-      price: "NT$ 800",
-      duration: "30 min",
-      items: [
-        { name: "底妝", ok: true },
-        { name: "修容", ok: true },
-        { name: "眼妝", note: "內眼線" },
-        { name: "髮型", ok: false },
-      ],
-    },
-    {
-      label: "B",
-      title: "男生基礎妝",
-      price: "NT$ 600",
-      duration: "30 min",
-      items: [
-        { name: "底妝", ok: true },
-        { name: "修容", ok: true },
-        { name: "眼妝", ok: false },
-        { name: "髮型", ok: false },
-      ],
-    },
-    {
-      label: "C",
-      title: "女生精緻妝髮",
-      price: "NT$ 1,500",
-      duration: "1 hr",
-      popular: true,
-      items: [
-        { name: "底妝", ok: true },
-        { name: "修容", ok: true },
-        { name: "眼妝", ok: true },
-        { name: "髮型", ok: true },
-      ],
-    },
-    {
-      label: "D",
-      title: "男生精緻妝髮",
-      price: "NT$ 1,200",
-      duration: "1 hr",
-      items: [
-        { name: "底妝", ok: true },
-        { name: "修容", ok: true },
-        { name: "眼妝", ok: true },
-        { name: "髮型", ok: true },
-      ],
-    },
-    {
-      label: "E",
-      title: "訂製妝髮專案",
-      price: "NT$ 3,000",
-      duration: "1.5 hr",
-      items: [
-        { name: "底妝", ok: true },
-        { name: "修容", ok: true },
-        { name: "眼妝", note: "含假睫毛" },
-        { name: "髮型", ok: true },
-      ],
-    },
-  ];
+  const compareCards = MAKEUP_PLANS.map((plan) => ({
+    label: plan.label,
+    title: plan.id,
+    price: formatPlanPrice(plan.price),
+    duration: formatPlanDuration(plan.durationMin),
+    popular: 'popular' in plan ? plan.popular : undefined,
+    items:
+      plan.label === 'A'
+        ? [
+            { name: "底妝", ok: true },
+            { name: "修容", ok: true },
+            { name: "眼妝", note: "內眼線" },
+            { name: "髮型", ok: false },
+          ]
+        : plan.label === 'B'
+          ? [
+              { name: "底妝", ok: true },
+              { name: "修容", ok: true },
+              { name: "眼妝", ok: false },
+              { name: "髮型", ok: false },
+            ]
+          : plan.label === 'E'
+            ? [
+                { name: "底妝", ok: true },
+                { name: "修容", ok: true },
+                { name: "眼妝", note: "含假睫毛" },
+                { name: "髮型", ok: true },
+              ]
+            : [
+                { name: "底妝", ok: true },
+                { name: "修容", ok: true },
+                { name: "眼妝", ok: true },
+                { name: "髮型", ok: true },
+              ],
+  }));
 
   return (
     <section className="section-padding bg-brand-cream">
@@ -242,26 +215,20 @@ function ComparisonSection() {
                 <th className="text-left py-4 px-3 text-brand-textMuted font-normal text-xs tracking-wider uppercase">
                   比較項目
                 </th>
-                <th className="text-center py-4 px-3 text-brand-navy font-medium">
-                  女生基礎妝
-                </th>
-                <th className="text-center py-4 px-3 text-brand-navy font-medium">
-                  男生基礎妝
-                </th>
-                <th className="text-center py-4 px-3 text-brand-navy font-medium">
-                  <span className="inline-flex items-center gap-1">
-                    女生精緻妝髮
-                    <span className="text-[10px] bg-brand-gold/20 text-brand-gold px-1.5 py-0.5 rounded">
-                      推薦
-                    </span>
-                  </span>
-                </th>
-                <th className="text-center py-4 px-3 text-brand-navy font-medium">
-                  男生精緻妝髮
-                </th>
-                <th className="text-center py-4 px-3 text-brand-navy font-medium">
-                  訂製妝髮專案
-                </th>
+                {compareCards.map((card) => (
+                  <th key={card.label} className="text-center py-4 px-3 text-brand-navy font-medium">
+                    {card.label === 'C' ? (
+                      <span className="inline-flex items-center gap-1">
+                        {card.title}
+                        <span className="text-[10px] bg-brand-gold/20 text-brand-gold px-1.5 py-0.5 rounded">
+                          推薦
+                        </span>
+                      </span>
+                    ) : (
+                      card.title
+                    )}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>

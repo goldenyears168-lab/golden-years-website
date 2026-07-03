@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useBooking } from '../context/useBooking';
 import { formatTime, getDateRange, weekdayLabel } from '../api';
+import {
+  DAYS_AHEAD,
+  MIN_BOOKING_LEAD_HOURS,
+  MIN_ONLINE_CANCEL_HOURS_BEFORE,
+} from '../config';
 
 export function SlotsView({
   dates,
@@ -112,14 +117,27 @@ export function SlotsView({
   if (availableDates.length === 0) {
     return (
       <div className="p-6 text-center text-brand-textMuted bg-white rounded-lg border border-dashed border-brand-creamDark">
-        <p className="text-sm">近 14 天內沒有可預約時段，請改選其他服務或分店。</p>
+        <p className="text-sm">近 {DAYS_AHEAD} 天內沒有可預約時段，請改選其他服務或分店。</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white border border-brand-creamDark rounded-lg p-4 md:p-5 shadow-sm">
-      <p className="text-sm text-brand-textMuted mb-3">
+    <div className="relative bg-white border border-brand-creamDark rounded-lg p-4 md:p-5 shadow-sm">
+      <aside
+        className="md:absolute md:top-4 md:right-4 md:max-w-[10.5rem] mb-3 md:mb-0 text-right pointer-events-none"
+        aria-label="預約規則"
+      >
+        <ul className="list-none p-0 m-0 text-[0.65rem] leading-snug text-brand-textMuted/90 space-y-0.5">
+          <li>最遠可預約：今天起 {DAYS_AHEAD} 天內</li>
+          <li>最短提前：{MIN_BOOKING_LEAD_HOURS} 小時</li>
+          <li>
+            拍攝前 {MIN_ONLINE_CANCEL_HOURS_BEFORE} 小時內僅能人工取消
+          </li>
+        </ul>
+      </aside>
+
+      <p className="text-sm text-brand-textMuted mb-3 md:pr-36">
         選擇日期與時段，將前往下一頁填寫預約資料
       </p>
 

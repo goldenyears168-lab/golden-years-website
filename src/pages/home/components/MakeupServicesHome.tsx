@@ -20,7 +20,7 @@ export default function MakeupServicesHome() {
             專業妝髮，為鏡頭前的你加分
           </h2>
           <p className="text-brand-textLight text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            由首席造型師羽彤老師領軍，提供韓系精緻妝髮、基礎日常妝等多元方案，讓你在鏡頭前呈現最佳狀態。
+            由首席造型師羽彤老師領軍，提供女生精緻妝髮、男生基礎妝等多元方案，讓你在鏡頭前呈現最佳狀態。
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export default function MakeupServicesHome() {
                 攝影棚燈光與日常環境不同，鏡頭也會放大膚況與細節。我們的妝髮團隊熟悉棚燈特性，能針對鏡頭與修圖需求調整妝感，讓畫面自然、乾淨、耐看。
               </p>
               <p className="text-sm text-brand-textLight leading-relaxed mb-4">
-                從基礎日常妝到韓系精緻妝髮，從男生清爽妝容到女生訂製造型，我們提供完整方案選擇。無論是形象照、畢業照、情侶寫真，都能為你量身打造最適合的妝髮風格。
+                從女生基礎妝到男生精緻妝髮，我們提供完整方案選擇。無論是形象照、畢業照、情侶寫真，都能為你量身打造最適合的妝髮風格。
               </p>
             </div>
 
