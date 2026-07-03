@@ -1,21 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import AutoImport from "unplugin-auto-import/vite";
 
 const base = process.env.BASE_PATH || "/";
-
-const haoshiCatalogRoot = [
-  resolve(__dirname, "../haoshi-erp/src/shared/catalog"),
-  resolve(__dirname, "./haoshi-erp/src/shared/catalog"),
-].find((p) => existsSync(p));
-
-if (!haoshiCatalogRoot) {
-  throw new Error(
-    "找不到 haoshi-erp catalog（預期 ../haoshi-erp 或 ./haoshi-erp 與官網同層）",
-  );
-}
 
 function asyncCssPlugin() {
   return {
@@ -137,7 +125,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
-      "@haoshi/catalog": haoshiCatalogRoot,
     },
   },
   server: {

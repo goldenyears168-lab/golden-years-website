@@ -19,30 +19,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          path: golden-years-website
-
-      - uses: actions/checkout@v4
-        with:
-          repository: goldenyears168-lab/haoshi-erp
-          path: haoshi-erp
-          ref: main
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: golden-years-website/.nvmrc
-          cache-dependency-path: golden-years-website/package-lock.json
+          node-version-file: .nvmrc
+          cache: npm
 
-      - working-directory: golden-years-website
-        run: npm ci
+      - run: npm ci
 
-      - working-directory: golden-years-website
-        run: npm run lint
+      - run: npm run lint
 
-      - working-directory: golden-years-website
-        run: npm run type-check
+      - run: npm run type-check
 
       - name: Build
-        working-directory: golden-years-website
         run: npm run build
         env:
           VITE_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
