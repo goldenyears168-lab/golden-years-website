@@ -59,6 +59,9 @@
 /%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/%E5%AF%B5%E7%89%A9%E5%90%88%E7%85%A7/ /blog 301
 
 # ── V4: retired pages → home ──
+/Home / 301
+/Home/ / 301
+/events/* / 301
 /%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/%E6%B4%BB%E5%8B%95%E7%B4%80%E9%8C%84 / 301
 /%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/%E6%B4%BB%E5%8B%95%E7%B4%80%E9%8C%84/ / 301
 /%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/%E6%A0%A1%E5%9C%92%E8%B4%8A%E5%8A%A9%E6%A1%88%E4%BE%8B / 301
@@ -105,9 +108,16 @@
 /services/workshop /courses 301
 /services/workshop/ /courses 301
 
-/about/ /about 301
-/price-list/ /price-list 301
-/booking/ /booking 301
+/about /about/ 301
+/price-list /price-list/ 301
+/booking /booking/ 301
+/courses /courses/ 301
+/hair-makeup /hair-makeup/ 301
+/photography /photography/ 301
+/crop-tool /crop-tool/ 301
+
+# ── Portfolio catch-all: any remaining portfolio subpage not listed above ──
+/%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/* /blog/ 301
 
 # ── SPA catch-all: exclude static assets ──
 /assets/* /assets/:splat 200
