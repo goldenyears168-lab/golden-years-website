@@ -19,7 +19,6 @@ export function useSlotsFetch(
   dateFrom: string,
   dateTo: string,
   enabled: boolean,
-  allowedTimes?: string[],
 ): UseSlotsFetchResult {
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [slotIds, setSlotIds] = useState<Record<string, Record<string, string>>>({});
@@ -27,7 +26,7 @@ export function useSlotsFetch(
   const [error, setError] = useState<string | null>(null);
   const loadedRef = useRef<string | null>(null);
 
-  const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}-${allowedTimes?.join(',') ?? ''}`;
+  const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}`;
 
   useEffect(() => {
     if (!enabled || !service || !storeKey) {
@@ -42,37 +41,14 @@ export function useSlotsFetch(
     if (loadedRef.current === cacheKey) return;
 
     let cancelled = false;
-    setSlotsByDate({});
-    setSlotIds({});
     setLoading(true);
     setError(null);
 
     fetchSlots(service, storeKey as StoreKey, dateFrom, dateTo)
       .then(({ slotsByDate: matrix, slotIds: ids }) => {
         if (cancelled) return;
-
-        if (allowedTimes && allowedTimes.length > 0) {
-          const filtered: Record<string, string[]> = {};
-          const filteredIds: Record<string, Record<string, string>> = {};
-          for (const [date, times] of Object.entries(matrix ?? {})) {
-            const matched = times.filter((t) => allowedTimes.includes(t.slice(0, 5)));
-            if (matched.length > 0) {
-              filtered[date] = matched;
-              if (ids[date]) {
-                filteredIds[date] = Object.fromEntries(
-                  matched
-                    .filter((time) => ids[date]?.[time])
-                    .map((time) => [time, ids[date]![time]!]),
-                );
-              }
-            }
-          }
-          setSlotsByDate(filtered);
-          setSlotIds(filteredIds);
-        } else {
-          setSlotsByDate(matrix ?? {});
-          setSlotIds(ids ?? {});
-        }
+        setSlotsByDate(matrix ?? {});
+        setSlotIds(ids ?? {});
       })
       .catch((e) => {
         if (!cancelled) {
@@ -93,7 +69,7 @@ export function useSlotsFetch(
     return () => {
       cancelled = true;
     };
-  }, [enabled, service, storeKey, dateFrom, dateTo, cacheKey, allowedTimes]);
+  }, [enabled, service, storeKey, dateFrom, dateTo, cacheKey]);
 
   const reset = useCallback(() => {
     setSlotsByDate({});

@@ -24,10 +24,6 @@ export function BookingApp() {
     dateRange.from,
     dateRange.to,
     state.step === 3,
-    state.externalService?.id === 'id-formal' &&
-    state.selectedVariant?.service === 'id_photo'
-      ? ['14:45', '16:00']
-      : undefined,
   );
 
   const fieldsFetch = useFieldsFetch(
