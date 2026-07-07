@@ -67,18 +67,6 @@ export function BookingStepContent({
           近 {DAYS_AHEAD} 天內（{dateRange.from} ～ {dateRange.to}）
         </p>
           </div>
-          {!state.storeKey ? (
-            <div className="p-6 text-center text-brand-textMuted bg-white rounded-lg border border-dashed border-brand-creamDark">
-              <p className="text-sm">請先選擇分店，才能查詢可預約時段。</p>
-              <button
-                type="button"
-                onClick={() => dispatch({ type: 'GO_TO_STEP', step: 2 })}
-                className="mt-3 text-sm font-semibold text-brand-navy hover:text-brand-gold cursor-pointer bg-transparent border-none"
-              >
-                ← 返回選擇分店
-              </button>
-            </div>
-          ) : (
           <SlotsView
             dates={dateRange.dates}
             slotsByDate={slotsFetch.slotsByDate}
@@ -87,7 +75,6 @@ export function BookingStepContent({
             error={slotsFetch.error}
             isStandaloneMakeup={state.externalService?.isStandaloneMakeup}
           />
-          )}
         </div>
       )}
 

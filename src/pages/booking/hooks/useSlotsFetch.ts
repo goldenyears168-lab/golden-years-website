@@ -29,15 +29,7 @@ export function useSlotsFetch(
   const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}`;
 
   useEffect(() => {
-    if (!enabled || !service || !storeKey) {
-      if (enabled) {
-        setSlotsByDate({});
-        setSlotIds({});
-        setError(null);
-        loadedRef.current = null;
-      }
-      return;
-    }
+    if (!enabled || !service || !storeKey) return;
     if (loadedRef.current === cacheKey) return;
 
     let cancelled = false;
