@@ -215,7 +215,11 @@ export type WebsiteBookingPreview = {
 
 function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPreview {
   const service = String(data.service ?? '') as AppointmentService;
-  const { shootType } = displayFromServiceEnum(service);
+  const dbShootType =
+    typeof data.shoot_type === 'string' && data.shoot_type.trim()
+      ? data.shoot_type.trim()
+      : null;
+  const { shootType: inferredShootType } = displayFromServiceEnum(service);
   const makeupPlan =
     typeof data.makeup_plan === 'string' && data.makeup_plan.trim()
       ? data.makeup_plan.trim()
@@ -224,6 +228,12 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
   const startsAt = String(data.shoot_datetime ?? data.starts_at ?? '');
   const status = String(data.status ?? '');
   const isCancelled = status === 'available' || status.includes('cancel');
+  const blockReason =
+    typeof data.cancel_block_reason === 'string'
+      ? data.cancel_block_reason
+      : typeof data.block_reason === 'string'
+        ? data.block_reason
+        : null;
 
   return {
     id: String(data.id ?? data.booking_uuid ?? ''),
@@ -231,13 +241,12 @@ function mapAppointmentPreview(data: Record<string, unknown>): WebsiteBookingPre
     code: String(data.code ?? ''),
     store_name: String(data.store_name ?? data.store ?? ''),
     shoot_datetime: startsAt,
-    shoot_type: shootType,
+    shoot_type: dbShootType ?? inferredShootType,
     makeup_plan: makeupPlan,
     service,
     status: isCancelled ? 'cancelled' : status,
     can_cancel: Boolean(data.can_cancel),
-    cancel_block_reason:
-      typeof data.cancel_block_reason === 'string' ? data.cancel_block_reason : null,
+    cancel_block_reason: blockReason,
   };
 }
 
