@@ -74,15 +74,12 @@ function parseSlotRpcData(data: unknown): SlotsResponse {
 
     for (const entry of entries ?? []) {
       if (typeof entry === 'string') {
-        times.push(entry);
         continue;
       }
       const time = entry.time?.slice(0, 5);
-      if (!time) continue;
+      if (!time || !entry.appointment_id) continue;
       times.push(time);
-      if (entry.appointment_id) {
-        idsForDate[time] = entry.appointment_id;
-      }
+      idsForDate[time] = entry.appointment_id;
     }
 
     if (times.length > 0) {
@@ -293,11 +290,6 @@ export function normalizePhone(phone: string): string {
   if (digits.startsWith('09')) return `+886${digits.slice(1)}`;
   if (digits.startsWith('9') && digits.length === 9) return `+886${digits}`;
   return phone.trim();
-}
-
-export function parseSelectValues(values: string | null): string[] {
-  if (!values) return [];
-  return values.split(',').map((v) => v.trim()).filter(Boolean);
 }
 
 export function isFieldRequired(field: { is_null?: string }): boolean {

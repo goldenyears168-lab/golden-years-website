@@ -19,6 +19,7 @@ export function useSlotsFetch(
   dateFrom: string,
   dateTo: string,
   enabled: boolean,
+  refreshKey = 0,
 ): UseSlotsFetchResult {
   const [slotsByDate, setSlotsByDate] = useState<Record<string, string[]>>({});
   const [slotIds, setSlotIds] = useState<Record<string, Record<string, string>>>({});
@@ -26,7 +27,7 @@ export function useSlotsFetch(
   const [error, setError] = useState<string | null>(null);
   const loadedRef = useRef<string | null>(null);
 
-  const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}`;
+  const cacheKey = `${service}-${storeKey}-${dateFrom}-${dateTo}-${refreshKey}`;
 
   useEffect(() => {
     if (!enabled || !service || !storeKey) return;
@@ -41,21 +42,18 @@ export function useSlotsFetch(
         if (cancelled) return;
         setSlotsByDate(matrix ?? {});
         setSlotIds(ids ?? {});
+        loadedRef.current = cacheKey;
       })
       .catch((e) => {
-        if (!cancelled) {
-          setError(
-            e instanceof BookingError
-              ? e.message
-              : BookingErrorMessages.SLOTS_UNAVAILABLE,
-          );
-        }
+        if (cancelled) return;
+        setError(
+          e instanceof BookingError
+            ? e.message
+            : BookingErrorMessages.SLOTS_UNAVAILABLE,
+        );
       })
       .finally(() => {
-        if (!cancelled) {
-          setLoading(false);
-          loadedRef.current = cacheKey;
-        }
+        if (!cancelled) setLoading(false);
       });
 
     return () => {

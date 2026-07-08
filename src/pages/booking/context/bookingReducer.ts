@@ -41,10 +41,13 @@ export function bookingReducer(
 ): BookingState {
   switch (action.type) {
     case 'GO_TO_STEP': {
+      const targetStep = action.step as WizardStep;
+      const leavingFormForSlots = state.step === 4 && targetStep === 3;
       return {
         ...state,
-        step: action.step as WizardStep,
-        visitedSteps: new Set([...state.visitedSteps, action.step]),
+        step: targetStep,
+        visitedSteps: new Set([...state.visitedSteps, targetStep]),
+        ...(leavingFormForSlots ? { selectedSlot: null, bookError: null } : {}),
       };
     }
 

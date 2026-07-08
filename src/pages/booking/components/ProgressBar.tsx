@@ -14,7 +14,9 @@ export function ProgressBar({ labels }: { labels: string[] }) {
         const step = index + 1;
         const isCompleted = step < state.step;
         const isCurrent = step === state.step;
-        const isClickable = state.visitedSteps.has(step);
+        const isClickable =
+          state.visitedSteps.has(step) &&
+          (step !== 4 || state.selectedSlot != null);
 
         return (
           <div key={step} className="flex items-center gap-1 md:gap-3">

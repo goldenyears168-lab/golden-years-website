@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useBooking } from '../context/useBooking';
 import { ProgressBar } from './ProgressBar';
 import { BookingSummaryBar } from './BookingSummaryBar';
@@ -15,8 +15,15 @@ export function BookingApp() {
   const { state, dispatch } = useBooking();
   const wizardRef = useRef<HTMLDivElement>(null);
   const prevStepRef = useRef<number>(1);
+  const [slotsRefreshKey, setSlotsRefreshKey] = useState(0);
 
   const dateRange = useMemo(() => getDateRange(DAYS_AHEAD), []);
+
+  useEffect(() => {
+    if (state.step === 3 && prevStepRef.current === 4) {
+      setSlotsRefreshKey((k) => k + 1);
+    }
+  }, [state.step]);
 
   const slotsFetch = useSlotsFetch(
     state.selectedVariant?.service ?? null,
@@ -24,6 +31,7 @@ export function BookingApp() {
     dateRange.from,
     dateRange.to,
     state.step === 3,
+    slotsRefreshKey,
   );
 
   const fieldsFetch = useFieldsFetch(

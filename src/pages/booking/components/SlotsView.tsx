@@ -22,7 +22,7 @@ export function SlotsView({
   error: string | null;
   isStandaloneMakeup?: boolean;
 }) {
-  const { dispatch } = useBooking();
+  const { dispatch, state } = useBooking();
   const availableDates = useMemo(
     () => (dates ?? []).filter((d) => ((slotsByDate ?? {})[d]?.length ?? 0) > 0),
     [dates, slotsByDate],
@@ -80,17 +80,25 @@ export function SlotsView({
     setSelectedTime(null);
   }, [activeDate]);
 
+  useEffect(() => {
+    if (!state.selectedSlot) {
+      setSelectedTime(null);
+    }
+  }, [state.selectedSlot]);
+
   const timesForActive = activeDate ? (slotsByDate[activeDate] ?? []) : [];
 
   const handleTimeClick = (time: string) => {
     if (!activeDate || selectedTime) return;
+    const appointmentId = slotIds[activeDate]?.[time.slice(0, 5)];
+    if (!appointmentId) return;
     setSelectedTime(time);
     dispatch({
       type: 'SELECT_SLOT',
       slot: {
         date: activeDate,
         time,
-        appointmentId: slotIds[activeDate]?.[time.slice(0, 5)],
+        appointmentId,
       },
     });
   };

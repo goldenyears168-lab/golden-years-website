@@ -2,6 +2,7 @@ import type { StoreKey } from './config';
 import type { AppointmentService } from './service-mapping';
 import { displayFromServiceEnum } from './service-mapping';
 import { BILLABLE_MAKEUP_PLANS, normalizeMakeupPlan } from '@/shared/makeup-plans';
+import { MAKEUP_PLAN_FIELD_NAME } from './arrival-time';
 
 export const STORE_LABELS: Record<StoreKey, string> = {
   zhongshan: '中山店',
@@ -16,6 +17,8 @@ const BUY_MORE_MAP: Record<string, string> = {
   '不需再加購': '',
 };
 
+export const EXTRA_ID_PHOTO_INVALID_MSG = '加購證件照選項無法辨識，請重新選擇';
+
 function mapMakeupLabel(raw: string | undefined): string | null {
   return normalizeMakeupPlan(raw);
 }
@@ -26,6 +29,14 @@ function parseAdditional(additional: Record<string, string> | undefined) {
   const groupRaw = a.data_field_8 ?? '';
   const groupSize = groupRaw ? Number.parseInt(groupRaw, 10) : null;
 
+  let extraIdPhoto: string | null = null;
+  if (buyMoreRaw) {
+    if (!(buyMoreRaw in BUY_MORE_MAP)) {
+      throw new Error(EXTRA_ID_PHOTO_INVALID_MSG);
+    }
+    extraIdPhoto = BUY_MORE_MAP[buyMoreRaw] || null;
+  }
+
   return {
     gender: a.data_field_1 ?? null,
     job_title: a.data_field_2 ?? null,
@@ -33,10 +44,21 @@ function parseAdditional(additional: Record<string, string> | undefined) {
     purpose: a.data_field_9 ?? null,
     marketing_duration: a.data_field_10 ?? null,
     customer_note: a.data_field_5 ?? null,
-    extra_id_photo: BUY_MORE_MAP[buyMoreRaw] ?? buyMoreRaw ?? null,
+    extra_id_photo: extraIdPhoto,
     group_size: Number.isFinite(groupSize) ? groupSize : null,
-    makeup_detail: a.data_field_4 ?? null,
+    makeup_detail: a[MAKEUP_PLAN_FIELD_NAME] ?? null,
   };
+}
+
+function requireMakeupPlan(raw: string | undefined): string {
+  if (!raw?.trim()) {
+    throw new Error(MAKEUP_PLAN_REQUIRED_MSG);
+  }
+  const plan = mapMakeupLabel(raw);
+  if (!plan || !BILLABLE_MAKEUP_PLANS.has(plan)) {
+    throw new Error(MAKEUP_PLAN_INVALID_MSG);
+  }
+  return plan;
 }
 
 export type BookSlotColumnParams = {
@@ -54,6 +76,10 @@ export type BookSlotColumnParams = {
 
 export const MAKEUP_PLAN_REQUIRED_MSG = '請選擇妝髮方案';
 export const MAKEUP_PLAN_INVALID_MSG = '妝髮方案無法辨識，請重新選擇';
+
+function isMakeupRequiredService(service: AppointmentService): boolean {
+  return service === 'makeup_only' || service.endsWith('_makeup');
+}
 
 /** Plan A：shoot_type + makeup_plan SSOT；純拍攝可傳 NULL plan（無妝髮） */
 export function buildBookSlotParams(input: {
@@ -75,19 +101,12 @@ export function buildBookSlotParams(input: {
   if (parsed.extra_id_photo) params.p_extra_id_photo = parsed.extra_id_photo;
   if (parsed.group_size != null) params.p_group_size = parsed.group_size;
 
-  if (shootType === '單妝髮') {
-    if (!parsed.makeup_detail?.trim()) {
-      throw new Error(MAKEUP_PLAN_REQUIRED_MSG);
-    }
-    const plan = mapMakeupLabel(parsed.makeup_detail);
-    if (!plan || !BILLABLE_MAKEUP_PLANS.has(plan)) {
-      throw new Error(MAKEUP_PLAN_INVALID_MSG);
-    }
-    params.p_makeup_plan = plan;
+  if (isMakeupRequiredService(input.service)) {
+    params.p_makeup_plan = requireMakeupPlan(parsed.makeup_detail ?? undefined);
     return params;
   }
 
-  // 拍攝類：有選妝髮才寫 plan；空 / 無妝髮 → NULL
+  // 純拍攝：有選妝髮才寫 plan（不應發生於現行服務設定）
   if (parsed.makeup_detail?.trim()) {
     const plan = mapMakeupLabel(parsed.makeup_detail);
     if (plan && BILLABLE_MAKEUP_PLANS.has(plan)) {

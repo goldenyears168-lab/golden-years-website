@@ -3,7 +3,7 @@ export type AdditionalField = {
   name: string;
   title: string;
   type: string;
-  values: string | null;
+  values: string[] | null;
   default: string | null;
   is_null: string;
   pos: string;

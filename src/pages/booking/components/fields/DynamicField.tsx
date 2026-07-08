@@ -1,4 +1,4 @@
-import { isFieldRequired, parseSelectValues } from '../../api';
+import { isFieldRequired } from '../../api';
 import type { AdditionalField } from '../../types';
 
 type Props = {
@@ -31,7 +31,7 @@ export default function DynamicField({ field, value, onChange }: Props) {
   }
 
   if (field.type === 'select') {
-    const options = parseSelectValues(field.values);
+    const options = field.values ?? [];
     return (
       <div className="flex flex-col gap-2 mb-5">
         <span className="text-sm font-medium text-brand-charcoal">
