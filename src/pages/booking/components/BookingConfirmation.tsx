@@ -63,12 +63,6 @@ export function BookingConfirmation({ summary }: { summary: BookingSummary }) {
         </div>
       </div>
 
-      {/* 預約代碼 */}
-      <p className="text-base text-brand-charcoal">
-        預約代碼：
-        <strong className="text-brand-navy tracking-wider ml-1">{booking.code}</strong>
-      </p>
-
       {/* 預約資訊 */}
       <ul className="list-none p-0 m-0 text-brand-textMuted text-sm leading-relaxed space-y-1">
         <li>{serviceLabel} · {storeLabel}</li>

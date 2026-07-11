@@ -2,6 +2,30 @@ import { blog } from "@/config/images";
 
 export const blogCategories = [
   {
+    id: 'toolbox',
+    title: '好時工具箱',
+    subtitle: 'Golden Toolbox',
+    articles: [
+      {
+        id: 'photo-crop',
+        title: '自助大頭照裁切',
+        excerpt: '線上自助大頭照裁切工具，支援各種證件照規格（身分證、護照、健保卡、駕照）。上傳照片、選擇規格、一鍵裁切。',
+        image: blog.covers[11],
+        date: '2025-05-01',
+        category: 'toolbox',
+        href: '/crop-tool',
+      },
+      {
+        id: 'career-test',
+        title: '職涯性向測驗',
+        excerpt: '透過簡短的互動測驗，探索您的職涯優勢與適合的發展方向。由好時有影與職涯諮詢師共同設計的免費工具。',
+        image: blog.covers[12],
+        date: '2025-04-18',
+        category: 'toolbox',
+      },
+    ],
+  },
+  {
     id: 'shooting-guide',
     title: '拍攝指南',
     subtitle: 'Shooting Guide',
@@ -107,29 +131,6 @@ export const blogCategories = [
         image: blog.covers[10],
         date: '2025-03-25',
         category: 'traveler-stories',
-      },
-    ],
-  },
-  {
-    id: 'toolbox',
-    title: '好時工具箱',
-    subtitle: 'Golden Toolbox',
-    articles: [
-      {
-        id: 'photo-crop',
-        title: '自助大頭照裁切',
-        excerpt: '線上自助大頭照裁切工具，支援各種證件照規格（身分證、護照、健保卡、駕照）。上傳照片、選擇規格、一鍵裁切。',
-        image: blog.covers[11],
-        date: '2025-05-01',
-        category: 'toolbox',
-      },
-      {
-        id: 'career-test',
-        title: '職涯性向測驗',
-        excerpt: '透過簡短的互動測驗，探索您的職涯優勢與適合的發展方向。由好時有影與職涯諮詢師共同設計的免費工具。',
-        image: blog.covers[12],
-        date: '2025-04-18',
-        category: 'toolbox',
       },
     ],
   },

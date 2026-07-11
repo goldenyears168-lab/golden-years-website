@@ -127,10 +127,6 @@ export default function BookingCancelPage() {
 
                 <ul className="list-none p-0 m-0 mb-5 text-brand-textMuted text-sm leading-relaxed space-y-1 text-left">
                   <li>
-                    預約代碼：
-                    <strong className="text-brand-navy ml-1">{booking.code}</strong>
-                  </li>
-                  <li>
                     {booking.shoot_type}
                     {booking.makeup_plan
                       ? ` · ${booking.makeup_plan}`
