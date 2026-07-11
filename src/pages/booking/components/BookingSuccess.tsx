@@ -1,5 +1,5 @@
-import { formatTime, weekdayLabel, getMakeupStyleLabel } from '../api';
-import { LINE_OFFICIAL_URL } from '../config';
+import { buildLineOaMessageUrl } from '../config';
+import { buildBookingLinePrefillMessage } from '../lib/line-oa-message';
 import { BookingConfirmation } from './BookingConfirmation';
 import type { BookingSummary } from '../types';
 
@@ -9,10 +9,7 @@ type Props = {
 };
 
 export function BookingSuccess({ summary, onNewBooking }: Props) {
-  const { booking } = summary;
-  const start = booking.start_date_time;
-  const [datePart, timePart] = start.includes(' ') ? start.split(' ') : [start, ''];
-  const timeFormatted = timePart ? formatTime(timePart) : '';
+  const linePrefillUrl = buildLineOaMessageUrl(buildBookingLinePrefillMessage(summary));
 
   return (
     <div className="text-center bg-white border border-brand-creamDark rounded-lg p-5 md:p-8 shadow-sm">
@@ -27,31 +24,37 @@ export function BookingSuccess({ summary, onNewBooking }: Props) {
 
       <BookingConfirmation summary={summary} />
 
+      <p className="text-xs text-brand-textMuted leading-relaxed mb-3 text-left">
+        想接收 LINE 拍攝提醒？加入官方 LINE 並
+        <strong className="font-semibold text-brand-navy"> 傳送預填訊息 </strong>
+        即可完成綁定。（請使用手機 LINE 開啟；確認信仍為正式預約憑據）
+      </p>
+
       <a
-        href={LINE_OFFICIAL_URL}
+        href={linePrefillUrl}
         className="
           inline-flex items-center justify-center gap-2.5
-          w-full px-5 py-3.5 mb-3
-          rounded-full text-white text-base font-bold
+          w-full px-5 py-3 mb-3
+          rounded-full text-brand-navy text-base font-semibold
+          border-2 border-[#06c755] bg-white
           cursor-pointer
           transition-all duration-150
-          hover:-translate-y-0.5
+          hover:bg-green-50
         "
-        style={{ background: '#06c755', boxShadow: '0 4px 14px rgba(6,199,85,0.35)' }}
         target="_blank"
         rel="noopener noreferrer"
       >
         <span
           className="inline-flex items-center justify-center
             min-w-[40px] h-6 px-2 rounded-md
-            text-xs font-extrabold tracking-wide
+            text-xs font-extrabold tracking-wide text-white
           "
-          style={{ background: 'rgba(255,255,255,0.25)' }}
+          style={{ background: '#06c755' }}
           aria-hidden
         >
           LINE
         </span>
-        加入官方 LINE
+        加入 LINE 並傳送預約資訊（選配）
       </a>
 
       <button
