@@ -38,7 +38,7 @@ export function buildBookingLinePrefillMessage(summary: BookingSummary): string 
     lines.push(`建議到店：${datePart} ${arrivalTime.trim()}`);
   }
 
-  lines.push('', '請確認後按傳送，我們將為您綁定 LINE 通知。');
+  lines.push('', '');
 
   return lines.join('\n');
 }
