@@ -1,5 +1,10 @@
 import type { BookingSummary } from '../types';
 
+/**
+ * SSOT：haoshi-erp/src/shared/lib/line-oa-message.ts
+ * 修改格式時兩邊須同步（haoshi-erp 有 tests/line-oa-message.test.ts）。
+ */
+
 /** 預填訊息第一行格式；line-webhook 以此前綴解析 booking code */
 export const BOOKING_CODE_LINE_PREFIX = '預約編號：';
 
