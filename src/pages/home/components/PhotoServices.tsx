@@ -24,21 +24,18 @@ export default function PhotoServices() {
             <Link
               key={service.slug}
               to={`/photography?category=${service.categoryId}`}
-              className={`card-base group cursor-pointer hover:-translate-y-1 hover:shadow-sm transition-all duration-300 sr-fade-up sr-fast ${gridVisible ? "sr-visible" : ""}`}
+              className={`group flex items-stretch rounded-lg overflow-hidden border border-brand-navy/10 bg-white cursor-pointer hover:-translate-y-1 hover:shadow-sm transition-all duration-300 sr-fade-up sr-fast ${gridVisible ? "sr-visible" : ""}`}
               style={{ transitionDelay: `${idx * 80}ms` }}
             >
-              <div className="relative overflow-hidden">
+              <div className="w-2/5 shrink-0 relative overflow-hidden">
                 <LazyImage
                   src={service.image}
                   alt={`好時有影台北${service.title}`}
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
-                  skeletonClassName="min-h-[220px] sm:min-h-[180px]"
-                  width={600}
-                  height={400}
+                  containerClassName="h-full w-full"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <div className="p-5 md:p-6">
+              <div className="flex-1 min-w-0 flex flex-col justify-center p-4 sm:p-5 md:p-6">
                 <h3 className="text-base md:text-lg font-serif font-medium mb-1.5 group-hover:text-brand-navy transition-colors duration-300">
                   {service.title}
                 </h3>

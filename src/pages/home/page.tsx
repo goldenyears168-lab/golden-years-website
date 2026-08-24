@@ -3,7 +3,7 @@ import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
 import HeroSection from "./components/HeroSection";
-import PortfolioSection from "./components/PortfolioSection";
+import PhotoServices from "./components/PhotoServices";
 import MakeupServicesHome from "./components/MakeupServicesHome";
 import BrandStory from "./components/BrandStory";
 import TrustSection from "./components/TrustSection";
@@ -21,7 +21,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <PortfolioSection />
+        <PhotoServices />
         <MakeupServicesHome />
         <BrandStory />
         <TrustSection />
