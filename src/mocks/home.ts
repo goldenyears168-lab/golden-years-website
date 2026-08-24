@@ -1,4 +1,4 @@
-import { home as img } from "@/config/images";
+import { home as img, pricing as pricingImg } from "@/config/images";
 import { MAKEUP_PLANS, formatPlanPrice } from "@/shared/makeup-plans";
 
 export const heroData = {
@@ -21,7 +21,7 @@ export const photoServices = [
     title: "求職履歷照",
     description: "為你的職涯開啟完美第一印象",
     price: "NT$ 999",
-    image: img.services[0],
+    image: pricingImg.categories[0],
     slug: "resume-photo",
     categoryId: "resume",
   },
@@ -29,7 +29,7 @@ export const photoServices = [
     title: "LinkedIn形象照",
     description: "打造專業社群的最佳個人形象",
     price: "NT$ 999",
-    image: img.services[1],
+    image: pricingImg.categories[1],
     slug: "linkedin-photo",
     categoryId: "linkedin",
   },
@@ -37,7 +37,7 @@ export const photoServices = [
     title: "醫師白袍照",
     description: "展現醫療專業的莊重與溫暖",
     price: "NT$ 999",
-    image: img.services[2],
+    image: pricingImg.categories[4],
     slug: "doctor-white-coat",
     categoryId: "doctor",
   },
@@ -45,7 +45,7 @@ export const photoServices = [
     title: "畢業寫真",
     description: "為人生重要里程碑留下美好紀念",
     price: "NT$ 999",
-    image: img.services[3],
+    image: pricingImg.categories[3],
     slug: "graduation-photo",
     categoryId: "graduation",
   },
@@ -53,7 +53,7 @@ export const photoServices = [
     title: "韓式證件照",
     description: "最自然的證件照，展現最好的自己",
     price: "NT$ 399",
-    image: img.services[4],
+    image: pricingImg.idPhoto[0],
     slug: "korean-id-photo",
     categoryId: "id-formal",
   },
@@ -61,7 +61,7 @@ export const photoServices = [
     title: "情侶寫真",
     description: "記錄愛情的每一個美好時刻",
     price: "NT$ 1,199",
-    image: img.services[5],
+    image: pricingImg.categories[5],
     slug: "couple-photo",
     categoryId: "couple",
   },
