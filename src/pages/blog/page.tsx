@@ -3,10 +3,8 @@ import Header from "@/components/feature/Header";
 import Footer from "@/components/feature/Footer";
 import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
-import ParallaxHero from "@/components/base/ParallaxHero";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { blogPageData } from "@/mocks/blog";
-import { blog as blogImg } from "@/config/images";
 import BlogCategoryNav from "./components/BlogCategoryNav";
 import BlogArticleGrid from "./components/BlogArticleGrid";
 
@@ -24,14 +22,9 @@ export default function Blog() {
       <Header />
       <main>
         {/* Hero */}
-        <ParallaxHero
-          heightClass="h-[380px] md:h-[480px]"
-          image={blogImg.hero}
-          imageAlt="好時有影好時誌部落格攝影知識"
-          imageOpacity={0.30}
-          parallaxRate={0.20}
-          revealVisible={heroVisible}
-          sectionRef={heroRef}
+        <section
+          ref={heroRef}
+          className={`h-[380px] md:h-[480px] flex items-center justify-center bg-brand-navy sr-fade-up ${heroVisible ? "sr-visible" : ""}`}
         >
           <div className="text-center px-4">
             <span className="inline-block font-serif-en text-xs md:text-sm tracking-[0.2em] uppercase text-brand-gold mb-4">
@@ -44,7 +37,7 @@ export default function Blog() {
               {blogPageData.hero.description}
             </p>
           </div>
-        </ParallaxHero>
+        </section>
 
         {/* Sticky Category Nav */}
         <BlogCategoryNav />

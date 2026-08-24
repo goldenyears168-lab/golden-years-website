@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { blogCategories } from '@/mocks/blog';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import LazyImage from '@/components/base/LazyImage';
 
 type BlogArticle = (typeof blogCategories)[number]['articles'][number];
 
@@ -20,16 +19,6 @@ function BlogArticleCard({
   const style = { transitionDelay: gridVisible ? `${index * 100}ms` : '0ms' };
   const content = (
     <>
-      <div className="overflow-hidden aspect-square">
-        <LazyImage
-          src={article.image}
-          alt={`好時有影${article.title}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          skeletonClassName="min-h-[200px]"
-          width={400}
-          height={400}
-        />
-      </div>
       <div className="p-5 md:p-6">
         <div className="flex items-center gap-3 mb-3">
           <span className="text-xs text-brand-gold font-medium">{article.date}</span>
