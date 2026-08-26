@@ -6,12 +6,48 @@ import FloatingButtons from "@/components/feature/FloatingButtons";
 import PageSEO from "@/components/base/PageSEO";
 import { supabase } from "@/lib/supabase";
 
-const STORE_OPTIONS = ["公館店", "中山店", "其他"];
-const LIFE_STAGE_OPTIONS = ["學生 / 求職中", "職場人士", "即將畢業", "籌備婚禮", "新手爸媽", "其他人生階段"];
-const ACTIVITY_OPTIONS = ["攝影課程", "妝髮教學", "外拍活動", "職涯形象諮詢", "品牌合作 / 聯名", "其他活動"];
-const BRAND_FEELING_OPTIONS = ["專業可靠", "溫馨親切", "時尚有質感", "價格實惠", "其他感受"];
-const PHOTO_AUTH_OPTIONS = ["同意公開分享（社群／官網）", "僅作品集使用，不公開姓名", "不同意使用", "其他"];
-const OTHER_LABEL_PREFIX = "其他";
+const STORE_OPTIONS = ["公館店", "中山店", "不是在店內", "其他"];
+const LIFE_STAGE_OPTIONS = [
+  "找實習或工作",
+  "想轉職",
+  "剛進入職場",
+  "準備畢業",
+  "正在累積作品集",
+  "正在創業",
+  "想開始新的生活",
+  "想重新認識自己",
+  "想認識新朋友",
+  "最近有點迷惘",
+  "其他",
+];
+const ACTIVITY_OPTIONS = [
+  "我有故事，樂意自願成為分享者",
+  "互惠體驗一日攝影師企劃（限量）",
+  "海外校園快閃攝影活動（香港、雅加達、墨爾本等）",
+  "出走者朝聖之路分享會",
+  "攝影交換徒步環島的借宿沙發",
+  "每週五早上 7:00 在公館騎 Ubike",
+  "與陌生人玩密室逃脫",
+  "音樂表演、課程或音樂人的交流活動",
+  "廚藝、手作課程或交流會",
+  "參觀攝影棚或交流會",
+  "職涯或異業合作交流",
+  "成為合作夥伴或協力團隊",
+  "協助在台灣各地開分店",
+  "都沒有興趣",
+  "其他",
+];
+const BRAND_FEELING_OPTIONS = [
+  "一個溫暖的攝影工作室",
+  "一群很有熱情的人",
+  "一個很有生活感的品牌",
+  "一個有創作者氣氛的空間",
+  "一個能認識新朋友的社群",
+  "我還在認識你們 😆",
+  "其他",
+];
+const PHOTO_AUTH_OPTIONS = ["願意公開使用", "可以使用，但不放名字", "這次先不公開"];
+const OTHER_LABEL = "其他";
 
 const inputClass =
   "px-3 py-2 border-2 border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold bg-white text-brand-charcoal";
@@ -44,7 +80,6 @@ interface FormState {
   brandFeeling: string;
   brandFeelingOther: string;
   photoAuth: string;
-  photoAuthOther: string;
   futureMessage: string;
 }
 
@@ -65,7 +100,6 @@ const INITIAL_STATE: FormState = {
   brandFeeling: "",
   brandFeelingOther: "",
   photoAuth: "",
-  photoAuthOther: "",
   futureMessage: "",
 };
 
@@ -107,7 +141,7 @@ export default function FeedbackPage() {
       brand_feeling: form.brandFeeling || null,
       brand_feeling_other: form.brandFeelingOther || null,
       photo_auth: form.photoAuth || null,
-      photo_auth_other: form.photoAuthOther || null,
+      photo_auth_other: null,
       future_message: form.futureMessage || null,
       source: "web",
       session_id: sessionId || null,
@@ -267,7 +301,7 @@ export default function FeedbackPage() {
 
               <label className="flex flex-col gap-2 mb-5">
                 <span className="text-sm font-medium text-brand-charcoal">
-                  您希望我們未來提供哪些產品或服務？
+                  您希望我們未來可以準備哪些拍攝主題、道具或服務？
                 </span>
                 <textarea
                   value={form.desiredProducts}
@@ -292,7 +326,7 @@ export default function FeedbackPage() {
                     </button>
                   ))}
                 </div>
-                {form.lifeStage.includes(OTHER_LABEL_PREFIX + "人生階段") && (
+                {form.lifeStage.includes(OTHER_LABEL) && (
                   <input
                     type="text"
                     value={form.lifeStageOther}
@@ -318,7 +352,7 @@ export default function FeedbackPage() {
                     </button>
                   ))}
                 </div>
-                {form.activityInterest.includes(OTHER_LABEL_PREFIX + "活動") && (
+                {form.activityInterest.includes(OTHER_LABEL) && (
                   <input
                     type="text"
                     value={form.activityInterestOther}
@@ -344,7 +378,7 @@ export default function FeedbackPage() {
                     </button>
                   ))}
                 </div>
-                {form.brandFeeling === OTHER_LABEL_PREFIX + "感受" && (
+                {form.brandFeeling === OTHER_LABEL && (
                   <input
                     type="text"
                     value={form.brandFeelingOther}
@@ -370,15 +404,6 @@ export default function FeedbackPage() {
                     </button>
                   ))}
                 </div>
-                {form.photoAuth === OTHER_LABEL_PREFIX && (
-                  <input
-                    type="text"
-                    value={form.photoAuthOther}
-                    onChange={(e) => update("photoAuthOther", e.target.value)}
-                    placeholder="請說明"
-                    className={`${inputClass} mt-2`}
-                  />
-                )}
               </div>
 
               <label className="flex flex-col gap-2 mb-6">
