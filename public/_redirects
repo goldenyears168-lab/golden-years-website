@@ -9,8 +9,6 @@
 /Price-List/ /price-list 301
 /%E5%A6%9D%E9%AB%AE%E6%9C%8D%E5%8B%99-akeup /hair-makeup 301
 /%E5%A6%9D%E9%AB%AE%E6%9C%8D%E5%8B%99-akeup/ /hair-makeup 301
-/feedback / 301
-/feedback/ / 301
 /FAQS / 301
 /FAQS/ / 301
 
@@ -115,6 +113,7 @@
 /hair-makeup /hair-makeup/ 301
 /photography /photography/ 301
 /crop-tool /crop-tool/ 301
+/feedback /feedback/ 301
 
 # ── Portfolio catch-all: any remaining portfolio subpage not listed above ──
 /%E4%BD%9C%E5%93%81%E9%9B%86-portfolio/* /blog/ 301

@@ -14,6 +14,7 @@ const PhotoCrop = lazy(() => import("@/pages/photo-crop/page"));
 const Booking = lazy(() => import("@/pages/booking/page"));
 const BookingThankYou = lazy(() => import("@/pages/booking/thank-you/page"));
 const BookingCancel = lazy(() => import("@/pages/booking/cancel/page"));
+const Feedback = lazy(() => import("@/pages/feedback/page"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const routes: RouteObject[] = [
@@ -102,6 +103,14 @@ const routes: RouteObject[] = [
     element: (
       <Suspense fallback={<PageSkeleton />}>
         <BookingCancel />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/feedback",
+    element: (
+      <Suspense fallback={<PageSkeleton />}>
+        <Feedback />
       </Suspense>
     ),
   },
