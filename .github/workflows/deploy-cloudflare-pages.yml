@@ -1,8 +1,6 @@
 name: Deploy Cloudflare Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 # 部署用排隊而非互相取消：連續 push 時讓 run 依序完成。
