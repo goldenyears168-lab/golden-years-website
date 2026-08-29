@@ -51,7 +51,7 @@ export const pricingCategories = [
         title: "個人寫真照",
         subtitle: "自我紀錄，個人風格",
         price: "NT$ 999",
-        image: img.categories[3],
+        image: img.categories[10],
         slug: "personal-portrait",
       },
       {

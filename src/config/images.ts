@@ -121,8 +121,9 @@ export const pricing = {
     `${R2}/home/services/card-002.webp`,
     `${R2}/portfolio/doctor/white-coat-010.webp`,
     `${R2}/portfolio/family/session-002.webp`,
-    `${R2}/home/hero/slide-001.webp`,
+    `${R2}/portfolio/maternity/session-001.webp`,
     `${R2}/pricing/portrait/category-010.webp`,
+    `${R2}/personal-portrait/session-007.webp`,
   ],
   idPhoto: [
     `${R2}/pricing/id-photo/passport-001.webp`,
