@@ -39,7 +39,7 @@ export function ServiceStep() {
               {group.categoryLabel}
             </h3>
           </div>
-          <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 items-start">
             {group.services.map((service) => (
               <ServiceCard
                 key={service.id}
