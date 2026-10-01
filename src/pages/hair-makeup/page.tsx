@@ -89,7 +89,7 @@ function QuoteSection() {
             <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "3 / 4" }}>
               <LazyImage
                 src={makeupImg.teacher}
-                alt="好時有影首席造型師羽彤老師專業妝髮"
+                alt="好時有影造型師羽彤老師專業妝髮"
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
                 decoding="async"
@@ -104,7 +104,7 @@ function QuoteSection() {
                     羽彤老師
                   </span>
                   <span className="text-white/60 text-xs">
-                    首席造型師
+                    造型師
                   </span>
                 </div>
               </div>

@@ -153,7 +153,7 @@ export default function PhotographyServices() {
                   <div className="relative w-full max-w-[340px] rounded-lg overflow-hidden flex-shrink-0" style={{ aspectRatio: "3 / 4" }}>
                     <LazyImage
                       src={team[0]}
-                      alt="好時有影 Annie 總監首席攝影師"
+                      alt="好時有影 Annie 總監攝影師"
                       className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       width={340}
                       height={453}
@@ -171,7 +171,7 @@ export default function PhotographyServices() {
                       <span className="text-sm font-medium text-brand-navy">Annie 總監</span>
                       <span className="w-4 h-px bg-brand-gold" />
                     </div>
-                    <span className="text-xs text-brand-textMuted mt-1">首席攝影師</span>
+                    <span className="text-xs text-brand-textMuted mt-1">攝影師</span>
                   </div>
                 </div>
               </div>

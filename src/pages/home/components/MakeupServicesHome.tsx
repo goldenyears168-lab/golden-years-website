@@ -20,7 +20,7 @@ export default function MakeupServicesHome() {
             專業妝髮，為鏡頭前的你加分
           </h2>
           <p className="text-brand-textLight text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            由首席造型師羽彤老師領軍，提供女生精緻妝髮、男生基礎妝等多元方案，讓你在鏡頭前呈現最佳狀態。
+            由造型師羽彤老師領軍，提供女生精緻妝髮、男生基礎妝等多元方案，讓你在鏡頭前呈現最佳狀態。
           </p>
         </div>
 

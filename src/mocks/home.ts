@@ -133,7 +133,7 @@ export const founderWords = {
   ],
   founder: {
     name: "Jack",
-    title: "創辦人 / 首席攝影師",
+    title: "創辦人 / 攝影師",
     image: img.founder,
     alt: "好時有影創辦人 Jack 肖像照",
   },
