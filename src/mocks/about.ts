@@ -27,13 +27,13 @@ export const teamData = {
       members: [
         {
           name: "Annie",
-          title: "共同創辦人 / 首席攝影師",
+          title: "共同創辦人 / 攝影師",
           image: team[0],
           alt: "好時有影攝影師 Annie 團隊照",
         },
         {
           name: "敦閔",
-          title: "資深攝影師",
+          title: "攝影師",
           image: team[1],
           alt: "好時有影攝影師敦閔 團隊照",
         },
@@ -57,13 +57,13 @@ export const teamData = {
       members: [
         {
           name: "Chloe",
-          title: "首席造型師",
+          title: "造型師",
           image: team[5],
           alt: "好時有影造型師Chloe 團隊照",
         },
         {
           name: "純依",
-          title: "資深造型師",
+          title: "造型師",
           image: team[6],
           alt: "好時有影造型師純依 團隊照",
         },
@@ -87,13 +87,13 @@ export const teamData = {
       members: [
         {
           name: "Mira",
-          title: "資深修圖師",
+          title: "修圖師",
           image: team[9],
           alt: "好時有影修圖師Mira 團隊照",
         },
         {
           name: "靜怡",
-          title: "資深修圖師",
+          title: "修圖師",
           image: team[10],
           alt: "好時有影修圖師靜怡 團隊照",
         },
