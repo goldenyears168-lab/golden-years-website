@@ -23,7 +23,7 @@ export const teamData = {
   categories: [
     {
       role: "攝影師",
-      count: "5 位",
+      count: "6 位",
       members: [
         {
           name: "Miyabi",
@@ -55,35 +55,35 @@ export const teamData = {
           image: "/team/photographer-emi.webp",
           alt: "好時有影攝影師 Emi 團隊照",
         },
+        {
+          name: "Yvonne",
+          title: "攝影師",
+          image: "/team/photographer-yvonne.webp",
+          alt: "好時有影攝影師 Yvonne 團隊照",
+        },
       ],
     },
     {
       role: "造型師",
-      count: "4 位",
+      count: "3 位",
       members: [
+        {
+          name: "Chun-Yi",
+          title: "造型師",
+          image: "/team/stylist-chunyi.webp",
+          alt: "好時有影造型師 Chun-Yi 團隊照",
+        },
         {
           name: "Chloe",
           title: "造型師",
-          image: team[5],
-          alt: "好時有影造型師Chloe 團隊照",
-        },
-        {
-          name: "純依",
-          title: "造型師",
-          image: team[6],
-          alt: "好時有影造型師純依 團隊照",
-        },
-        {
-          name: "Mona",
-          title: "造型師",
-          image: team[7],
-          alt: "好時有影造型師Mona 團隊照",
+          image: "/team/stylist-chloe.webp",
+          alt: "好時有影造型師 Chloe 團隊照",
         },
         {
           name: "Enid",
           title: "造型師",
-          image: team[4],
-          alt: "好時有影造型師Enid 團隊照",
+          image: "/team/stylist-enid.webp",
+          alt: "好時有影造型師 Enid 團隊照",
         },
       ],
     },
