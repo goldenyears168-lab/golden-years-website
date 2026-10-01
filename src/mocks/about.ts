@@ -23,7 +23,7 @@ export const teamData = {
   categories: [
     {
       role: "攝影師",
-      count: "5 位",
+      count: "6 位",
       members: [
         {
           name: "Miyabi",
@@ -54,6 +54,12 @@ export const teamData = {
           title: "攝影師",
           image: "/team/photographer-emi.webp",
           alt: "好時有影攝影師 Emi 團隊照",
+        },
+        {
+          name: "Yvonne",
+          title: "攝影師",
+          image: "/team/photographer-yvonne.webp",
+          alt: "好時有影攝影師 Yvonne 團隊照",
         },
       ],
     },
